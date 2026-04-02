@@ -123,7 +123,7 @@ export default async function TroopTierPage({
                       <img
                         src={troopImage(g.troops[0].key)}
                         alt={troopTypeName(g.title, lang)}
-                        className={`h-10 w-10 shrink-0 rounded-lg ${isActive ? "ring-2 ring-white" : ""}`}
+                        className={`h-10 w-10 shrink-0 rounded-lg object-contain ${isActive ? "ring-2 ring-white" : ""}`}
                       />
                     ) : null}
                     <span className={`mt-1 text-[10px] font-bold ${isActive ? gtc.text : "text-zinc-400"}`}>

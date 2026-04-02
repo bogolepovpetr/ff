@@ -40,7 +40,7 @@ export default async function LangLayout({
 
       <footer className="border-t border-border bg-card">
         <div className="mx-auto max-w-7xl px-4 py-4 text-center text-xs text-muted-foreground">
-          FOMOFighters Wiki &copy; {new Date().getFullYear()} &mdash;
+          FOMO Fighters Wiki &copy; {new Date().getFullYear()} &mdash;
           Game data updates automatically from the balance server.
         </div>
       </footer>

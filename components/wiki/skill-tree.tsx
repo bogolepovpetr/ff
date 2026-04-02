@@ -94,7 +94,7 @@ export default function SkillTree({ trees, lang, categoryLabels }: Props) {
 
       {/* Tree area */}
       <div className="overflow-auto rounded-xl border border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">
-        <div className="relative" style={{ width: svgW, minHeight: svgH }}>
+        <div className="relative mx-auto" style={{ width: svgW, minHeight: svgH }}>
           {/* SVG connections */}
           <svg
             className="absolute inset-0"

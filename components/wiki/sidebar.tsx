@@ -29,26 +29,6 @@ export default function WikiSidebar() {
         </a>
       ))}
 
-      <div className="rounded-lg border border-zinc-200 bg-white p-4">
-        <h3 className="text-sm font-semibold text-zinc-800">Page Tools</h3>
-        <ul className="mt-2 space-y-1 text-sm text-zinc-500">
-          <li>
-            <a href="#" className="hover:text-zinc-700 hover:underline">
-              What links here
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-zinc-700 hover:underline">
-              Related changes
-            </a>
-          </li>
-          <li>
-            <a href="#" className="hover:text-zinc-700 hover:underline">
-              Special pages
-            </a>
-          </li>
-        </ul>
-      </div>
     </aside>
   );
 }

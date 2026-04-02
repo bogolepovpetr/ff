@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sync FOMOFighters game data to Fandom wiki.
+ * Sync FOMO Fighters game data to Fandom wiki.
  *
  * Usage:
  *   node scripts/sync-fandom.mjs              # push pages + images
@@ -376,7 +376,7 @@ function infoboxSkillTemplate() {
 }
 
 function commonCss() {
-  return `/* FOMOFighters Wiki Custom Styles */
+  return `/* FOMO Fighters Wiki Custom Styles */
 
 /* Portable Infobox theming */
 .portable-infobox {
@@ -465,7 +465,7 @@ function commonCss() {
 function buildingWikitext(b) {
   const maxLvl = b.levels[b.levels.length - 1];
   let wt = `{{Infobox building|key=${stripSuffix(b.key)}|name=${b.title}|image=Building_${stripSuffix(b.key)}.png|type=${b.type || "\u2014"}|max_level=${b.levels.length}|max_power=${maxLvl?.power ?? "\u2014"}}}\n\n`;
-  wt += `'''${b.title}''' is a${b.type ? ` ${b.type}` : ""} building in FOMOFighters.\n`;
+  wt += `'''${b.title}''' is a${b.type ? ` ${b.type}` : ""} building in FOMO Fighters.\n`;
   if (b.desc) wt += `\n''${b.desc}''\n`;
   wt += `\n== Progression ==\n`;
   wt += `{| class="wikitable sortable" style="text-align:center"\n`;
@@ -517,7 +517,7 @@ function troopsHubWikitext() {
     tm.get(tier).push(t);
   }
 
-  let wt = `'''Troops''' are the military units of FOMOFighters. Train them in various buildings to build your army.\n\n`;
+  let wt = `'''Troops''' are the military units of FOMO Fighters. Train them in various buildings to build your army.\n\n`;
 
   const orderedBuildings = BUILDING_ORDER.filter((b) => byBuilding.has(b));
   for (const bKey of orderedBuildings) {
@@ -554,7 +554,7 @@ function troopsHubWikitext() {
 
 function skillWikitext(s) {
   let wt = `{{Infobox skill|key=${s.key}|name=${s.title}|image=Skill_${s.key}.jpg|type=${s.type || "\u2014"}|tier=${s.tier ?? "\u2014"}|max_level=${s.levels.length}}}\n\n`;
-  wt += `'''${s.title}''' is a${s.type ? ` ${s.type}` : ""} skill in FOMOFighters.\n`;
+  wt += `'''${s.title}''' is a${s.type ? ` ${s.type}` : ""} skill in FOMO Fighters.\n`;
   if (s.desc) wt += `\n''${s.desc}''\n`;
 
   const effectKeys = new Set();
@@ -588,7 +588,7 @@ function heroWikitext(h) {
   const bonusEntries = h.bonusPerLevel ? Object.entries(h.bonusPerLevel) : [];
 
   let wt = `{{Infobox hero|key=${h.key}|name=${h.title}|image=Hero_${h.key}.png|tier=${tierLabel}|tier_num=${h.tier}|aspect=${titleCase(h.aspect ?? "\u2014")}|role=${roleLabel}|price_gem=${h.priceGem ?? "\u2014"}|card_count=${h.cardCount ?? "\u2014"}}}\n\n`;
-  wt += `'''${h.title}''' is a ${tierLabel} hero in FOMOFighters. Max level: '''50'''.\n`;
+  wt += `'''${h.title}''' is a ${tierLabel} hero in FOMO Fighters. Max level: '''50'''.\n`;
   if (h.desc) wt += `\n''${h.desc}''\n`;
 
   if (h.blockedTimerInBuilding) {
@@ -697,7 +697,7 @@ function mainPageWikitext() {
 
   wt += `|}\n`;
 
-  wt += `[[Category:FOMOFighters Wiki]]\n`;
+  wt += `[[Category:FOMO Fighters Wiki]]\n`;
   return wt;
 }
 
@@ -738,7 +738,7 @@ function mainQuestsWikitext() {
     if (!chapters.has(ch)) chapters.set(ch, []);
     chapters.get(ch).push(q);
   }
-  let wt = `'''Main Quests''' are the story progression in FOMOFighters.\n\n`;
+  let wt = `'''Main Quests''' are the story progression in FOMO Fighters.\n\n`;
   for (const [castle, quests] of chapters) {
     wt += `== Castle Level ${castle} ==\n{| class="wikitable" style="width:100%"\n|-\n! # !! Objective !! Reward\n`;
     for (let i = 0; i < quests.length; i++)
@@ -857,7 +857,7 @@ function referralHubWikitext() {
 
 function referralGemsWikitext() {
   const inv = referralData.invite;
-  let wt = `'''Gems for Friends''' — earn gems by inviting players to FOMOFighters.\n\n`;
+  let wt = `'''Gems for Friends''' — earn gems by inviting players to FOMO Fighters.\n\n`;
   wt += `${inv.requirement_en}\n\n`;
   wt += `== Reward Tiers ==\n`;
   wt += `{| class="wikitable" style="text-align:center"\n`;
@@ -891,7 +891,7 @@ function referralRevshareWikitext() {
 
 function warPageWikitext() {
   const w = warData.war;
-  let wt = `'''$WAR''' is the main seasonal goal of FOMOFighters. Players earn $WAR tokens through [[Clan War|clan wars]] and exchange them for USDT during the buyback event.\n\n`;
+  let wt = `'''$WAR''' is the main seasonal goal of FOMO Fighters. Players earn $WAR tokens through [[Clan War|clan wars]] and exchange them for USDT during the buyback event.\n\n`;
   wt += `'''Current season: ${w.season.number}''' — ${w.season.pool_label_en}: '''${fmtCost(w.season.pool_usdt_current)} USDT'''\n\n`;
 
   wt += `== ${w.earn.title_en} ==\n`;
@@ -980,7 +980,7 @@ function collectImages() {
 function buildPages() {
   const pages = [];
 
-  pages.push({ title: "MediaWiki:Mainpage", text: "FOMOFighters Wiki" });
+  pages.push({ title: "MediaWiki:Mainpage", text: "FOMO Fighters Wiki" });
   pages.push({ title: "MediaWiki:Common.css", text: commonCss() });
   pages.push({ title: "Template:Res", text: resTemplateWikitext() });
   pages.push({ title: "Template:Infobox_building", text: infoboxBuildingTemplate() });
@@ -988,7 +988,7 @@ function buildPages() {
   pages.push({ title: "Template:Infobox_troop", text: infoboxTroopTemplate() });
   pages.push({ title: "Template:Infobox_skill", text: infoboxSkillTemplate() });
 
-  pages.push({ title: "FOMOFighters_Wiki", text: mainPageWikitext() });
+  pages.push({ title: "FOMO Fighters_Wiki", text: mainPageWikitext() });
   pages.push({ title: "Quests", text: questsHubWikitext() });
   pages.push({ title: "Daily_Quests", text: dailyQuestsWikitext() });
   pages.push({ title: "Main_Quests", text: mainQuestsWikitext() });
@@ -1086,7 +1086,7 @@ function buildPages() {
 // ─── Main ───────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`\nFOMOFighters \u2192 Fandom Sync`);
+  console.log(`\nFOMO Fighters \u2192 Fandom Sync`);
   console.log(`Wiki: ${WIKI}.fandom.com | Dry: ${DRY} | Skip existing: ${SKIP_EXISTING} | Skip images: ${SKIP_IMAGES}\n`);
 
   if (!DRY) { await login(); console.log(); }

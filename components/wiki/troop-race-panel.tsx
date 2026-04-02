@@ -149,7 +149,7 @@ export default function TroopRacePanel({
             <img
               src={`/img/troops/${selected.key}.png`}
               alt={`${raceLabel(selected.race)} ${selected.title}`}
-              className="h-56 w-56 shrink-0 rounded-2xl"
+              className="h-56 w-56 shrink-0 rounded-2xl object-contain"
             />
           ) : null}
           <p className="mt-3 text-sm font-semibold capitalize text-zinc-600">

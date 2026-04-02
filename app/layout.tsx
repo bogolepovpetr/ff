@@ -14,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FOMOFighters Wiki — Buildings, Troops & Skills",
+  title: "FOMO Fighters Wiki — Buildings, Troops & Skills",
   description:
-    "The official FOMOFighters game wiki. Browse buildings, troops, skills, progression tables and strategy guides.",
+    "The official FOMO Fighters game wiki. Browse buildings, troops, skills, progression tables and strategy guides.",
 };
 
 export default function RootLayout({
