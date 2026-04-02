@@ -23,6 +23,7 @@ type Props = {
   tierColors: { border: string; bg: string; text: string; badge: string };
   lang: string;
   raceLabels: Record<string, string>;
+  initialRace?: string;
 };
 
 function fmtTime(seconds?: number): string {
@@ -51,8 +52,13 @@ export default function TroopRacePanel({
   tierColors: tc,
   lang,
   raceLabels,
+  initialRace,
 }: Props) {
-  const [selectedIdx, setSelectedIdx] = useState(0);
+  const [selectedIdx, setSelectedIdx] = useState(() => {
+    if (!initialRace) return 0;
+    const idx = troops.findIndex((t) => t.race === initialRace);
+    return idx >= 0 ? idx : 0;
+  });
   const selected = troops[selectedIdx] ?? troops[0];
 
   const STAT_ICONS = [

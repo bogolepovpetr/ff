@@ -81,6 +81,53 @@ export function getTroopGroups(): Map<string, TroopGroup[]> {
   return result;
 }
 
+// --------------- Shop ---------------
+
+export type ShopItem = {
+  key: string;
+  title: string;
+  desc?: string;
+  category: string;
+  subCategory?: string;
+  isStacked?: boolean;
+  isArchived?: boolean;
+  hours?: number;
+  priceGem?: number;
+  [k: string]: unknown;
+};
+
+export function getShopItems(): ShopItem[] {
+  return readJsonFile<ShopItem[]>("lists_shop.json");
+}
+
+export function getActiveShopItems(): ShopItem[] {
+  return getShopItems().filter((i) => !i.isArchived);
+}
+
+// --------------- Races ---------------
+
+export type Race = {
+  key: string;
+  title: string;
+  type: string;
+  desc?: string;
+  cBgContent?: string;
+  cBgTitle?: string;
+  bonusEnergy?: number;
+  bonusBuilders?: number;
+  bonusAcademics?: number;
+  energyRegenInterval?: number;
+  energyMax?: number;
+};
+
+export function getRaces(): Race[] {
+  return readJsonFile<Race[]>("lists_races.json");
+}
+
+export function getPlayableRaces(): Race[] {
+  return getRaces().filter((r) => r.type === "people");
+}
+
 // --------------- Buildings ---------------
 
 export type BuildingLevel = {

@@ -1,97 +1,108 @@
 import Link from "next/link";
-import {
-  Building2,
-  Swords,
-  FlaskConical,
-  Users,
-  ScrollText,
-  Newspaper,
-  Trophy,
-  Coins,
-} from "lucide-react";
+import { Trophy, Newspaper } from "lucide-react";
 import { getGameVersion } from "@/lib/version";
 import PatchBadge from "@/components/wiki/patch-badge";
 
 const CATEGORIES = [
   {
+    key: "races",
+    iconSrc: "/img/icon/power_troops.svg",
+    en: "Races",
+    ru: "Расы",
+    descEn: "Choose your race: Cat, Dog, or Frog",
+    descRu: "Выберите расу: Коты, Псы или Лягушки",
+    color: "border-orange-300 bg-orange-50 hover:bg-orange-100",
+    iconBg: "bg-orange-200",
+  },
+  {
     key: "buildings",
-    icon: Building2,
+    iconSrc: "/img/icon/castle.svg",
     en: "Buildings",
     ru: "Здания",
     descEn: "Construct and upgrade your city structures",
     descRu: "Стройте и улучшайте сооружения вашего города",
     color: "border-blue-300 bg-blue-50 hover:bg-blue-100",
-    iconColor: "text-blue-600",
+    iconBg: "bg-blue-200",
   },
   {
     key: "troops",
-    icon: Swords,
+    iconSrc: "/img/icon/atk.svg",
     en: "Troops",
     ru: "Войска",
     descEn: "Train and command your armies",
     descRu: "Обучайте и командуйте армиями",
     color: "border-red-300 bg-red-50 hover:bg-red-100",
-    iconColor: "text-red-600",
+    iconBg: "bg-red-200",
   },
   {
     key: "skills",
-    icon: FlaskConical,
+    iconSrc: "/img/icon/skills.svg",
     en: "Skills",
     ru: "Навыки",
     descEn: "Research technologies in the Academy",
     descRu: "Исследуйте технологии в Академии",
     color: "border-violet-300 bg-violet-50 hover:bg-violet-100",
-    iconColor: "text-violet-600",
+    iconBg: "bg-violet-200",
   },
   {
     key: "heroes",
-    icon: Users,
+    iconSrc: "/img/icon/leads.svg",
     en: "Heroes",
     ru: "Герои",
     descEn: "Legendary commanders to lead your forces",
     descRu: "Легендарные командиры во главе ваших войск",
     color: "border-amber-300 bg-amber-50 hover:bg-amber-100",
-    iconColor: "text-amber-600",
+    iconBg: "bg-amber-200",
   },
   {
     key: "war",
-    icon: Coins,
+    iconSrc: "/img/icon/war.svg",
     en: "WAR",
     ru: "WAR",
     descEn: "Seasonal goal: earn $WAR",
     descRu: "Цель сезона: заработать $WAR",
     color: "border-emerald-300 bg-emerald-50 hover:bg-emerald-100",
-    iconColor: "text-emerald-700",
+    iconBg: "bg-emerald-200",
   },
   {
     key: "quests",
-    icon: ScrollText,
+    iconSrc: "/img/icon/quests.svg",
     en: "Daily Quests",
     ru: "Ежедневные задания",
     descEn: "Complete objectives for daily rewards",
     descRu: "Выполняйте задания для получения наград",
     color: "border-emerald-300 bg-emerald-50 hover:bg-emerald-100",
-    iconColor: "text-emerald-600",
+    iconBg: "bg-emerald-200",
   },
   {
     key: "clans",
-    icon: Users,
+    iconSrc: "/img/icon/clan.svg",
     en: "Clans",
     ru: "Кланы",
     descEn: "Levels, ranks, rewards, and clan war rules",
     descRu: "Уровни, ранги, награды и правила клановой войны",
     color: "border-zinc-300 bg-zinc-50 hover:bg-zinc-100",
-    iconColor: "text-zinc-700",
+    iconBg: "bg-zinc-200",
   },
   {
     key: "referral",
-    icon: Trophy,
-    en: "Referral",
-    ru: "Рефералы",
+    iconSrc: "/img/icon/friends.svg",
+    en: "Friends",
+    ru: "Друзья",
     descEn: "Invite friends, earn gems, and get rev share",
     descRu: "Приглашайте друзей, получайте гемы и rev share",
     color: "border-sky-300 bg-sky-50 hover:bg-sky-100",
-    iconColor: "text-sky-700",
+    iconBg: "bg-sky-200",
+  },
+  {
+    key: "shop",
+    iconSrc: "/img/icon/shop.svg",
+    en: "Premium Shop",
+    ru: "Премиум магазин",
+    descEn: "Gems, boosts, protection, and premium",
+    descRu: "Гемы, бусты, защита и премиум",
+    color: "border-yellow-300 bg-yellow-50 hover:bg-yellow-100",
+    iconBg: "bg-yellow-200",
   },
 ];
 
@@ -150,16 +161,20 @@ export default async function HomePage({
           {lang === "ru" ? "Разделы вики" : "Wiki Sections"}
         </h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {CATEGORIES.map((cat) => {
-            const Icon = cat.icon;
-            return (
+          {CATEGORIES.map((cat) => (
               <Link
                 key={cat.key}
                 href={`/${lang}/${cat.key}`}
                 className={`group flex items-start gap-4 rounded-xl border-2 p-5 transition-all hover:shadow-md hover:-translate-y-0.5 ${cat.color}`}
               >
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white shadow-sm ${cat.iconColor}`}>
-                  <Icon className="h-6 w-6" />
+                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl shadow-sm ${cat.iconBg}`}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={cat.iconSrc}
+                    alt=""
+                    className="h-7 w-7"
+                    style={{ filter: "brightness(0.25)" }}
+                  />
                 </div>
                 <div>
                   <h3 className="font-bold text-slate-800">
@@ -170,8 +185,7 @@ export default async function HomePage({
                   </p>
                 </div>
               </Link>
-            );
-          })}
+          ))}
         </div>
       </section>
 
@@ -278,14 +292,25 @@ export default async function HomePage({
           <Newspaper className="h-5 w-5 text-zinc-500" />
           {lang === "ru" ? "Последнее обновление" : "Latest Patch"}
         </h2>
-        <div className="rounded-lg bg-zinc-50 p-4">
-          <div className="flex items-center gap-2">
-            <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
-              v{ver.gameVersion}
-            </span>
-            <span className="text-xs text-zinc-400">{ver.dataUpdated}</span>
-          </div>
-          <p className="mt-2 text-sm text-zinc-600">{ver.patchNotes}</p>
+        <div className="space-y-4">
+          {(ver.patches ?? []).map((patch) => (
+            <div key={patch.version} className="rounded-lg bg-zinc-50 p-4">
+              <div className="flex items-center gap-2">
+                <span className="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
+                  v{patch.version}
+                </span>
+                <span className="text-xs text-zinc-400">{patch.date}</span>
+              </div>
+              <ul className="mt-2 space-y-1">
+                {patch.changes.map((c, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-zinc-600">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400" />
+                    {lang === "ru" ? c.ru : c.en}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
     </div>

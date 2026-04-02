@@ -1,0 +1,12 @@
+[
+  {"key": "frog",         "cBgContent": "#cae4b4", "cBgTitle": "#638258",     "type": "people",   "title": "Frog",  "bonusEnergy": 50, "bonusBuilders":  2, "bonusAcademics":  1, "energyRegenInterval": 720, "energyMax": 40, "desc": "Focused on town development. Army has no specialization and performs at an average level. Great for a calm, steady playstyle."},
+  {"key": "dog",          "cBgContent": "#bddff0", "cBgTitle": "#518097",     "type": "people",   "title": "Dog",   "bonusEnergy": 100, "bonusBuilders":  1, "bonusAcademics":  2, "energyRegenInterval": 720, "energyMax": 50, "desc": "Focuses on building a defensive army. Easier to defend, but attacking costs more. Balanced for medium activity players."},
+  {"key": "cat",          "cBgContent": "#f4cece", "cBgTitle": "#8f5e5e",     "type": "people",   "title": "Cat",   "bonusEnergy": 150, "bonusBuilders":  1, "bonusAcademics":  1, "energyRegenInterval": 720, "energyMax": 30, "desc": "Attack-focused army. Excellent in offense but weak in defense. Perfect for PvP fans with high activity."},
+  {"key": "oasis_food",   "cBgContent": "#ccc",    "cBgTitle": "#b59f55",     "type": "oasis",    "title": "Crop Field"},
+  {"key": "oasis_wood",   "cBgContent": "#ccc",    "cBgTitle": "#9f806b",     "type": "oasis",    "title": "Forest"},
+  {"key": "oasis_stone",  "cBgContent": "#ccc",    "cBgTitle": "#8e8e8e",     "type": "oasis",    "title": "Cave"},
+  {"key": "oasis_mix",    "cBgContent": "#ccc",    "cBgTitle": "#6f9253",     "type": "oasis",    "title": "Oasis"},
+  {"key": "man",          "cBgContent": "#ccc",    "cBgTitle": "#a39189",     "type": "camp",     "title": "Man"},
+  {"key": "troll",        "cBgContent": "#ccc",    "cBgTitle": "#848484",     "type": "camp",     "title": "Troll"},
+  {"key": "seal",         "cBgContent": "#ccc",    "cBgTitle": "#4a4a4a",     "type": "camp",     "title": "Seal"}
+]

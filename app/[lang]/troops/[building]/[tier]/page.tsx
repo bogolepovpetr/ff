@@ -27,10 +27,13 @@ function buildRaceLabels(troops: { race?: string }[], lang: string): Record<stri
 
 export default async function TroopTierPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: string; building: string; tier: string }>;
+  searchParams: Promise<{ race?: string }>;
 }) {
   const { lang, building, tier: tierStr } = await params;
+  const { race: initialRace } = await searchParams;
   const tier = parseInt(tierStr, 10);
   if (isNaN(tier)) notFound();
 
@@ -101,44 +104,49 @@ export default async function TroopTierPage({
         </div>
 
         {/* Tier selector strip */}
-        <div className="flex items-end justify-center gap-3 px-4 py-5">
-          {buildingGroups
-            .slice()
-            .sort((a, b) => a.tier - b.tier)
-            .map((g) => {
-              const gtc = tierColor(g.tier);
-              const isActive = g.tier === tier;
-              return (
-                <div key={g.tier} className="flex flex-col items-center gap-1">
-                  <Link
-                    href={`/${lang}/troops/${building}/${g.tier}`}
-                    className={`relative flex flex-col items-center rounded-xl border-2 p-2 transition-all ${
-                      isActive
-                        ? `${gtc.border} ${gtc.bg} shadow-lg ring-2 ring-offset-1 ${gtc.border.replace("border-", "ring-")}`
-                        : `border-zinc-200 bg-white hover:${gtc.bg} hover:shadow-md`
-                    }`}
-                    style={{ width: 80 }}
-                  >
-                    {g.troops[0]?.key ? (
-                      <img
-                        src={troopImage(g.troops[0].key)}
-                        alt={troopTypeName(g.title, lang)}
-                        className={`h-10 w-10 shrink-0 rounded-lg object-contain ${isActive ? "ring-2 ring-white" : ""}`}
-                      />
-                    ) : null}
-                    <span className={`mt-1 text-[10px] font-bold ${isActive ? gtc.text : "text-zinc-400"}`}>
-                      T{g.tier}
-                    </span>
-                    <span className={`truncate text-center text-[10px] leading-tight ${isActive ? gtc.text : "text-zinc-500"}`} style={{ maxWidth: 70 }}>
-                      {troopTypeName(g.title, lang)}
-                    </span>
-                  </Link>
-                  {isActive && (
-                    <div className={`h-0 w-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent ${gtc.border.replace("border-", "border-t-")}`} />
-                  )}
-                </div>
-              );
-            })}
+        <div className="overflow-x-auto scrollbar-none px-4 py-5">
+          <div className="flex items-end justify-center gap-2 sm:gap-3" style={{ minWidth: "min-content" }}>
+            {buildingGroups
+              .slice()
+              .sort((a, b) => a.tier - b.tier)
+              .map((g) => {
+                const gtc = tierColor(g.tier);
+                const isActive = g.tier === tier;
+                const raceTroop = (initialRace
+                  ? g.troops.find((t) => t.race === initialRace)
+                  : null) ?? g.troops[0];
+                return (
+                  <div key={g.tier} className="flex shrink-0 flex-col items-center gap-1">
+                    <Link
+                      href={`/${lang}/troops/${building}/${g.tier}${initialRace ? `?race=${initialRace}` : ""}`}
+                      className={`relative flex flex-col items-center rounded-xl border-2 p-1.5 transition-all sm:p-2 ${
+                        isActive
+                          ? `${gtc.border} ${gtc.bg} shadow-lg ring-2 ring-offset-1 ${gtc.border.replace("border-", "ring-")}`
+                          : `border-zinc-200 bg-white hover:${gtc.bg} hover:shadow-md`
+                      }`}
+                      style={{ width: 70 }}
+                    >
+                      {raceTroop?.key ? (
+                        <img
+                          src={troopImage(raceTroop.key)}
+                          alt={troopTypeName(g.title, lang)}
+                          className={`h-9 w-9 shrink-0 rounded-lg object-contain sm:h-10 sm:w-10 ${isActive ? "ring-2 ring-white" : ""}`}
+                        />
+                      ) : null}
+                      <span className={`mt-1 text-[10px] font-bold ${isActive ? gtc.text : "text-zinc-400"}`}>
+                        T{g.tier}
+                      </span>
+                      <span className={`truncate text-center text-[9px] leading-tight sm:text-[10px] ${isActive ? gtc.text : "text-zinc-500"}`} style={{ maxWidth: 60 }}>
+                        {troopTypeName(g.title, lang)}
+                      </span>
+                    </Link>
+                    {isActive && (
+                      <div className={`h-0 w-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent ${gtc.border.replace("border-", "border-t-")}`} />
+                    )}
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
 
@@ -172,6 +180,7 @@ export default async function TroopTierPage({
           tierColors={tc}
           lang={lang}
           raceLabels={buildRaceLabels(troopsForPanel, lang)}
+          initialRace={initialRace}
         />
       </div>
 

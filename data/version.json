@@ -1,5 +1,23 @@
 {
-  "gameVersion": "1.0.0",
-  "dataUpdated": "2026-03-31",
-  "patchNotes": "Initial release — all buildings, troops, skills and heroes data."
+  "gameVersion": "1.1.0",
+  "dataUpdated": "2026-03-30",
+  "patchNotes": "Energy shop prices reduced (10 energy: 200→150 gems, 50 energy: 600→450 gems). New energy mechanic: +1 energy every 12 min for all races (no daily reset). Clan leader rewards increased by ~1.25x (WAR, resources, EXP, stars, chests).",
+  "patches": [
+    {
+      "version": "1.1.0",
+      "date": "2026-03-30",
+      "changes": [
+        { "en": "Energy shop prices reduced: 10 energy 200→150 💎, 50 energy 600→450 💎", "ru": "Снижены цены на энергию в магазине: 10 энергии 200→150 💎, 50 энергии 600→450 💎" },
+        { "en": "New energy mechanic: +1 energy every 12 min for all races (no daily reset)", "ru": "Новая механика энергии: +1 энергия каждые 12 мин для всех рас (без ежедневного сброса)" },
+        { "en": "Clan leader rewards increased by ~1.25x (WAR, resources, EXP, stars, chests)", "ru": "Награды клан-лидеров увеличены в ~1.25 раза (WAR, ресурсы, опыт, звёзды, сундуки)" }
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "date": "2025-10-25",
+      "changes": [
+        { "en": "Initial release — all buildings, troops, skills and heroes data", "ru": "Начальный релиз — все здания, войска, навыки и герои" }
+      ]
+    }
+  ]
 }

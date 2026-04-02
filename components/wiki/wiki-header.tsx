@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Swords, ChevronDown } from "lucide-react";
 
 const NAV_ITEMS = [
+  { key: "races", en: "Races", ru: "Расы" },
   { key: "buildings", en: "Buildings", ru: "Здания" },
   { key: "troops", en: "Troops", ru: "Войска" },
   { key: "skills", en: "Skills", ru: "Навыки" },
