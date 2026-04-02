@@ -41,7 +41,7 @@ type Props = {
   buildingOrder: string[];
   groupsByBuilding: Record<string, TroopGroupData[]>;
   buildingLabels: Record<string, string>;
-  tierLabels: Record<number, { color: string; border: string; bg: string; text: string; badge: string }>;
+  tierLabels: Record<number, { border: string; bg: string; text: string; badge: string }>;
   troopTypeLabels: Record<string, string>;
   races: RaceData[];
 };
