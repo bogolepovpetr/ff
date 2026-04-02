@@ -1,0 +1,35 @@
+{
+  "invite": {
+    "headline_ru": "Пригласите друзей!",
+    "headline_en": "Invite friends!",
+    "max_per_friend_gems": 900,
+    "friend_reward_gems": 500,
+    "friend_reward_gems_premium": 1000,
+    "premium_multiplier": 3,
+    "requirement_ru": "Чтобы получить награду за приглашение друга, они должны завершить задание, подписавшись на наш канал.",
+    "requirement_en": "To receive the reward for inviting a friend, they must complete the task by subscribing to our channel.",
+    "tiers": [
+      { "from": 1, "to": 5, "per_friend_gems": 300, "per_friend_gems_premium": 900 },
+      { "from": 6, "to": 10, "per_friend_gems": 100, "per_friend_gems_premium": 300 },
+      { "from": 11, "to": 20, "per_friend_gems": 50, "per_friend_gems_premium": 150 },
+      { "from": 21, "to": 50, "per_friend_gems": 30, "per_friend_gems_premium": 90 },
+      { "from": 51, "to": 100, "per_friend_gems": 20, "per_friend_gems_premium": 60 },
+      { "from": 101, "to": null, "per_friend_gems": 5, "per_friend_gems_premium": 15 }
+    ]
+  },
+  "revshare": {
+    "share_percent": 30,
+    "withdraw": {
+      "min_usdt": 50,
+      "support_contact": "@fomo_fighters_refferal_bot",
+      "note_ru": "Получите реальные USDT в ваш кошелёк. Свяжитесь с поддержкой, чтобы запросить вывод.",
+      "note_en": "Receive real USDT to your wallet. Contact support to request a withdrawal."
+    },
+    "convert": {
+      "min_stars": 50,
+      "note_ru": "Конвертируйте в баланс внутриигрового USDT. Используйте его для покупки Камней или вывода реального USDT в конце сезона.",
+      "note_en": "Convert to in-game USDT balance. Use it to buy Stones or withdraw real USDT at the end of the season."
+    }
+  }
+}
+

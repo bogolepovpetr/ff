@@ -1,0 +1,8 @@
+[
+  { "key": "warlord", "title": "Founder", "points": 999999999999, "isOwner": true },
+  { "key": "deputy", "title": "Deputy", "points": 500000000000, "isDeputy": true },
+  { "key": "officer", "title": "Officer", "points": 100000 },
+  { "key": "soldier", "title": "Soldier", "points": 10000 },
+  { "key": "recruit", "title": "Recruit", "points": 1000 },
+  { "key": "newbie", "title": "Newbie", "points": 0 }
+]

@@ -1,0 +1,274 @@
+{
+  "buildings": {
+    "castle": {
+      "en": {
+        "loreQuote": "Banners snap above gates that have watched a thousand schemes hatch and die. Here taxes become armies, and whispers from the map room decide who eats tomorrow. The castle is not stone—it is the pulse that keeps your kingdom from vanishing into rumor and rot.",
+        "seoDescription": "The Castle is your core economic building in FOMO Fighters—the heart of your 4X kingdom where growth, orders, and strategy begin."
+      },
+      "ru": {
+        "loreQuote": "Над стенами трепещут знамёна, а под ними — сплетни, налоги и планы на завтрашний поход. Замок — не просто здание: это точка, где карта мира превращается в приказы. Без него королевство остаётся лишь красивой легендой на краю карты.",
+        "seoDescription": "Замок — главное экономическое здание в FOMO Fighters: центр развития базы в мобильной 4X-стратегии."
+      }
+    },
+    "farm_1": {
+      "en": {
+        "loreQuote": "Dawn smells of turned earth and stubborn hope. Rows of grain answer marching boots with a quieter promise: no siege outlasts a full granary. This first farm is where your city learns that victory begins with a steady bowl.",
+        "seoDescription": "The Farm supplies food to your town in FOMO Fighters, fueling growth, training, and recovery."
+      },
+      "ru": {
+        "loreQuote": "Рассвет здесь пахнет свежей землёй и терпением. Первые поля — это не декорация: от урожая зависит, выдержит ли город осаду и марши. Здесь армия учится простой истине: сытый солдат — уже половина победы.",
+        "seoDescription": "Ферма в FOMO Fighters обеспечивает город продовольствием — ключевой ресурс для развития и армии."
+      }
+    },
+    "farm_2": {
+      "en": {
+        "loreQuote": "A second farm stretches your harvest toward distant horizons. Irrigation ditches glint like silver veins, feeding storehouses that no longer tremble at bad seasons. Expansion is a policy written in bread.",
+        "seoDescription": "A second Farm slot expands food production in FOMO Fighters, helping you scale troops and upgrades faster."
+      },
+      "ru": {
+        "loreQuote": "Вторая ферма тянет границы пашни дальше — к новым полям и новым рискам. Когда запасы растут, город перестаёт дрожать от одного неурожая. Это уже не «посадили наугад», а осознанная стратегия сытости.",
+        "seoDescription": "Вторая ферма в FOMO Fighters увеличивает добычу еды и ускоряет рост базы."
+      }
+    },
+    "farm_3": {
+      "en": {
+        "loreQuote": "Three farms braid the countryside into a green fortress of surplus. Even when war steals weeks, these fields keep whispering abundance. Your granaries learn the rhythm of feast instead of famine.",
+        "seoDescription": "The third Farm maximizes food output for advanced play in FOMO Fighters, supporting large armies and sustained upgrades."
+      },
+      "ru": {
+        "loreQuote": "Три фермы сплетают окрестности в зелёный запас прочности: даже когда фронт съедает время, поля продолжают кормить город. Запасы перестают быть «на сегодня» и становятся фундаментом долгой кампании.",
+        "seoDescription": "Третья ферма в FOMO Fighters доводит производство еды до максимума для поздней игры и больших армий."
+      }
+    },
+    "lumber_mill_1": {
+      "en": {
+        "loreQuote": "Sawdust hangs in the air like snowfall that never melts. Timbers groan into beams, then into palisades, then into the bones of machines. The first mill teaches your city that every empire is partly built from trees.",
+        "seoDescription": "The Lumber Mill produces wood for construction and upgrades in FOMO Fighters."
+      },
+      "ru": {
+        "loreQuote": "В воздухе витает опилка, как снег, который не тает — только оседает на сапогах рабочих. Брёвна превращаются в балки, а балки — в стены и мастерские. Первый лесопилочный цех напоминает: дерево — это скелет любой империи.",
+        "seoDescription": "Лесопилка в FOMO Fighters добывает дерево для строительства и улучшений."
+      }
+    },
+    "lumber_mill_2": {
+      "en": {
+        "loreQuote": "A second mill doubles the song of blades through pine and oak. Convoys roll out stacked high, turning forests into fortifications before the enemy can count your walls.",
+        "seoDescription": "A second Lumber Mill boosts wood income in FOMO Fighters, accelerating base development."
+      },
+      "ru": {
+        "loreQuote": "Вторая лесопилка удваивает ритм пил: смолистый запах, стружка на рукавах, нескончаемые обозы к стройке. Лес уходит в укрепления быстрее, чем противник успевает оценить ваши стены.",
+        "seoDescription": "Вторая лесопилка в FOMO Fighters усиливает приток дерева и ускоряет апгрейды зданий."
+      }
+    },
+    "lumber_mill_3": {
+      "en": {
+        "loreQuote": "Three mills turn the wilderness into a disciplined supply line. Bark and resin stain the roads like ink on a treaty—every shipment signs another clause of safety.",
+        "seoDescription": "The third Lumber Mill peaks wood production for endgame expansion in FOMO Fighters."
+      },
+      "ru": {
+        "loreQuote": "Три лесопилки превращают дикий край в отлаженный логистический поток: смола на колёсах, брёвна в стройке, запах хвои как фон побед.",
+        "seoDescription": "Третья лесопилка в FOMO Fighters выводит добычу дерева на максимум для поздней игры."
+      }
+    },
+    "quarry_1": {
+      "en": {
+        "loreQuote": "Hammers answer stone with sparks and stubborn patience. Dust coats everything, yet what emerges is clean geometry: blocks that refuse to flinch. The first quarry teaches that permanence is mined, not wished into being.",
+        "seoDescription": "The Quarry mines stone for walls, structures, and critical upgrades in FOMO Fighters."
+      },
+      "ru": {
+        "loreQuote": "Молот бьёт по камню — и в ответ сыплются искры и пыль, как снег из гранита. Из шума карьера рождаются ровные блоки, из блоков — стены, которые не прогнутся от первого удара.",
+        "seoDescription": "Карьер в FOMO Fighters добывает камень для укреплений и важных улучшений."
+      }
+    },
+    "quarry_2": {
+      "en": {
+        "loreQuote": "A second quarry deepens the scar of industry—and the strength of your foundations. Wagons groan under weight that would humble cavalry. Stone stops being a bottleneck and becomes a habit.",
+        "seoDescription": "A second Quarry increases stone output in FOMO Fighters, reducing build queues and defensive bottlenecks."
+      },
+      "ru": {
+        "loreQuote": "Второй карьер углубляет «шрам» промышленности — и одновременно укрепляет фундамент города. Обозы скрипят под тяжестью, от которой дрогнул бы любой всадник.",
+        "seoDescription": "Второй карьер в FOMO Fighters повышает добычу камня и снимает заторы на стройке."
+      }
+    },
+    "quarry_3": {
+      "en": {
+        "loreQuote": "Three quarries turn bedrock into a drumbeat of progress. Cranes swing like metronomes; masons work to a rhythm older than crowns. Your walls do not merely stand—they accuse the world of being too soft.",
+        "seoDescription": "The third Quarry maximizes stone production for high-level FOMO Fighters progression."
+      },
+      "ru": {
+        "loreQuote": "Три карьера превращают недра в метроном прогресса: краны качаются, каменщики бьют в такт, который старше любой короны.",
+        "seoDescription": "Третий карьер в FOMO Fighters доводит добычу камня до пика для поздней игры."
+      }
+    },
+    "storage": {
+      "en": {
+        "loreQuote": "Sacks and crates climb toward the rafters like a quiet boast. Every sealed door is a promise that surplus will not spoil into panic. Storage is the patience of an empire made physical.",
+        "seoDescription": "Storage increases resource capacity in FOMO Fighters, letting you bank food, wood, stone, and more for big upgrades."
+      },
+      "ru": {
+        "loreQuote": "Мешки и ящики ползут к потолку — не хаос, а тихая гордость запасов. За каждым запертым люком — обещание: избыток не превратится в панику завтрашнего дня.",
+        "seoDescription": "Склад в FOMO Fighters увеличивает вместимость ресурсов и снижает риск переполнения."
+      }
+    },
+    "stash": {
+      "en": {
+        "loreQuote": "Hidden chambers breathe cooler air, as if secrets prefer shadows. A portion of your wealth slips out of the ledger the raiders read. When flames lick the market square, the stash still remembers your name.",
+        "seoDescription": "The Stash protects part of your resources during attacks in FOMO Fighters, softening raid damage to your economy."
+      },
+      "ru": {
+        "loreQuote": "Тайники пахнут сыростью и спокойствием — будто ценности любят тень. Часть богатства исчезает с «видимой» страницы бухгалтерии налётчика.",
+        "seoDescription": "Тайник в FOMO Fighters сохраняет часть ресурсов при налётах, смягчая удар по экономике."
+      }
+    },
+    "academy": {
+      "en": {
+        "loreQuote": "Ink stains fingers that once gripped only sword hilts. Lecturers map supply lines beside battle lines, proving that genius is logistics wearing a clever mask. Here your city learns to win before the first arrow flies.",
+        "seoDescription": "The Academy researches town and military upgrades in FOMO Fighters, unlocking stronger economy and combat tech."
+      },
+      "ru": {
+        "loreQuote": "Чернила на пальцах соседствуют со следами пороха и стали — здесь учат побеждать до боя. На доске чертят не только стрелы, но и снабжение, потому что гений в стратегии часто выглядит как хладнокровная логистика.",
+        "seoDescription": "Академия в FOMO Fighters открывает исследования городских и военных улучшений."
+      }
+    },
+    "archery_range": {
+      "en": {
+        "loreQuote": "Targets shiver as strings snap taut, a chorus of restrained thunder. Archers learn distance like a language—each yard a word, each wind shift a dialect. This is where offensives learn to arrive before excuses do.",
+        "seoDescription": "The Archery Range trains offensive ranged troops in FOMO Fighters for raids and field battles."
+      },
+      "ru": {
+        "loreQuote": "Мишени дрожат от выстрелов — короткий гром, который держат на привязи. Лучники учат дистанцию как язык: каждый шаг — слово, каждый порыв ветра — акцент.",
+        "seoDescription": "Стрельбище в FOMO Fighters готовит атакующие дальнобойные отряды для рейдов и сражений."
+      }
+    },
+    "scout_camp": {
+      "en": {
+        "loreQuote": "Footprints vanish on purpose; maps appear where there were only rumors. Scouts return with dust on their cloaks and certainty in their eyes. Knowledge is the lightest armor—and the heaviest advantage.",
+        "seoDescription": "The Scout Camp trains scouts in FOMO Fighters for vision, intel, and smarter map play."
+      },
+      "ru": {
+        "loreQuote": "Следы исчезают не случайно — так работает разведка. Разведчики возвращаются с пылью на плащах и ясностью во взгляде: вместо слухов на столе лежат факты.",
+        "seoDescription": "Лагерь разведчиков в FOMO Fighters готовит скаутов для обзора карты и сбора разведданных."
+      }
+    },
+    "barracks": {
+      "en": {
+        "loreQuote": "Boots stamp cadence into stone until the courtyard hums like a heart. Shields learn to meet violence without flinching, turning chaos into a wall. This is where your kingdom buys time with discipline.",
+        "seoDescription": "The Barracks trains defensive troops in FOMO Fighters to hold walls and repel raids."
+      },
+      "ru": {
+        "loreQuote": "Сапоги выбивают ритм по плацу, пока двор не начинает пульсировать, как сердце гарнизона. Щиты учатся встречать удар без дрожи, превращая хаос в стену.",
+        "seoDescription": "Казармы в FOMO Fighters готовят оборонительные войска для удержания стен и отражения налётов."
+      }
+    },
+    "stable": {
+      "en": {
+        "loreQuote": "Hooves drum a promise across packed dirt—speed, weight, and the glitter of drawn steel. Cavalry does not argue; it arrives. The stable smells like sweat, oil, and the mathematics of flanking lines.",
+        "seoDescription": "The Stable trains cavalry in FOMO Fighters for fast strikes and battlefield mobility."
+      },
+      "ru": {
+        "loreQuote": "Копыта бьют по утоптанной земле обещанием: скорость, масса и блеск стали на ходу. Кавалерия не спорит — она приезжает.",
+        "seoDescription": "Конюшня в FOMO Fighters готовит кавалерию для быстрых ударов и манёвра на карте."
+      }
+    },
+    "siege_workshop": {
+      "en": {
+        "loreQuote": "Timbers creak into engines that look like nightmares built by engineers. Ropes strain; counterweights whisper about gravity's cruel sense of humor. When the workshop exhales smoke, walls start apologizing.",
+        "seoDescription": "The Siege Workshop produces siege weapons in FOMO Fighters to break defenses and win tough fights."
+      },
+      "ru": {
+        "loreQuote": "Брёвна скрипят, превращаясь в механизмы, похожие на инженерный кошмар. Тросы натягиваются, противовесы шепчут про жестокую шутку гравитации.",
+        "seoDescription": "Осадная мастерская в FOMO Fighters производит осадные машины для прорыва укреплений."
+      }
+    },
+    "market": {
+      "en": {
+        "loreQuote": "Coins sing against scales while merchants smile like they invented luck. Awnings hide bargains sharp enough to cut pride. Here gold stops sleeping and starts negotiating on your behalf.",
+        "seoDescription": "The Market opens access to super discounts in FOMO Fighters, helping you stretch gems and currency for faster progression."
+      },
+      "ru": {
+        "loreQuote": "Монеты звенят на весах, а торговцы улыбаются так, будто изобрели удачу. Под навесами прячутся скидки острее любого кинжала.",
+        "seoDescription": "Рынок в FOMO Fighters открывает доступ к суперскидкам и выгодным предложениям."
+      }
+    },
+    "tavern": {
+      "en": {
+        "loreQuote": "Mugs clink like small bells calling stories home. Firelight paints tired heroes in gold, promising rest that still tastes like adventure. Soon your champions will claim this corner as theirs—and the road will wait.",
+        "seoDescription": "The Tavern in FOMO Fighters is where castle heroes will rest and gather—watch for upcoming hero features tied to this social hub."
+      },
+      "ru": {
+        "loreQuote": "Кружки звенят, словно колокольчики, зовущие легенды домой. Огонь в камине льёт на героев золотой отдых — с привкусом дороги и славы.",
+        "seoDescription": "Таверна в FOMO Fighters — место отдыха и сбора героев замка; следите за обновлениями."
+      }
+    },
+    "hospital": {
+      "en": {
+        "loreQuote": "Stretchers slide through doors that smell faintly of herbs and iron. Wounded ranks wait in orderly rows, as if pain itself can be filed and indexed. Healing becomes cheaper when hope has a bed.",
+        "seoDescription": "The Hospital stores wounded troops in FOMO Fighters for faster, cheaper healing after battles."
+      },
+      "ru": {
+        "loreQuote": "Носилки скользят в двери, где пахнет травами и холодной сталью. Раненые лежат ровными рядами — будто боль можно разложить по полкам и учесть.",
+        "seoDescription": "Госпиталь в FOMO Fighters хранит раненых для более быстрого и дешёвого лечения после боёв."
+      }
+    },
+    "fairground": {
+      "en": {
+        "loreQuote": "Color wheels spin; laughter rides the wind like confetti made of rumors. Chests wait under canvas, heavy with glittering maybe. The fairground turns chance into a festival—and your curiosity into a plan.",
+        "seoDescription": "The Fairground lets you buy and open chests with surprises in FOMO Fighters, adding loot variety to your progression."
+      },
+      "ru": {
+        "loreQuote": "Карусели крутят краски, а смех летит по ветру, как конфетти из сплетен. Под шатром стоят сундуки — тяжёлые от блестящего «а вдруг».",
+        "seoDescription": "Ярмарка в FOMO Fighters позволяет покупать и открывать сундуки с сюрпризами и лутом для прогресса."
+      }
+    }
+  },
+  "hubs": {
+    "home": {
+      "en": {
+        "seoDescription": "FOMO Fighters wiki: guides, factions, and tips for the 4X mobile strategy game starring Cat, Dog, and Frog races."
+      },
+      "ru": {
+        "seoDescription": "Вики FOMO Fighters: гайды, фракции и советы по мобильной 4X-стратегии с расами котов, собак и лягушек."
+      }
+    },
+    "buildings": {
+      "en": {
+        "seoDescription": "FOMO Fighters buildings: economy, military, and resource structures. Compare upgrades, costs, and priorities."
+      },
+      "ru": {
+        "seoDescription": "Здания FOMO Fighters: экономика, армия и ресурсы. Сравнивайте апгрейды, стоимость и приоритеты развития."
+      }
+    },
+    "troops": {
+      "en": {
+        "seoDescription": "FOMO Fighters troops: train offensive and defensive units, cavalry, scouts, and siege armies for mobile warfare."
+      },
+      "ru": {
+        "seoDescription": "Войска FOMO Fighters: атака, оборона, кавалерия, разведка и осада. Разберитесь в контрах и ролях отрядов."
+      }
+    },
+    "skills": {
+      "en": {
+        "seoDescription": "FOMO Fighters skills: tech paths and combat bonuses researched in the Academy for your 4X strategy."
+      },
+      "ru": {
+        "seoDescription": "Навыки FOMO Fighters: способности и ветки усилений Академии для экономики и армии."
+      }
+    },
+    "heroes": {
+      "en": {
+        "seoDescription": "FOMO Fighters heroes: mythological champions, leader skills, and roster growth for your castle."
+      },
+      "ru": {
+        "seoDescription": "Герои FOMO Fighters: мифологические чемпионы, лидерские умения и рост ростера замка."
+      }
+    },
+    "quests": {
+      "en": {
+        "seoDescription": "FOMO Fighters quests: daily, main, side missions and rewards that accelerate progression."
+      },
+      "ru": {
+        "seoDescription": "Квесты FOMO Fighters: ежедневные, основные и побочные задания с наградами для ускорения прогресса."
+      }
+    }
+  }
+}

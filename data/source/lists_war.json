@@ -1,0 +1,147 @@
+{
+  "war": {
+    "season": {
+      "number": 3,
+      "pool_usdt_current": 71697,
+      "pool_label_ru": "Текущий пул выкупа",
+      "pool_label_en": "Current buyback pool"
+    },
+    "token": "WAR",
+    "usdt": "USDT",
+    "earn": {
+      "title_ru": "Как заработать $WAR",
+      "title_en": "How to earn $WAR",
+      "bullets_ru": [
+        "В клановых войнах игроки зарабатывают токены $WAR.",
+        "После окончания сезона начинается событие по выкупу, где токены $WAR можно обменять на USDT."
+      ],
+      "bullets_en": [
+        "Players earn $WAR tokens in clan wars.",
+        "After the season ends, a buyback event starts where $WAR can be exchanged to USDT."
+      ]
+    },
+    "buyback": {
+      "title_ru": "Событие обратного выкупа ($WAR Buyback)",
+      "title_en": "$WAR Buyback event",
+      "rules_ru": [
+        "Последняя клановая война этого сезона может быть объявлена до 20.04.2026, 05:00 (UTC+0).",
+        "Все токены $WAR, заработанные в клановых войнах, должны быть забраны до 21.04.2026, 10:00 (UTC+0). После этого они больше не будут доступны.",
+        "Текущий сезон заканчивается 21.04.2026, 10:00 (UTC+0).",
+        "Событие выкупа начинается 21.04.2026, 10:00 и заканчивается 23.04.2026, 10:00 (UTC+0).",
+        "Событие выкупа длится 48 часов — в течение этого времени вы должны войти в игру и обменять $WAR на USDT.",
+        "После завершения события выкупа любые не обмененные токены $WAR сгорают, и начинается новый сезон.",
+        "USDT, полученный от обмена $WAR, не сгорает, но вы должны не забыть обменять на них во время события выкупа."
+      ],
+      "rules_en": [
+        "The last clan war of the season may be announced until 2026-04-20 05:00 (UTC+0).",
+        "All $WAR tokens earned in clan wars must be claimed before 2026-04-21 10:00 (UTC+0). After that, they will no longer be available.",
+        "The current season ends on 2026-04-21 10:00 (UTC+0).",
+        "The buyback event starts on 2026-04-21 10:00 and ends on 2026-04-23 10:00 (UTC+0).",
+        "The buyback event lasts 48 hours — during this time you must log into the game and exchange $WAR to USDT.",
+        "After the buyback ends, any unexchanged $WAR tokens burn and a new season starts.",
+        "USDT received from exchanging $WAR does not burn, but you must exchange during the buyback window."
+      ],
+      "timeline_utc0": [
+        { "key": "last_war_deadline", "label_ru": "Последняя война может быть объявлена до", "label_en": "Last war can be announced until", "at": "2026-04-20T05:00:00Z" },
+        { "key": "claim_deadline", "label_ru": "Забрать $WAR до", "label_en": "Claim $WAR by", "at": "2026-04-21T10:00:00Z" },
+        { "key": "season_end", "label_ru": "Конец сезона", "label_en": "Season ends", "at": "2026-04-21T10:00:00Z" },
+        { "key": "buyback_start", "label_ru": "Старт buyback", "label_en": "Buyback starts", "at": "2026-04-21T10:00:00Z" },
+        { "key": "buyback_end", "label_ru": "Конец buyback", "label_en": "Buyback ends", "at": "2026-04-23T10:00:00Z" }
+      ],
+      "fund_ru": [
+        "70% от всех средств, которые игроки потратили на покупку внутриигровой валюты Гемов в текущем сезоне, поступает в фонд обратного выкупа.",
+        "Курс обмена $WAR → USDT устанавливается для каждого выкупа на основе средств, собранных в течение сезона.",
+        "Формула курса обмена: Фонд выкупа / Общая сумма $WAR, заработанная всеми игроками в этом сезоне.",
+        "Пока никто не знает курс обмена $WAR → USDT, так как он будет определён в конце сезона на основе фонда выкупа и общего количества заработанных $WAR."
+      ],
+      "fund_en": [
+        "70% of all funds spent by players on buying in-game Gems in the current season goes into the buyback fund.",
+        "The $WAR → USDT exchange rate is set for each buyback based on the funds collected during the season.",
+        "Exchange rate formula: Buyback Fund / Total $WAR earned by all players in the season.",
+        "The exact $WAR → USDT rate is unknown until season end because it depends on the fund and total $WAR."
+      ]
+    },
+    "min_threshold": {
+      "title_ru": "Минимальный порог $WAR",
+      "title_en": "Minimum $WAR threshold",
+      "bullets_ru": [
+        "Вы можете конвертировать $WAR в USDT только после достижения минимального порога $WAR.",
+        "Это пороговое значение устанавливается в конце сезона и равно стоимости самого маленького набора драгоценных камней (0.2 USDT).",
+        "Цель — избежать оставления небольших, непригодных к использованию сумм на неактивных счетах.",
+        "Активные игроки легко достигают этого уровня.",
+        "Минимальное количество будет определено только в конце сезона. Оно может быть больше или меньше, чем в предыдущем сезоне, и полностью зависит от общего количества заработанных токенов $WAR и размера фонда обратного выкупа."
+      ],
+      "bullets_en": [
+        "You can convert $WAR to USDT only after reaching the minimum $WAR threshold.",
+        "This threshold is set at the end of the season and equals the price of the smallest gem pack (0.2 USDT).",
+        "The goal is to avoid leaving tiny unusable sums on inactive accounts.",
+        "Active players usually reach this threshold easily.",
+        "The minimum amount is determined only at season end and depends on total $WAR and the buyback fund."
+      ]
+    },
+    "seasons": {
+      "title_ru": "Сезоны",
+      "title_en": "Seasons",
+      "bullets_ru": [
+        "Сезон — это период, в течение которого накапливаются токены $WAR и формируется выкупной фонд.",
+        "После окончания сезона начинается выкуп $WAR.",
+        "Прогресс персонажа не сбрасывается.",
+        "Войны кланов возобновятся скоро после 23.04.2026, 10:00 (UTC+0).",
+        "Сезонные награды будут распределены в течение первых двух дней после окончания периода выкупа (23.04.2026, 10:00 (UTC+0)). Если вы сбросите свой аккаунт до того, как награды будут распределены, они всё равно будут зачислены на этот аккаунт (значки также будут сохранены). Однако, если вы сбросите аккаунт после распределения наград, они не будут восстановлены."
+      ],
+      "bullets_en": [
+        "A season is a period where $WAR tokens are accumulated and the buyback fund is formed.",
+        "After the season ends, a $WAR buyback starts.",
+        "Character progress is not reset.",
+        "Clan wars resume shortly after 2026-04-23 10:00 (UTC+0).",
+        "Season rewards are distributed within the first two days after the buyback period ends. Resetting your account before distribution still credits rewards to the account; resetting after distribution does not restore them."
+      ]
+    },
+    "withdraw_usdt": {
+      "title_ru": "Вывод USDT",
+      "title_en": "USDT withdrawal",
+      "bullets_ru": [
+        "Предполагаемая дата выплаты: в течение 28.04.2026 (UTC+0).",
+        "Как только ваш баланс достигнет 10 USDT, вы сможете запросить вывод средств на указанный вами кошелёк.",
+        "Мы будем постепенно снижать порог для вывода.",
+        "Вывод средств будет осуществлён на кошелёк TON (не кастодиальный, не кошелёк биржи). Вы сможете указать его после окончания сезона, когда у вас будет необходимая сумма для вывода.",
+        "Если вы не подали запрос в течение первой недели после окончания сезона, вы всё равно можете сделать это позже — он будет обработан во время следующего раунда вывода средств.",
+        "Если сумма вашего USDT после конверсии ниже минимальной суммы для вывода, вы можете заработать больше токенов в будущих сезонах, дождаться уменьшения лимита или потратить сумму на покупку драгоценных камней.",
+        "Общая сумма будет уменьшена на сетевые комиссии, обычно менее $0.01."
+      ],
+      "bullets_en": [
+        "Estimated payout date: within 2026-04-28 (UTC+0).",
+        "Once your balance reaches 10 USDT, you can request a withdrawal to your provided wallet.",
+        "The withdrawal threshold will be reduced over time.",
+        "Withdrawals are made to a TON wallet (non-custodial, not an exchange wallet). You can provide it after the season ends when you have enough for withdrawal.",
+        "If you don’t submit a request during the first week after season end, you can do it later—it will be processed in the next withdrawal round.",
+        "If your USDT after conversion is below the minimum withdrawal amount, you can earn more in future seasons, wait for the limit to decrease, or spend it on gem packs.",
+        "The total amount is reduced by network fees, usually less than $0.01."
+      ],
+      "constraints": {
+        "min_balance_usdt": 10,
+        "network_fee_usdt_max": 0.01,
+        "payout_date_utc0": "2026-04-28"
+      }
+    },
+    "important": {
+      "title_ru": "Важно",
+      "title_en": "Important",
+      "bullets_ru": [
+        "Цены на выкуп будут различаться в зависимости от сезона.",
+        "Точный курс обмена никто не знает до события выкупа. Любые другие данные — обман!",
+        "Использование автоматизации, ботов, уязвимостей и ошибок или другие нарушения правил приведут к блокировке. Эти нарушения проверяются особенно тщательно перед обработкой любых запросов на вывод средств.",
+        "Удаление аккаунта будет временно отключено после 21.04.2026, 10:00 (UTC+0) до завершения подсчёта статистики сезона. Оно вновь станет доступным после распределения значков.",
+        "Вся официальная информация доступна только в игре и на нашем официальном канале в Telegram: @fomo_fighters"
+      ],
+      "bullets_en": [
+        "Buyback prices vary by season.",
+        "No one knows the exact exchange rate until the buyback event—any other numbers are a scam.",
+        "Automation, bots, exploits, or other rule violations lead to bans and are checked carefully before processing withdrawals.",
+        "Account deletion is temporarily disabled after 2026-04-21 10:00 (UTC+0) until season statistics are finalized, then re-enabled after badges are distributed.",
+        "Official information is available only in-game and on the official Telegram channel: @fomo_fighters"
+      ]
+    }
+  }
+}
+

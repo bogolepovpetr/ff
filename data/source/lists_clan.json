@@ -1,0 +1,19 @@
+[
+  { "level": 1, "exp": 0, "members": 30 },
+  { "level": 2, "exp": 10000, "members": 35 },
+  { "level": 3, "exp": 16000, "members": 40 },
+  { "level": 4, "exp": 25000, "members": 45 },
+  { "level": 5, "exp": 40000, "members": 50 },
+  { "level": 6, "exp": 60000, "members": 60 },
+  { "level": 7, "exp": 90000, "members": 65 },
+  { "level": 8, "exp": 130000, "members": 70 },
+  { "level": 9, "exp": 180000, "members": 75 },
+  { "level": 10, "exp": 260000, "members": 80 },
+  { "level": 11, "exp": 360000, "members": 85 },
+  { "level": 12, "exp": 480000, "members": 90 },
+  { "level": 13, "exp": 650000, "members": 95 },
+  { "level": 14, "exp": 850000, "members": 100 },
+  { "level": 15, "exp": 1100000, "members": 105 },
+  { "level": 16, "exp": 1300000, "members": 110 },
+  { "level": 17, "exp": 1600000, "members": 115 }
+]

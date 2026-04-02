@@ -1,0 +1,7 @@
+[
+    {"key": "points_20", "points": 20, "food": 15000, "wood": 15000, "stone": 12500},
+    {"key": "points_40", "points": 40, "food": 25000, "wood": 25000, "stone": 20000},
+    {"key": "points_60", "points": 60, "food": 50000, "wood": 50000, "stone": 37500},
+    {"key": "points_80", "points": 80, "food": 100000, "wood": 100000, "stone": 75000, "box": "box_res"},
+    {"key": "points_100", "points": 100, "gem": 100, "box": "box_lead_cards"}
+]

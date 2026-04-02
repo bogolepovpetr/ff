@@ -1,0 +1,7 @@
+[
+  {"key": 1, "title": "Common", "leadExpMultiplicator": 1, "leadStarsExpMultiplicator": 1, "chanceCardByPvpTargetLevel": {"5":0, "10":1, "15":1, "20":0.1, "25":0.05, "30":0, "35":0, "40":0, "45":0, "50":0}, "rate": 14167, "max": 12},
+  {"key": 2, "title": "Rare", "leadExpMultiplicator": 2, "leadStarsExpMultiplicator": 2, "chanceCardByPvpTargetLevel": {"5":0, "10":0.15, "15":0.3, "20":1, "25":1, "30":0.1, "35":0.05, "40":0, "45":0, "50":0}, "rate": 36250, "max": 16},
+  {"key": 3, "title": "Epic", "leadExpMultiplicator": 4, "leadStarsExpMultiplicator": 4, "chanceCardByPvpTargetLevel": {"5":0, "10":0.05, "15":0.05, "20":0.15, "25":0.3, "30":1, "35":1, "40":0.1, "45":0.05, "50":0}, "rate": 159800, "max": 20},
+  {"key": 4, "title": "Legend", "leadExpMultiplicator": 6, "leadStarsExpMultiplicator": 6, "chanceCardByPvpTargetLevel": {"5":0, "10":0, "15":0, "20":0.05, "25":0.05, "30":0.15, "35":0.3, "40":1, "45":1, "50":0.1}, "rate": 420000, "max": 28},
+  {"key": 5, "title": "Mythic", "leadExpMultiplicator": 10, "leadStarsExpMultiplicator": 10, "chanceCardByPvpTargetLevel": {"5":0, "10":0, "15":0, "20":0, "25":0, "30":0.05, "35":0.1, "40":0.15, "45":0.3, "50":1}, "rate": 2205000, "max": 27}
+]

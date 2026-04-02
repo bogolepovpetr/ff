@@ -1,0 +1,292 @@
+[
+	{"key": "open_quarry_1", "title": "Quarrying", "type": "Economic", "desc": "Unlocks the ability to build a Quarry", "tier": 1, "levels": [	
+		{"level": 1, "priceFood": 10000, "priceWood": 10000, "priceStone": 0, "time": 0, "power": 30}]},
+	{"key": "food_1", "title": "Cultivation", "type": "Economic", "desc": "", "tier": 2, "levels": [	
+		{"level": 1, "priceFood": 10000, "priceWood": 10000, "priceStone": 0, "time": 0, "power": 10, "requiredSkills": {"open_quarry_1":1}, "bonusRateFoodPH": 1},
+		{"level": 2, "priceFood": 20000, "priceWood": 20000, "priceStone": 0, "time": 1200, "power": 30, "bonusRateFoodPH": 3},
+		{"level": 3, "priceFood": 40000, "priceWood": 40000, "priceStone": 0, "time": 2400, "power": 70, "requiredBuildings": {"academy":2}, "bonusRateFoodPH": 6},
+		{"level": 4, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 4800, "power": 200, "bonusRateFoodPH": 10},
+		{"level": 5, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 9600, "power": 450, "requiredFriends": 1, "bonusRateFoodPH": 15}]},
+	{"key": "wood_1", "title": "Logging", "type": "Economic", "desc": "", "tier": 2, "levels": [	
+		{"level": 1, "priceFood": 10000, "priceWood": 10000, "priceStone": 0, "time": 0, "power": 10, "requiredSkills": {"open_quarry_1":1}, "bonusRateWoodPH": 1},
+		{"level": 2, "priceFood": 20000, "priceWood": 20000, "priceStone": 0, "time": 1200, "power": 30, "bonusRateWoodPH": 3},
+		{"level": 3, "priceFood": 40000, "priceWood": 40000, "priceStone": 0, "time": 2400, "power": 70, "requiredBuildings": {"academy":2}, "bonusRateWoodPH": 6},
+		{"level": 4, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 4800, "power": 200, "bonusRateWoodPH": 10},
+		{"level": 5, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 9600, "power": 450, "requiredFriends": 1, "bonusRateWoodPH": 15}]},
+	{"key": "stash_1", "title": "Cache", "type": "Economic", "desc": "", "tier": 3, "levels": [	
+		{"level": 1, "priceFood": 20000, "priceWood": 20000, "priceStone": 15000, "time": 0, "power": 30, "requiredSkills": {"food_1":2, "wood_1":2}, "requiredBuildings": {"academy":3}, "bonusRateStashLimit": 1},
+		{"level": 2, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 180, "power": 90, "bonusRateStashLimit": 3},
+		{"level": 3, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 300, "power": 200, "bonusRateStashLimit": 6},
+		{"level": 4, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 600, "power": 450, "bonusRateStashLimit": 10},
+		{"level": 5, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 1200, "power": 900, "bonusRateStashLimit": 15}]},
+	{"key": "food_storage_1", "title": "Granary", "type": "Economic", "desc": "", "tier": 4, "levels": [	
+		{"level": 1, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 0, "power": 200, "requiredSkills": {"stash_1":1}, "requiredBuildings": {"academy":13}, "bonusRateFoodStorageLimit": 1},
+		{"level": 2, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 1800, "power": 300, "bonusRateFoodStorageLimit": 3},
+		{"level": 3, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 3600, "power": 500, "bonusRateFoodStorageLimit": 6},
+		{"level": 4, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 7200, "power": 1000, "requiredFriends": 1, "requiredBuildings": {"academy":16}, "bonusRateFoodStorageLimit": 10},
+		{"level": 5, "priceFood": 640000, "priceWood": 640000, "priceStone": 480000, "time": 14400, "power": 2000, "requiredFriends": 3, "requiredBuildings": {"academy":17}, "bonusRateFoodStorageLimit": 15}]},
+	{"key": "wood_storage_1", "title": "Stockpile", "type": "Economic", "desc": "", "tier": 4, "levels": [	
+		{"level": 1, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 0, "power": 60, "requiredSkills": {"stash_1":1}, "requiredBuildings": {"academy":13}, "bonusRateWoodStorageLimit": 1},
+		{"level": 2, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 1800, "power": 200, "requiredBuildings": {"academy":14}, "bonusRateWoodStorageLimit": 3},
+		{"level": 3, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 3600, "power": 450, "bonusRateWoodStorageLimit": 6},
+		{"level": 4, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 7200, "power": 900, "requiredFriends": 1, "bonusRateWoodStorageLimit": 10},
+		{"level": 5, "priceFood": 640000, "priceWood": 640000, "priceStone": 480000, "time": 14400, "power": 1900, "requiredFriends": 3, "requiredBuildings": {"academy":17}, "bonusRateWoodStorageLimit": 15}]},
+	{"key": "stone_storage_1", "title": "Stone Vault", "type": "Economic", "desc": "", "tier": 4, "levels": [	
+		{"level": 1, "priceFood": 60000, "priceWood": 60000, "priceStone": 45000, "time": 0, "power": 90, "requiredSkills": {"stash_1":1}, "requiredBuildings": {"academy":13}, "bonusRateStoneStorageLimit": 1},
+		{"level": 2, "priceFood": 120000, "priceWood": 120000, "priceStone": 90000, "time": 1800, "power": 250, "requiredBuildings": {"academy":14}, "bonusRateStoneStorageLimit": 3},
+		{"level": 3, "priceFood": 240000, "priceWood": 240000, "priceStone": 180000, "time": 3600, "power": 600, "requiredBuildings": {"academy":15}, "bonusRateStoneStorageLimit": 6},
+		{"level": 4, "priceFood": 480000, "priceWood": 480000, "priceStone": 360000, "time": 7200, "power": 1300, "requiredFriends": 1, "requiredBuildings": {"academy":16}, "bonusRateStoneStorageLimit": 10},
+		{"level": 5, "priceFood": 960000, "priceWood": 960000, "priceStone": 720000, "time": 14400, "power": 2700, "requiredFriends": 3, "requiredBuildings": {"academy":17}, "bonusRateStoneStorageLimit": 15}]},
+	{"key": "open_farm_3", "title": "Agriculture", "type": "Economic", "desc": "Allows you to build one more Farm", "tier": 5, "levels": [	
+		{"level": 1, "priceFood": 120000, "priceWood": 120000, "priceStone": 90000, "time": 0, "power": 200, "requiredSkills": {"food_storage_1":3}, "requiredBuildings": {"academy":20}}]},
+	{"key": "open_lumber_mill_2", "title": "Forestry", "type": "Economic", "desc": "Allows you to build one more Lumber Mill", "tier": 5, "levels": [	
+		{"level": 1, "priceFood": 120000, "priceWood": 120000, "priceStone": 90000, "time": 0, "power": 200, "requiredSkills": {"wood_storage_1":3}, "requiredBuildings": {"academy":21}}]},
+	{"key": "open_quarry_2", "title": "Excavation", "type": "Economic", "desc": "Allows you to build one more Quarry", "tier": 5, "levels": [	
+		{"level": 1, "priceFood": 120000, "priceWood": 120000, "priceStone": 90000, "time": 0, "power": 500, "requiredSkills": {"stone_storage_1":3}, "requiredBuildings": {"academy":22}}]},
+	{"key": "stash_2", "title": "Hideout", "type": "Economic", "desc": "", "tier": 6, "levels": [	
+		{"level": 1, "priceFood": 100000, "priceWood": 100000, "priceStone": 75000, "time": 0, "power": 150, "requiredSkills": {"stash_1":3, "open_farm_3":1, "open_lumber_mill_2":1, "open_quarry_2":1}, "requiredBuildings": {"academy":23}, "bonusRateStashLimit": 2},
+		{"level": 2, "priceFood": 200000, "priceWood": 200000, "priceStone": 150000, "time": 3600, "power": 450, "bonusRateStashLimit": 4},
+		{"level": 3, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 7200, "power": 900, "requiredFriends": 3, "requiredBuildings": {"academy":25}, "bonusRateStashLimit": 7},
+		{"level": 4, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 14400, "power": 1500, "requiredFriends": 5, "bonusRateStashLimit": 12},
+		{"level": 5, "priceFood": 1600000, "priceWood": 1600000, "priceStone": 1200000, "time": 28800, "power": 2500, "requiredFriends": 8, "requiredBuildings": {"academy":27}, "bonusRateStashLimit": 18}]},
+	{"key": "food_2", "title": "Harvesting", "type": "Economic", "desc": "", "tier": 7, "levels": [	
+		{"level": 1, "priceFood": 140000, "priceWood": 140000, "priceStone": 105000, "time": 0, "power": 600, "requiredSkills": {"stash_2":1, "food_storage_1":1}, "requiredBuildings": {"academy":26}, "bonusRateFoodPH": 2},
+		{"level": 2, "priceFood": 280000, "priceWood": 280000, "priceStone": 210000, "time": 7200, "power": 1000, "bonusRateFoodPH": 4},
+		{"level": 3, "priceFood": 560000, "priceWood": 560000, "priceStone": 420000, "time": 14400, "power": 1600, "requiredSkills": {"food_storage_1":4}, "requiredFriends": 1, "bonusRateFoodPH": 7},
+		{"level": 4, "priceFood": 1120000, "priceWood": 1120000, "priceStone": 840000, "time": 28800, "power": 2400, "requiredFriends": 2, "requiredBuildings": {"academy":29}, "bonusRateFoodPH": 12},
+		{"level": 5, "priceFood": 2240000, "priceWood": 2240000, "priceStone": 1680000, "time": 57600, "power": 3500, "requiredFriends": 5, "requiredBuildings": {"academy":30}, "bonusRateFoodPH": 18}]},
+	{"key": "wood_2", "title": "Timbering", "type": "Economic", "desc": "", "tier": 7, "levels": [	
+		{"level": 1, "priceFood": 140000, "priceWood": 140000, "priceStone": 105000, "time": 0, "power": 200, "requiredSkills": {"stash_2":1, "wood_storage_1":1}, "requiredBuildings": {"academy":26}, "bonusRateWoodPH": 2},
+		{"level": 2, "priceFood": 280000, "priceWood": 280000, "priceStone": 210000, "time": 7200, "power": 600, "requiredBuildings": {"academy":27}, "bonusRateWoodPH": 4},
+		{"level": 3, "priceFood": 560000, "priceWood": 560000, "priceStone": 420000, "time": 14400, "power": 1200, "requiredSkills": {"wood_storage_1":4}, "requiredFriends": 1, "bonusRateWoodPH": 7},
+		{"level": 4, "priceFood": 1120000, "priceWood": 1120000, "priceStone": 840000, "time": 28800, "power": 2000, "requiredFriends": 2, "bonusRateWoodPH": 12},
+		{"level": 5, "priceFood": 2240000, "priceWood": 2240000, "priceStone": 1680000, "time": 57600, "power": 3500, "requiredFriends": 5, "requiredBuildings": {"academy":30}, "bonusRateWoodPH": 18}]},
+	{"key": "stone_1", "title": "Masonry", "type": "Economic", "desc": "", "tier": 7, "levels": [	
+		{"level": 1, "priceFood": 140000, "priceWood": 140000, "priceStone": 105000, "time": 0, "power": 200, "requiredSkills": {"stash_2":1, "stone_storage_1":1}, "requiredBuildings": {"academy":26}, "bonusRateStonePH": 1},
+		{"level": 2, "priceFood": 280000, "priceWood": 280000, "priceStone": 210000, "time": 7200, "power": 600, "requiredBuildings": {"academy":27}, "bonusRateStonePH": 3},
+		{"level": 3, "priceFood": 560000, "priceWood": 560000, "priceStone": 420000, "time": 14400, "power": 1200, "requiredSkills": {"stone_storage_1":4}, "requiredFriends": 1, "requiredBuildings": {"academy":28}, "bonusRateStonePH": 6},
+		{"level": 4, "priceFood": 1120000, "priceWood": 1120000, "priceStone": 840000, "time": 28800, "power": 2000, "requiredFriends": 2, "requiredBuildings": {"academy":29}, "bonusRateStonePH": 10},
+		{"level": 5, "priceFood": 2240000, "priceWood": 2240000, "priceStone": 1680000, "time": 57600, "power": 3500, "requiredFriends": 5, "requiredBuildings": {"academy":30}, "bonusRateStonePH": 15}]},
+	{"key": "open_lumber_mill_3", "title": "Forestation", "type": "Economic", "desc": "Allows you to build one more Lumber Mill", "tier": 8, "levels": [	
+		{"level": 1, "priceFood": 240000, "priceWood": 240000, "priceStone": 180000, "time": 0, "power": 350, "requiredSkills": {"wood_2":1}, "requiredBuildings": {"academy":30}}]},
+	{"key": "open_quarry_3", "title": "Deepdelve", "type": "Economic", "desc": "Allows you to build one more Quarry", "tier": 8, "levels": [	
+		{"level": 1, "priceFood": 240000, "priceWood": 240000, "priceStone": 180000, "time": 0, "power": 1100, "requiredSkills": {"stone_1":1}, "requiredBuildings": {"academy":30}}]},
+	{"key": "food_storage_2", "title": "Barn", "type": "Economic", "desc": "", "tier": 9, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 600, "requiredSkills": {"open_quarry_3":1, "food_2":3}, "requiredBuildings": {"academy":30}, "bonusRateFoodStorageLimit": 2},
+		{"level": 2, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 28800, "power": 1800, "bonusRateFoodStorageLimit": 4},
+		{"level": 3, "priceFood": 1600000, "priceWood": 1600000, "priceStone": 1200000, "time": 57600, "power": 3500, "requiredFriends": 2, "bonusRateFoodStorageLimit": 7},
+		{"level": 4, "priceFood": 3200000, "priceWood": 3200000, "priceStone": 2400000, "time": 115200, "power": 6000, "requiredFriends": 3, "requiredBuildings": {"academy":33}, "bonusRateFoodStorageLimit": 12},
+		{"level": 5, "priceFood": 6400000, "priceWood": 6400000, "priceStone": 4800000, "time": 230400, "power": 10000, "requiredFriends": 7, "requiredBuildings": {"academy":34}, "bonusRateFoodStorageLimit": 18}]},
+	{"key": "wood_storage_2", "title": "Warehouse", "type": "Economic", "desc": "", "tier": 9, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 600, "requiredSkills": {"open_quarry_3":1, "wood_2":3}, "requiredBuildings": {"academy":30}, "bonusRateWoodStorageLimit": 2},
+		{"level": 2, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 28800, "power": 1800, "requiredBuildings": {"academy":31}, "bonusRateWoodStorageLimit": 4},
+		{"level": 3, "priceFood": 1600000, "priceWood": 1600000, "priceStone": 1200000, "time": 57600, "power": 3500, "requiredFriends": 2, "bonusRateWoodStorageLimit": 7},
+		{"level": 4, "priceFood": 3200000, "priceWood": 3200000, "priceStone": 2400000, "time": 115200, "power": 6000, "requiredFriends": 3, "bonusRateWoodStorageLimit": 12},
+		{"level": 5, "priceFood": 6400000, "priceWood": 6400000, "priceStone": 4800000, "time": 230400, "power": 10000, "requiredFriends": 7, "requiredBuildings": {"academy":34}, "bonusRateWoodStorageLimit": 18}]},
+	{"key": "stone_storage_2", "title": "Depot", "type": "Economic", "desc": "", "tier": 9, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 600, "requiredSkills": {"open_quarry_3":1, "stone_1":3}, "requiredBuildings": {"academy":30}, "bonusRateStoneStorageLimit": 2},
+		{"level": 2, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 28800, "power": 1800, "requiredBuildings": {"academy":31}, "bonusRateStoneStorageLimit": 4},
+		{"level": 3, "priceFood": 1600000, "priceWood": 1600000, "priceStone": 1200000, "time": 57600, "power": 3500, "requiredFriends": 2, "requiredBuildings": {"academy":32}, "bonusRateStoneStorageLimit": 7},
+		{"level": 4, "priceFood": 3200000, "priceWood": 3200000, "priceStone": 2400000, "time": 115200, "power": 6000, "requiredFriends": 3, "bonusRateStoneStorageLimit": 12},
+		{"level": 5, "priceFood": 6400000, "priceWood": 6400000, "priceStone": 4800000, "time": 230400, "power": 10000, "requiredFriends": 7, "requiredBuildings": {"academy":34}, "bonusRateStoneStorageLimit": 18}]},
+	{"key": "stone_2", "title": "Stonecutting", "type": "Economic", "desc": "", "tier": 10, "levels": [	
+		{"level": 1, "priceFood": 600000, "priceWood": 600000, "priceStone": 450000, "time": 0, "power": 2700, "requiredSkills": {"stone_storage_2":3}, "requiredBuildings": {"academy":35}, "bonusRateStonePH": 2},
+		{"level": 2, "priceFood": 1200000, "priceWood": 1200000, "priceStone": 900000, "time": 43200, "power": 4500, "requiredBuildings": {"academy":36}, "bonusRateStonePH": 4},
+		{"level": 3, "priceFood": 2400000, "priceWood": 2400000, "priceStone": 1800000, "time": 86400, "power": 7000, "requiredFriends": 5, "requiredBuildings": {"academy":37}, "bonusRateStonePH": 7},
+		{"level": 4, "priceFood": 4800000, "priceWood": 4800000, "priceStone": 3600000, "time": 172800, "power": 11000, "requiredFriends": 10, "requiredBuildings": {"academy":38}, "bonusRateStonePH": 12},
+		{"level": 5, "priceFood": 9600000, "priceWood": 9600000, "priceStone": 7200000, "time": 345600, "power": 17000, "requiredFriends": 15, "requiredBuildings": {"academy":40}, "bonusRateStonePH": 18}]},
+	{"key": "atk_1", "title": "Weaponry", "type": "Military", "desc": "", "tier": 1, "levels": [	
+		{"level": 1, "priceFood": 10000, "priceWood": 10000, "priceStone": 7500, "time": 0, "power": 100, "requiredBuildings": {"academy":2}, "bonusRateAtk": 1},
+		{"level": 2, "priceFood": 20000, "priceWood": 20000, "priceStone": 15000, "time": 900, "power": 200, "requiredBuildings": {"academy":3}, "bonusRateAtk": 3},
+		{"level": 3, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 1800, "power": 350, "requiredBuildings": {"academy":4}, "bonusRateAtk": 6},
+		{"level": 4, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 3600, "power": 700, "requiredBuildings": {"academy":5}, "bonusRateAtk": 10},
+		{"level": 5, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 7200, "power": 1300, "requiredBuildings": {"academy":6}, "bonusRateAtk": 15}]},
+	{"key": "def_1", "title": "Shieldcraft", "type": "Military", "desc": "", "tier": 1, "levels": [	
+		{"level": 1, "priceFood": 10000, "priceWood": 10000, "priceStone": 7500, "time": 0, "power": 100, "requiredBuildings": {"academy":2}, "bonusRateDef": 1},
+		{"level": 2, "priceFood": 20000, "priceWood": 20000, "priceStone": 15000, "time": 900, "power": 200, "requiredBuildings": {"academy":3}, "bonusRateDef": 3},
+		{"level": 3, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 1800, "power": 350, "requiredBuildings": {"academy":4}, "bonusRateDef": 6},
+		{"level": 4, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 3600, "power": 700, "requiredBuildings": {"academy":5}, "bonusRateDef": 10},
+		{"level": 5, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 7200, "power": 1300, "requiredBuildings": {"academy":6}, "bonusRateDef": 15}]},
+	{"key": "open_stable", "title": "Stable Unlock", "type": "Military", "desc": "Unlocks the ability to build a Stable", "tier": 2, "levels": [	
+		{"level": 1, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 0, "power": 450, "requiredSkills": {"atk_1":1, "def_1":1}, "priceGem": 5, "requiredBuildings": {"academy":6}}]},
+	{"key": "capacity_archery_1", "title": "Quiver", "type": "Military", "desc": "", "tier": 3, "levels": [	
+		{"level": 1, "priceFood": 20000, "priceWood": 20000, "priceStone": 15000, "time": 0, "power": 80, "requiredSkills": {"open_stable":1}, "requiredBuildings": {"academy":7}, "bonusRateTrainingCapacityArcheryRange": 1},
+		{"level": 2, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 1800, "power": 250, "requiredBuildings": {"academy":8}, "bonusRateTrainingCapacityArcheryRange": 3},
+		{"level": 3, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 3600, "power": 600, "requiredSkills": {"atk_1":3}, "requiredBuildings": {"academy":9}, "bonusRateTrainingCapacityArcheryRange": 6},
+		{"level": 4, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 7200, "power": 1200, "requiredFriends": 1, "requiredBuildings": {"academy":10}, "bonusRateTrainingCapacityArcheryRange": 10},
+		{"level": 5, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 14400, "power": 2400, "requiredFriends": 2, "requiredBuildings": {"academy":11}, "bonusRateTrainingCapacityArcheryRange": 15}]},
+	{"key": "capacity_barracks_1", "title": "Recruitment", "type": "Military", "desc": "", "tier": 3, "levels": [	
+		{"level": 1, "priceFood": 20000, "priceWood": 20000, "priceStone": 15000, "time": 0, "power": 250, "requiredSkills": {"open_stable":1}, "requiredBuildings": {"academy":7}, "bonusRateTrainingCapacityBarracks": 1},
+		{"level": 2, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 1800, "power": 400, "requiredBuildings": {"academy":8}, "bonusRateTrainingCapacityBarracks": 3},
+		{"level": 3, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 3600, "power": 700, "requiredSkills": {"def_1":3}, "requiredFriends": 1, "requiredBuildings": {"academy":9}, "bonusRateTrainingCapacityBarracks": 6},
+		{"level": 4, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 7200, "power": 1300, "requiredFriends": 2, "requiredBuildings": {"academy":10}, "bonusRateTrainingCapacityBarracks": 10},
+		{"level": 5, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 14400, "power": 2500, "requiredFriends": 3, "requiredBuildings": {"academy":11}, "bonusRateTrainingCapacityBarracks": 15}]},
+	{"key": "load_1", "title": "Burden", "type": "Military", "desc": "", "tier": 4, "levels": [	
+		{"level": 1, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 0, "power": 450, "requiredSkills": {"capacity_archery_1":1, "capacity_barracks_1":1}, "requiredBuildings": {"academy":9}, "bonusRateLoad": 1},
+		{"level": 2, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 7200, "power": 800, "requiredSkills": {"capacity_archery_1":2, "capacity_barracks_1":2}, "requiredBuildings": {"academy":10}, "bonusRateLoad": 3},
+		{"level": 3, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 14400, "power": 1400, "requiredSkills": {"capacity_archery_1":3, "capacity_barracks_1":3}, "requiredFriends": 1, "requiredBuildings": {"academy":11}, "bonusRateLoad": 6},
+		{"level": 4, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 28800, "power": 2600, "requiredFriends": 2, "requiredBuildings": {"academy":12}, "bonusRateLoad": 10},
+		{"level": 5, "priceFood": 640000, "priceWood": 640000, "priceStone": 480000, "time": 57600, "power": 5000, "requiredFriends": 3, "requiredBuildings": {"academy":13}, "bonusRateLoad": 15}]},
+	{"key": "speed_1", "title": "Pace", "type": "Military", "desc": "", "tier": 4, "levels": [	
+		{"level": 1, "priceFood": 40000, "priceWood": 40000, "priceStone": 30000, "time": 0, "power": 450, "requiredSkills": {"capacity_archery_1":1, "capacity_barracks_1":1}, "requiredBuildings": {"academy":9}, "bonusRateSpeed": 1},
+		{"level": 2, "priceFood": 80000, "priceWood": 80000, "priceStone": 60000, "time": 7200, "power": 800, "requiredSkills": {"capacity_archery_1":2, "capacity_barracks_1":2}, "requiredBuildings": {"academy":10}, "bonusRateSpeed": 3},
+		{"level": 3, "priceFood": 160000, "priceWood": 160000, "priceStone": 120000, "time": 14400, "power": 1400, "requiredSkills": {"capacity_archery_1":3, "capacity_barracks_1":3}, "requiredFriends": 1, "requiredBuildings": {"academy":11}, "bonusRateSpeed": 6},
+		{"level": 4, "priceFood": 320000, "priceWood": 320000, "priceStone": 240000, "time": 28800, "power": 2600, "requiredFriends": 2, "requiredBuildings": {"academy":12}, "bonusRateSpeed": 10},
+		{"level": 5, "priceFood": 640000, "priceWood": 640000, "priceStone": 480000, "time": 57600, "power": 5000, "requiredFriends": 3, "requiredBuildings": {"academy":13}, "bonusRateSpeed": 15}]},
+	{"key": "open_siege_workshop", "title": "Siege Workshop Unlock", "type": "Military", "desc": "Unlocks the ability to build a Siege Workshop", "tier": 5, "levels": [	
+		{"level": 1, "priceFood": 200000, "priceWood": 200000, "priceStone": 150000, "time": 0, "power": 1000, "requiredSkills": {"load_1":1, "speed_1":1}, "priceGem": 5, "requiredBuildings": {"academy":10}}]},
+	{"key": "unlock_archery_2", "title": "Archery T2", "type": "Military", "desc": "Unlock Tier 2 troops in the Archery Range.", "tier": 6, "levels": [	
+		{"level": 1, "priceFood": 200000, "priceWood": 200000, "priceStone": 150000, "time": 0, "power": 1000, "requiredSkills": {"open_siege_workshop":1, "load_1":1, "speed_1":1}, "priceGem": 30, "requiredBuildings": {"academy":10}}]},
+	{"key": "unlock_barracks_2", "title": "Soldier T2", "type": "Military", "desc": "Unlock Tier 2 troops in the Barracks.", "tier": 6, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 2000, "requiredSkills": {"open_siege_workshop":1, "load_1":1, "speed_1":1}, "priceGem": 30, "requiredBuildings": {"academy":11}}]},
+	{"key": "unlock_stable_2", "title": "Cavalry T2", "type": "Military", "desc": "Unlock Tier 2 troops in the Stable.", "tier": 6, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 2000, "requiredSkills": {"open_siege_workshop":1, "load_1":2, "speed_1":2}, "priceGem": 30, "requiredBuildings": {"academy":12}}]},
+	{"key": "unlock_siege_2", "title": "Siege T2", "type": "Military", "desc": "Unlock Tier 2 troops in the Siege Workshop.", "tier": 6, "levels": [	
+		{"level": 1, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 0, "power": 2000, "requiredSkills": {"open_siege_workshop":1, "load_1":3, "speed_1":3}, "priceGem": 30, "requiredBuildings": {"academy":13}}]},
+	{"key": "capacity_stable_1", "title": "Corral", "type": "Military", "desc": "", "tier": 7, "levels": [	
+		{"level": 1, "priceFood": 140000, "priceWood": 140000, "priceStone": 105000, "time": 0, "power": 1600, "requiredSkills": {"unlock_stable_2":1}, "requiredBuildings": {"academy":13}, "bonusRateTrainingCapacityStable": 1},
+		{"level": 2, "priceFood": 280000, "priceWood": 280000, "priceStone": 210000, "time": 25200, "power": 2700, "requiredSkills": {"load_1":3, "speed_1":3}, "requiredBuildings": {"academy":14}, "bonusRateTrainingCapacityStable": 3},
+		{"level": 3, "priceFood": 560000, "priceWood": 560000, "priceStone": 420000, "time": 50400, "power": 5000, "requiredFriends": 1, "requiredBuildings": {"academy":15}, "bonusRateTrainingCapacityStable": 6},
+		{"level": 4, "priceFood": 1120000, "priceWood": 1120000, "priceStone": 840000, "time": 100800, "power": 9000, "requiredSkills": {"load_1":4, "speed_1":4}, "requiredFriends": 2, "requiredBuildings": {"academy":16}, "bonusRateTrainingCapacityStable": 10},
+		{"level": 5, "priceFood": 2240000, "priceWood": 2240000, "priceStone": 1680000, "time": 201600, "power": 17000, "requiredFriends": 3, "requiredBuildings": {"academy":17}, "bonusRateTrainingCapacityStable": 15}]},
+	{"key": "capacity_siege_1", "title": "Siege Training", "type": "Military", "desc": "", "tier": 7, "levels": [	
+		{"level": 1, "priceFood": 140000, "priceWood": 140000, "priceStone": 105000, "time": 0, "power": 1600, "requiredSkills": {"unlock_siege_2":1}, "requiredBuildings": {"academy":13}, "bonusRateTrainingCapacitySiegeWorkshop": 1},
+		{"level": 2, "priceFood": 280000, "priceWood": 280000, "priceStone": 210000, "time": 25200, "power": 2700, "requiredSkills": {"load_1":3, "speed_1":3}, "requiredBuildings": {"academy":14}, "bonusRateTrainingCapacitySiegeWorkshop": 3},
+		{"level": 3, "priceFood": 560000, "priceWood": 560000, "priceStone": 420000, "time": 50400, "power": 5000, "requiredFriends": 1, "requiredBuildings": {"academy":15}, "bonusRateTrainingCapacitySiegeWorkshop": 6},
+		{"level": 4, "priceFood": 1120000, "priceWood": 1120000, "priceStone": 840000, "time": 100800, "power": 9000, "requiredSkills": {"load_1":4, "speed_1":4}, "requiredFriends": 2, "requiredBuildings": {"academy":16}, "bonusRateTrainingCapacitySiegeWorkshop": 10},
+		{"level": 5, "priceFood": 2240000, "priceWood": 2240000, "priceStone": 1680000, "time": 201600, "power": 17000, "requiredFriends": 3, "requiredBuildings": {"academy":17}, "bonusRateTrainingCapacitySiegeWorkshop": 15}]},
+	{"key": "atk_2", "title": "Tactics", "type": "Military", "desc": "", "tier": 8, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 1500, "requiredSkills": {"atk_1":5, "def_1":3, "capacity_stable_1":1}, "requiredBuildings": {"academy":16}, "bonusRateAtk": 2},
+		{"level": 2, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 36000, "power": 4500, "requiredBuildings": {"academy":17}, "bonusRateAtk": 4},
+		{"level": 3, "priceFood": 1600000, "priceWood": 1600000, "priceStone": 1200000, "time": 72000, "power": 11000, "requiredFriends": 1, "requiredBuildings": {"academy":18}, "bonusRateAtk": 7},
+		{"level": 4, "priceFood": 3200000, "priceWood": 3200000, "priceStone": 2400000, "time": 144000, "power": 25000, "requiredFriends": 3, "requiredBuildings": {"academy":19}, "bonusRateAtk": 12},
+		{"level": 5, "priceFood": 6400000, "priceWood": 6400000, "priceStone": 4800000, "time": 288000, "power": 50000, "requiredFriends": 5, "requiredBuildings": {"academy":20}, "bonusRateAtk": 18}]},
+	{"key": "def_2", "title": "Defensive Drills", "type": "Military", "desc": "", "tier": 8, "levels": [	
+		{"level": 1, "priceFood": 400000, "priceWood": 400000, "priceStone": 300000, "time": 0, "power": 4500, "requiredSkills": {"atk_1":5, "def_1":3, "capacity_stable_1":1}, "requiredBuildings": {"academy":16}, "bonusRateDef": 2},
+		{"level": 2, "priceFood": 800000, "priceWood": 800000, "priceStone": 600000, "time": 36000, "power": 7500, "requiredBuildings": {"academy":17}, "bonusRateDef": 4},
+		{"level": 3, "priceFood": 1600000, "priceWood": 1600000, "priceStone": 1200000, "time": 72000, "power": 14000, "requiredFriends": 2, "requiredBuildings": {"academy":18}, "bonusRateDef": 7},
+		{"level": 4, "priceFood": 3200000, "priceWood": 3200000, "priceStone": 2400000, "time": 144000, "power": 25000, "requiredFriends": 3, "requiredBuildings": {"academy":19}, "bonusRateDef": 12},
+		{"level": 5, "priceFood": 6400000, "priceWood": 6400000, "priceStone": 4800000, "time": 288000, "power": 50000, "requiredFriends": 5, "requiredBuildings": {"academy":20}, "bonusRateDef": 18}]},
+	{"key": "load_2", "title": "Cargo", "type": "Military", "desc": "", "tier": 8, "levels": [	
+		{"level": 1, "priceFood": 500000, "priceWood": 500000, "priceStone": 375000, "time": 0, "power": 5500, "requiredSkills": {"atk_1":5, "def_1":5, "capacity_siege_1":1}, "requiredBuildings": {"academy":17}, "bonusRateLoad": 2},
+		{"level": 2, "priceFood": 1000000, "priceWood": 1000000, "priceStone": 750000, "time": 36000, "power": 9000, "requiredBuildings": {"academy":18}, "bonusRateLoad": 4},
+		{"level": 3, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 72000, "power": 17000, "requiredFriends": 2, "requiredBuildings": {"academy":19}, "bonusRateLoad": 7},
+		{"level": 4, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 144000, "power": 30000, "requiredFriends": 3, "requiredBuildings": {"academy":20}, "bonusRateLoad": 12},
+		{"level": 5, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 288000, "power": 60000, "requiredFriends": 5, "requiredBuildings": {"academy":21}, "bonusRateLoad": 18}]},
+	{"key": "speed_2", "title": "Gallop", "type": "Military", "desc": "", "tier": 8, "levels": [	
+		{"level": 1, "priceFood": 500000, "priceWood": 500000, "priceStone": 375000, "time": 0, "power": 5500, "requiredSkills": {"atk_1":5, "def_1":5, "capacity_siege_1":1}, "requiredBuildings": {"academy":18}, "bonusRateSpeed": 2},
+		{"level": 2, "priceFood": 1000000, "priceWood": 1000000, "priceStone": 750000, "time": 36000, "power": 9000, "requiredBuildings": {"academy":19}, "bonusRateSpeed": 4},
+		{"level": 3, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 72000, "power": 17000, "requiredFriends": 3, "requiredBuildings": {"academy":20}, "bonusRateSpeed": 7},
+		{"level": 4, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 144000, "power": 30000, "requiredFriends": 5, "requiredBuildings": {"academy":21}, "bonusRateSpeed": 12},
+		{"level": 5, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 288000, "power": 60000, "requiredFriends": 10, "requiredBuildings": {"academy":22}, "bonusRateSpeed": 18}]},
+	{"key": "unlock_scout_2", "title": "Scout T2", "type": "Military", "desc": "Unlock Tier 2 troops in the Scout Camp.", "tier": 9, "levels": [	
+		{"level": 1, "priceFood": 3000000, "priceWood": 3000000, "priceStone": 3000000, "time": 0, "power": 5000, "requiredSkills": {"atk_2":3, "def_2":3, "load_2":3, "speed_2":3}, "priceGem": 50, "requiredBuildings": {"academy":19}}]},
+	{"key": "unlock_archery_3", "title": "Archery T3", "type": "Military", "desc": "Unlock Tier 3 troops in the Archery Range.", "tier": 10, "levels": [	
+		{"level": 1, "priceFood": 6000000, "priceWood": 6000000, "priceStone": 4500000, "time": 0, "power": 5000, "requiredSkills": {"unlock_scout_2":1, "atk_2":2, "def_2":2, "load_2":2, "speed_2":2}, "priceGem": 2000, "requiredBuildings": {"academy":20}}]},
+	{"key": "unlock_barracks_3", "title": "Soldier T3", "type": "Military", "desc": "Unlock Tier 3 troops in the Barracks.", "tier": 10, "levels": [	
+		{"level": 1, "priceFood": 6000000, "priceWood": 6000000, "priceStone": 4500000, "time": 0, "power": 5000, "requiredSkills": {"unlock_scout_2":1, "atk_2":2, "def_2":2, "load_2":2, "speed_2":2}, "priceGem": 2000, "requiredBuildings": {"academy":21}}]},
+	{"key": "unlock_stable_3", "title": "Cavalry T3", "type": "Military", "desc": "Unlock Tier 3 troops in the Stable.", "tier": 10, "levels": [	
+		{"level": 1, "priceFood": 10000000, "priceWood": 10000000, "priceStone": 7500000, "time": 0, "power": 8000, "requiredSkills": {"unlock_scout_2":1, "atk_2":3, "def_2":3, "load_2":4, "speed_2":4}, "priceGem": 2000, "requiredBuildings": {"academy":22}}]},
+	{"key": "unlock_siege_3", "title": "Siege T3", "type": "Military", "desc": "Unlock Tier 3 troops in the Siege Workshop.", "tier": 10, "levels": [	
+		{"level": 1, "priceFood": 10000000, "priceWood": 10000000, "priceStone": 7500000, "time": 0, "power": 8000, "requiredSkills": {"unlock_scout_2":1, "atk_2":3, "def_2":3, "load_2":4, "speed_2":4}, "priceGem": 2000, "requiredBuildings": {"academy":23}}]},
+	{"key": "capacity_scout_1", "title": "Recon", "type": "Military", "desc": "", "tier": 11, "levels": [	
+		{"level": 1, "priceFood": 600000, "priceWood": 600000, "priceStone": 450000, "time": 0, "power": 2300, "requiredSkills": {"unlock_barracks_3":1}, "requiredBuildings": {"academy":21}, "bonusTrainingCapacityScoutCamp": 10},
+		{"level": 2, "priceFood": 1200000, "priceWood": 1200000, "priceStone": 900000, "time": 43200, "power": 7000, "requiredSkills": {"unlock_archery_3":1, "unlock_barracks_3":1, "unlock_stable_3":1,"unlock_siege_3":1}, "requiredBuildings": {"academy":22}, "bonusTrainingCapacityScoutCamp": 20},
+		{"level": 3, "priceFood": 2400000, "priceWood": 2400000, "priceStone": 1800000, "time": 86400, "power": 16000, "requiredFriends": 3, "requiredBuildings": {"academy":23}, "bonusTrainingCapacityScoutCamp": 30},
+		{"level": 4, "priceFood": 4800000, "priceWood": 4800000, "priceStone": 3600000, "time": 172800, "power": 35000, "requiredFriends": 5, "requiredBuildings": {"academy":24}, "bonusTrainingCapacityScoutCamp": 40},
+		{"level": 5, "priceFood": 9600000, "priceWood": 9600000, "priceStone": 7200000, "time": 345600, "power": 70000, "requiredFriends": 10, "requiredBuildings": {"academy":25}, "bonusTrainingCapacityScoutCamp": 50}]},
+	{"key": "capacity_archery_2", "title": "Arrowstock", "type": "Military", "desc": "", "tier": 12, "levels": [	
+		{"level": 1, "priceFood": 1000000, "priceWood": 1000000, "priceStone": 750000, "time": 0, "power": 4000, "requiredSkills": {"capacity_scout_1":1}, "requiredBuildings": {"academy":21}, "bonusRateTrainingCapacityArcheryRange": 2},
+		{"level": 2, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 54000, "power": 7000, "requiredSkills": {"capacity_scout_1":2}, "requiredBuildings": {"academy":22}, "bonusRateTrainingCapacityArcheryRange": 4},
+		{"level": 3, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 108000, "power": 13000, "requiredSkills": {"capacity_scout_1":3}, "requiredFriends": 3, "requiredBuildings": {"academy":23}, "bonusRateTrainingCapacityArcheryRange": 7},
+		{"level": 4, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 216000, "power": 25000, "requiredFriends": 5, "requiredBuildings": {"academy":24}, "bonusRateTrainingCapacityArcheryRange": 12},
+		{"level": 5, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 432000, "power": 50000, "requiredFriends": 10, "requiredBuildings": {"academy":25}, "bonusRateTrainingCapacityArcheryRange": 18}]},
+	{"key": "capacity_barracks_2", "title": "Regiment", "type": "Military", "desc": "", "tier": 12, "levels": [	
+		{"level": 1, "priceFood": 1000000, "priceWood": 1000000, "priceStone": 750000, "time": 0, "power": 11000, "requiredSkills": {"capacity_scout_1":1}, "requiredBuildings": {"academy":22}, "bonusRateTrainingCapacityBarracks": 2},
+		{"level": 2, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 54000, "power": 14000, "requiredSkills": {"capacity_scout_1":2}, "requiredBuildings": {"academy":23}, "bonusRateTrainingCapacityBarracks": 4},
+		{"level": 3, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 108000, "power": 20000, "requiredSkills": {"capacity_scout_1":3}, "requiredFriends": 3, "requiredBuildings": {"academy":24}, "bonusRateTrainingCapacityBarracks": 7},
+		{"level": 4, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 216000, "power": 30000, "requiredFriends": 5, "requiredBuildings": {"academy":25}, "bonusRateTrainingCapacityBarracks": 12},
+		{"level": 5, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 432000, "power": 55000, "requiredFriends": 10, "requiredBuildings": {"academy":26}, "bonusRateTrainingCapacityBarracks": 18}]},
+	{"key": "capacity_stable_2", "title": "Cavalry Division", "type": "Military", "desc": "", "tier": 12, "levels": [	
+		{"level": 1, "priceFood": 1000000, "priceWood": 1000000, "priceStone": 750000, "time": 0, "power": 11000, "requiredSkills": {"capacity_scout_1":1}, "requiredBuildings": {"academy":23}, "bonusRateTrainingCapacityStable": 2},
+		{"level": 2, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 54000, "power": 14000, "requiredSkills": {"capacity_scout_1":2}, "requiredBuildings": {"academy":24}, "bonusRateTrainingCapacityStable": 4},
+		{"level": 3, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 108000, "power": 20000, "requiredSkills": {"capacity_scout_1":3}, "requiredFriends": 3, "requiredBuildings": {"academy":25}, "bonusRateTrainingCapacityStable": 7},
+		{"level": 4, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 216000, "power": 30000, "requiredFriends": 5, "requiredBuildings": {"academy":26}, "bonusRateTrainingCapacityStable": 12},
+		{"level": 5, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 432000, "power": 55000, "requiredFriends": 10, "requiredBuildings": {"academy":27}, "bonusRateTrainingCapacityStable": 18}]},
+	{"key": "capacity_siege_2", "title": "Siege Corps", "type": "Military", "desc": "", "tier": 12, "levels": [	
+		{"level": 1, "priceFood": 1000000, "priceWood": 1000000, "priceStone": 750000, "time": 0, "power": 11000, "requiredSkills": {"capacity_scout_1":1}, "requiredBuildings": {"academy":24}, "bonusRateTrainingCapacitySiegeWorkshop": 2},
+		{"level": 2, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 54000, "power": 14000, "requiredSkills": {"capacity_scout_1":2}, "requiredBuildings": {"academy":25}, "bonusRateTrainingCapacitySiegeWorkshop": 4},
+		{"level": 3, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 108000, "power": 20000, "requiredSkills": {"capacity_scout_1":3}, "requiredFriends": 3, "requiredBuildings": {"academy":26}, "bonusRateTrainingCapacitySiegeWorkshop": 7},
+		{"level": 4, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 216000, "power": 30000, "requiredFriends": 5, "requiredBuildings": {"academy":27}, "bonusRateTrainingCapacitySiegeWorkshop": 12},
+		{"level": 5, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 432000, "power": 55000, "requiredFriends": 10, "requiredBuildings": {"academy":28}, "bonusRateTrainingCapacitySiegeWorkshop": 18}]},
+	{"key": "unlock_scout_3", "title": "Scout T3", "type": "Military", "desc": "Unlock Tier 3 troops in the Scout Camp.", "tier": 13, "levels": [	
+		{"level": 1, "priceFood": 10000000, "priceWood": 10000000, "priceStone": 7500000, "time": 0, "power": 10000, "requiredSkills": {"unlock_archery_3":1, "unlock_barracks_3":1, "unlock_stable_3":1, "unlock_siege_3":1}, "priceGem": 2000, "requiredBuildings": {"academy":25}}]},
+	{"key": "atk_3", "title": "Assault", "type": "Military", "desc": "", "tier": 14, "levels": [	
+		{"level": 1, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 0, "power": 7500, "requiredSkills": {"capacity_archery_2":1}, "requiredBuildings": {"academy":30}, "bonusRateAtk": 3},
+		{"level": 2, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 72000, "power": 14000, "requiredSkills": {"capacity_archery_2":3}, "requiredFriends": 4, "requiredBuildings": {"academy":31}, "bonusRateAtk": 6},
+		{"level": 3, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 144000, "power": 25000, "requiredFriends": 10, "requiredBuildings": {"academy":32}, "bonusRateAtk": 10},
+		{"level": 4, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 288000, "power": 40000, "requiredFriends": 15, "requiredBuildings": {"academy":33}, "bonusRateAtk": 15},
+		{"level": 5, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 576000, "power": 65000, "priceGem": 1000, "requiredFriends": 20, "requiredBuildings": {"academy":34}, "bonusRateAtk": 20}]},
+	{"key": "def_3", "title": "Bulwark", "type": "Military", "desc": "", "tier": 14, "levels": [	
+		{"level": 1, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 0, "power": 25000, "requiredSkills": {"capacity_barracks_2":1}, "requiredBuildings": {"academy":30}, "bonusRateDef": 3},
+		{"level": 2, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 72000, "power": 30000, "requiredSkills": {"capacity_barracks_2":3}, "requiredFriends": 4, "requiredBuildings": {"academy":31}, "bonusRateDef": 6},
+		{"level": 3, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 144000, "power": 40000, "requiredFriends": 10, "requiredBuildings": {"academy":32}, "bonusRateDef": 10},
+		{"level": 4, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 288000, "power": 55000, "requiredFriends": 15, "requiredBuildings": {"academy":33}, "bonusRateDef": 15},
+		{"level": 5, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 576000, "power": 80000, "priceGem": 1000, "requiredFriends": 20, "requiredBuildings": {"academy":34}, "bonusRateDef": 20}]},
+	{"key": "load_3", "title": "Logistics", "type": "Military", "desc": "", "tier": 14, "levels": [	
+		{"level": 1, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 0, "power": 25000, "requiredSkills": {"capacity_stable_2":1}, "requiredBuildings": {"academy":32}, "bonusRateLoad": 3},
+		{"level": 2, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 72000, "power": 30000, "requiredSkills": {"capacity_stable_2":3}, "requiredFriends": 4, "requiredBuildings": {"academy":34}, "bonusRateLoad": 6},
+		{"level": 3, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 144000, "power": 40000, "requiredFriends": 10, "requiredBuildings": {"academy":36}, "bonusRateLoad": 10},
+		{"level": 4, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 288000, "power": 55000, "requiredFriends": 15, "requiredBuildings": {"academy":38}, "bonusRateLoad": 15},
+		{"level": 5, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 576000, "power": 80000, "priceGem": 1000, "requiredFriends": 20, "requiredBuildings": {"academy":39}, "bonusRateLoad": 20}]},
+	{"key": "speed_3", "title": "Surge", "type": "Military", "desc": "", "tier": 14, "levels": [	
+		{"level": 1, "priceFood": 2000000, "priceWood": 2000000, "priceStone": 1500000, "time": 0, "power": 25000, "requiredSkills": {"capacity_siege_2":1}, "requiredBuildings": {"academy":32}, "bonusRateSpeed": 3},
+		{"level": 2, "priceFood": 4000000, "priceWood": 4000000, "priceStone": 3000000, "time": 72000, "power": 30000, "requiredSkills": {"capacity_siege_2":3}, "requiredFriends": 4, "requiredBuildings": {"academy":34}, "bonusRateSpeed": 6},
+		{"level": 3, "priceFood": 8000000, "priceWood": 8000000, "priceStone": 6000000, "time": 144000, "power": 40000, "requiredFriends": 10, "requiredBuildings": {"academy":36}, "bonusRateSpeed": 10},
+		{"level": 4, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 288000, "power": 55000, "requiredFriends": 15, "requiredBuildings": {"academy":38}, "bonusRateSpeed": 15},
+		{"level": 5, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 576000, "power": 80000, "priceGem": 1000, "requiredFriends": 20, "requiredBuildings": {"academy":39}, "bonusRateSpeed": 20}]},
+	{"key": "unlock_archery_4", "title": "Archery T4", "type": "Military", "desc": "Unlock Tier 4 troops in the Archery Range.", "tier": 15, "levels": [	
+		{"level": 1, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 0, "power": 5000, "requiredSkills": {"atk_3":1, "def_3":1, "load_3":1, "speed_3":1,"unlock_archery_3":1}, "priceGem": 3000, "requiredFriends": 10, "requiredBuildings": {"academy":30}}]},
+	{"key": "unlock_barracks_4", "title": "Soldier T4", "type": "Military", "desc": "Unlock Tier 4 troops in the Barracks.", "tier": 15, "levels": [	
+		{"level": 1, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 0, "power": 5000, "requiredSkills": {"atk_3":2, "def_3":2, "load_3":2, "speed_3":2, "unlock_barracks_3":1}, "priceGem": 3000, "requiredFriends": 10, "requiredBuildings": {"academy":32}}]},
+	{"key": "unlock_stable_4", "title": "Cavalry T4", "type": "Military", "desc": "Unlock Tier 4 troops in the Stable.", "tier": 15, "levels": [	
+		{"level": 1, "priceFood": 24000000, "priceWood": 24000000, "priceStone": 35000000, "time": 0, "power": 10000, "requiredSkills": {"atk_3":4, "def_3":4, "load_3":4, "speed_3":4, "unlock_stable_3":1}, "priceGem": 3000, "requiredFriends": 10, "requiredBuildings": {"academy":34}}]},
+	{"key": "unlock_siege_4", "title": "Siege T4", "type": "Military", "desc": "Unlock Tier 4 troops in the Siege Workshop.", "tier": 15, "levels": [	
+		{"level": 1, "priceFood": 24000000, "priceWood": 24000000, "priceStone": 35000000, "time": 0, "power": 10000, "requiredSkills": {"atk_3":4, "def_3":4, "load_3":4, "speed_3":4, "unlock_siege_3":1}, "priceGem": 3000, "requiredFriends": 10, "requiredBuildings": {"academy":36}}]},
+	{"key": "unlock_scout_4", "title": "Scout T4", "type": "Military", "desc": "Unlock Tier 4 troops in the Scout Camp.", "tier": 16, "levels": [	
+		{"level": 1, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 0, "power": 10000, "requiredSkills": {"unlock_scout_3":1, "unlock_archery_4":1, "unlock_barracks_4":1, "unlock_stable_4":1, "unlock_siege_4":1}, "priceGem": 3000, "requiredBuildings": {"academy":38}}]},
+	{"key": "atk_4", "title": "Sacred Attack", "type": "Military", "desc": "", "tier": 17, "levels": [	
+		{"level": 1, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 0, "power": 25000, "requiredSkills": {"unlock_scout_4":1}, "priceGem": 1000, "requiredBuildings": {"academy":30}, "bonusRateAtk": 3},
+		{"level": 2, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 144000, "power": 55000, "priceGem": 2000, "requiredFriends": 15, "requiredBuildings": {"academy":32}, "bonusRateAtk": 6},
+		{"level": 3, "priceFood": 48000000, "priceWood": 48000000, "priceStone": 36000000, "time": 288000, "power": 90000, "priceGem": 5000, "requiredFriends": 20, "requiredBuildings": {"academy":34}, "bonusRateAtk": 10},
+		{"level": 4, "priceFood": 64000000, "priceWood": 64000000, "priceStone": 48000000, "time": 576000, "power": 130000, "priceGem": 50000, "requiredFriends": 25, "requiredBuildings": {"academy":36}, "bonusRateAtk": 15},
+		{"level": 5, "priceFood": 80000000, "priceWood": 80000000, "priceStone": 60000000, "time": 1728000, "power": 170000, "priceGem": 100000, "requiredFriends": 30, "requiredBuildings": {"academy":38}, "bonusRateAtk": 20}]},
+	{"key": "def_4", "title": "Sacred Defense", "type": "Military", "desc": "", "tier": 17, "levels": [	
+		{"level": 1, "priceFood": 16000000, "priceWood": 16000000, "priceStone": 12000000, "time": 0, "power": 25000, "requiredSkills": {"unlock_scout_4":1}, "priceGem": 1000, "requiredBuildings": {"academy":30}, "bonusRateDef": 3},
+		{"level": 2, "priceFood": 32000000, "priceWood": 32000000, "priceStone": 24000000, "time": 144000, "power": 55000, "priceGem": 2000, "requiredFriends": 15, "requiredBuildings": {"academy":32}, "bonusRateDef": 6},
+		{"level": 3, "priceFood": 48000000, "priceWood": 48000000, "priceStone": 36000000, "time": 288000, "power": 90000, "priceGem": 5000, "requiredFriends": 20, "requiredBuildings": {"academy":34}, "bonusRateDef": 10},
+		{"level": 4, "priceFood": 64000000, "priceWood": 64000000, "priceStone": 48000000, "time": 576000, "power": 130000, "priceGem": 50000, "requiredFriends": 25, "requiredBuildings": {"academy":36}, "bonusRateDef": 15},
+		{"level": 5, "priceFood": 80000000, "priceWood": 80000000, "priceStone": 60000000, "time": 1728000, "power": 170000, "priceGem": 100000, "requiredFriends": 30, "requiredBuildings": {"academy":38}, "bonusRateDef": 20}]},
+	{"key": "load_4", "title": "Sacred Load", "type": "Military", "desc": "", "tier": 17, "levels": [	
+		{"level": 1, "priceFood": 48000000, "priceWood": 48000000, "priceStone": 36000000, "time": 0, "power": 25000, "requiredSkills": {"unlock_scout_4":1}, "priceGem": 1000, "requiredBuildings": {"academy":30}, "bonusRateLoad": 3},
+		{"level": 2, "priceFood": 64000000, "priceWood": 64000000, "priceStone": 48000000, "time": 144000, "power": 55000, "priceGem": 2000, "requiredFriends": 15, "requiredBuildings": {"academy":32}, "bonusRateLoad": 6},
+		{"level": 3, "priceFood": 80000000, "priceWood": 80000000, "priceStone": 60000000, "time": 288000, "power": 90000, "priceGem": 5000, "requiredFriends": 20, "requiredBuildings": {"academy":34}, "bonusRateLoad": 10},
+		{"level": 4, "priceFood": 96000000, "priceWood": 96000000, "priceStone": 72000000, "time": 576000, "power": 130000, "priceGem": 50000, "requiredFriends": 25, "requiredBuildings": {"academy":36}, "bonusRateLoad": 15},
+		{"level": 5, "priceFood": 112000000, "priceWood": 112000000, "priceStone": 84000000, "time": 1728000, "power": 170000, "priceGem": 100000, "requiredFriends": 30, "requiredBuildings": {"academy":38}, "bonusRateLoad": 20}]},
+	{"key": "speed_4", "title": "Sacred Speed", "type": "Military", "desc": "", "tier": 17, "levels": [	
+		{"level": 1, "priceFood": 48000000, "priceWood": 48000000, "priceStone": 36000000, "time": 0, "power": 25000, "requiredSkills": {"unlock_scout_4":1}, "priceGem": 1000, "requiredBuildings": {"academy":30}, "bonusRateSpeed": 3},
+		{"level": 2, "priceFood": 64000000, "priceWood": 64000000, "priceStone": 48000000, "time": 144000, "power": 55000, "priceGem": 2000, "requiredFriends": 15, "requiredBuildings": {"academy":32}, "bonusRateSpeed": 6},
+		{"level": 3, "priceFood": 80000000, "priceWood": 80000000, "priceStone": 60000000, "time": 288000, "power": 90000, "priceGem": 5000, "requiredFriends": 20, "requiredBuildings": {"academy":34}, "bonusRateSpeed": 10},
+		{"level": 4, "priceFood": 96000000, "priceWood": 96000000, "priceStone": 72000000, "time": 576000, "power": 130000, "priceGem": 50000, "requiredFriends": 25, "requiredBuildings": {"academy":36}, "bonusRateSpeed": 15},
+		{"level": 5, "priceFood": 112000000, "priceWood": 112000000, "priceStone": 84000000, "time": 1728000, "power": 170000, "priceGem": 100000, "requiredFriends": 30, "requiredBuildings": {"academy":38}, "bonusRateSpeed": 20}]},
+	{"key": "unlock_archery_5", "title": "Archery T5", "type": "Military", "desc": "Unlock Tier 5 troops in the Archery Range.", "tier": 18, "levels": [	
+		{"level": 1, "priceFood": 100000000, "priceWood": 100000000, "priceStone": 150000000, "time": 0, "power": 15000, "requiredSkills": {"atk_4":3, "def_4":3, "load_4":3, "speed_4":3}, "priceGem": 100000, "requiredFriends": 30, "requiredBuildings": {"academy":40}}]},
+	{"key": "unlock_barracks_5", "title": "Soldier T5", "type": "Military", "desc": "Unlock Tier 5 troops in the Barracks.", "tier": 18, "levels": [	
+		{"level": 1, "priceFood": 100000000, "priceWood": 100000000, "priceStone": 150000000, "time": 0, "power": 15000, "requiredSkills": {"atk_4":3, "def_4":3, "load_4":3, "speed_4":3}, "priceGem": 100000, "requiredFriends": 30, "requiredBuildings": {"academy":42}}]},
+	{"key": "unlock_stable_5", "title": "Cavalry T5", "type": "Military", "desc": "Unlock Tier 5 troops in the Stable.", "tier": 18, "levels": [	
+		{"level": 1, "priceFood": 150000000, "priceWood": 150000000, "priceStone": 200000000, "time": 0, "power": 15000, "requiredSkills": {"atk_4":4, "def_4":4, "load_4":4, "speed_4":4}, "priceGem": 200000, "requiredFriends": 30, "requiredBuildings": {"academy":44}}]},
+	{"key": "unlock_siege_5", "title": "Siege T5", "type": "Military", "desc": "Unlock Tier 5 troops in the Siege Workshop.", "tier": 18, "levels": [	
+		{"level": 1, "priceFood": 150000000, "priceWood": 150000000, "priceStone": 200000000, "time": 0, "power": 15000, "requiredSkills": {"atk_4":5, "def_4":5, "load_4":5, "speed_4":5}, "priceGem": 200000, "requiredFriends": 30, "requiredBuildings": {"academy":46}}]},
+	{"key": "unlock_scout_5", "title": "Scout T5", "type": "Military", "desc": "Unlock Tier 5 troops in the Scout Camp.", "tier": 19, "levels": [	
+		{"level": 1, "priceFood": 150000000, "priceWood": 150000000, "priceStone": 200000000, "time": 0, "power": 20000, "requiredSkills": {"unlock_archery_5":1, "unlock_barracks_5":1, "unlock_stable_5":1, "unlock_siege_5":1}, "priceGem": 200000, "requiredFriends": 50, "requiredBuildings": {"academy":47}}]}
+]
