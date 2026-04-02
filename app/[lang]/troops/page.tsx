@@ -70,7 +70,7 @@ export default async function TroopsIndex({
                         <img
                           src={troopImage(sample.key)}
                           alt={troopTypeName(group.title, lang)}
-                          className="h-14 w-14 shrink-0 rounded-lg"
+                          className="h-14 w-14 shrink-0 rounded-lg object-contain"
                         />
                       ) : null}
                       <div className="min-w-0 flex-1">

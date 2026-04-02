@@ -119,23 +119,23 @@ export default async function HomePage({
         <div className="flex flex-col items-center gap-6 px-8 py-12 text-center md:flex-row md:text-left">
           <div className="flex-1">
             <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
-              FomoFighters Wiki
+              FOMOFighters Wiki
             </h1>
             <p className="mt-2 text-lg text-primary">
               {lang === "ru"
-                ? "Полное руководство по игре FomoFighters"
-                : "The comprehensive guide to FomoFighters"}
+                ? "Полное руководство по игре FOMOFighters"
+                : "The comprehensive guide to FOMOFighters"}
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
               {lang === "ru"
-                ? "Добро пожаловать в вики FomoFighters! Здесь вы найдёте полную информацию о зданиях, войсках, навыках и героях. Данные обновляются автоматически при каждом обновлении игрового баланса."
-                : "Welcome to the FomoFighters Wiki! Find complete information on buildings, troops, skills, and heroes. Data updates automatically with every game balance patch."}
+                ? "Добро пожаловать в вики FOMOFighters! Здесь вы найдёте полную информацию о зданиях, войсках, навыках и героях. Данные обновляются автоматически при каждом обновлении игрового баланса."
+                : "Welcome to the FOMOFighters Wiki! Find complete information on buildings, troops, skills, and heroes. Data updates automatically with every game balance patch."}
             </p>
           </div>
           <div className="hidden shrink-0 md:block">
             <img
               src="/img/_frog/buildings/castle.png"
-              alt="FomoFighters"
+              alt="FOMOFighters"
               className="h-32 w-32 rounded-2xl object-cover shadow-lg ring-2 ring-primary/20"
             />
           </div>

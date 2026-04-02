@@ -122,7 +122,7 @@ export default function WikiHeader({ lang }: { lang: string }) {
             className="flex items-center gap-2 text-lg font-bold text-primary transition-colors hover:text-primary/85 sm:gap-2.5 sm:text-xl"
           >
             <Swords className="h-5 w-5 sm:h-6 sm:w-6" />
-            <span>FomoFighters Wiki</span>
+            <span>FOMOFighters Wiki</span>
           </Link>
 
           <LangDropdown lang={lang} pathname={pathname} />

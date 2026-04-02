@@ -8,27 +8,6 @@ const SOCIALS = [
     bg: "bg-[#0088cc]",
     hover: "hover:bg-[#006699]",
   },
-  {
-    name: "Twitter / X",
-    desc: "Follow @FomoFighters",
-    href: "https://twitter.com/fomofighters",
-    bg: "bg-zinc-900",
-    hover: "hover:bg-zinc-800",
-  },
-  {
-    name: "YouTube",
-    desc: "Guides & gameplay",
-    href: "https://youtube.com/@fomofighters",
-    bg: "bg-[#FF0000]",
-    hover: "hover:bg-[#CC0000]",
-  },
-  {
-    name: "Google Play",
-    desc: "Download the game",
-    href: "https://play.google.com/store/apps/details?id=com.fomofighters",
-    bg: "bg-emerald-600",
-    hover: "hover:bg-emerald-700",
-  },
 ];
 
 export default function WikiSidebar() {
