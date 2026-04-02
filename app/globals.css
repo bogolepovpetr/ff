@@ -169,3 +169,9 @@
 .scrollbar-none::-webkit-scrollbar {
   display: none;
 }
+
+/* Wiki home section cards: game SVGs use light grey fills; force a dark silhouette.
+   Use a class (not inline styles) so CSP on production cannot strip the filter. */
+.wiki-section-icon {
+  filter: brightness(0);
+}

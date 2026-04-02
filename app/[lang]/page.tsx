@@ -172,8 +172,7 @@ export default async function HomePage({
                   <img
                     src={cat.iconSrc}
                     alt=""
-                    className="h-7 w-7"
-                    style={{ filter: "brightness(0.25)" }}
+                    className="wiki-section-icon h-7 w-7"
                   />
                 </div>
                 <div>
