@@ -28,7 +28,7 @@ export default async function LangLayout({
         <WikiHeader lang={lang} />
       </Suspense>
 
-      <div className="mx-auto flex w-full max-w-7xl flex-1 gap-6 px-4 py-6">
+      <div className="mx-auto flex w-full max-w-7xl flex-1 gap-4 px-3 py-4 sm:px-4 sm:py-6 lg:gap-6">
         <main className="min-w-0 flex-1">{children}</main>
 
         <div className="hidden w-72 shrink-0 lg:block">

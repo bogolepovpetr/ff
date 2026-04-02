@@ -201,7 +201,7 @@ function MainTab({ lang, chapters }: { lang: string; chapters: MainChapter[] }) 
               {ch.quests.length} {ru ? "квестов" : "quests"}
             </span>
           </summary>
-          <div className="border-t border-zinc-100">
+          <div className="overflow-x-auto border-t border-zinc-100">
             <table className="w-full text-sm">
               <tbody>
                 {ch.quests.map((q) => (
