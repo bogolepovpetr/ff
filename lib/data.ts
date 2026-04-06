@@ -213,8 +213,8 @@ export type LeadExp = {
   level: number;
   exp: number;
   rate: number;
-  max: number;
-  maxStar: number;
+  max?: number;
+  maxStar?: number;
 };
 
 export function getLeads(): Lead[] {
@@ -227,6 +227,21 @@ export function getLeadTiers(): LeadTier[] {
 
 export function getLeadExp(): LeadExp[] {
   return readJsonFile<LeadExp[]>("lists_lead_exp.json");
+}
+
+/** Star rank 0–5: star EXP thresholds, max hero level cap, bonus multiplier (global; tier may scale star EXP). */
+export type LeadStarRank = {
+  level: number;
+  exp: number;
+  leadMaxLevel: number;
+  bonusMultiplicator: number;
+  chanceByCampLevel: Record<string, number>;
+  rate: number;
+  max: number;
+};
+
+export function getLeadStarRanks(): LeadStarRank[] {
+  return readJsonFile<LeadStarRank[]>("lists_lead_stars.json");
 }
 
 // --------------- Skill Tree ---------------

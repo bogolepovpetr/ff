@@ -1,7 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ChevronRight } from "lucide-react";
-import { getLeads, getLeadTiers, getLeadExp, indexByKey } from "@/lib/data";
+import {
+  getLeads,
+  getLeadTiers,
+  getLeadExp,
+  getLeadStarRanks,
+  indexByKey,
+} from "@/lib/data";
 import {
   tierColor,
   heroTierName,
@@ -14,6 +20,7 @@ import { heroImage } from "@/lib/images";
 import LoreQuote from "@/components/wiki/lore-quote";
 import PatchBadge from "@/components/wiki/patch-badge";
 import { ResourceIcon } from "@/components/wiki/resource-icon";
+import HeroLevelProgression from "@/components/wiki/hero-level-progression";
 
 export default async function HeroDetailPage({
   params,
@@ -28,6 +35,11 @@ export default async function HeroDetailPage({
   const leadTiers = getLeadTiers();
   const tierInfo = leadTiers.find((t) => t.key === hero.tier);
   const leadExp = getLeadExp();
+  const starRanks = getLeadStarRanks();
+  const maxStarLeadLevel = Math.max(
+    ...starRanks.map((s) => s.leadMaxLevel),
+    leadExp.length,
+  );
   const tc = tierColor(hero.tier);
 
   const ver = getGameVersion();
@@ -139,7 +151,11 @@ export default async function HeroDetailPage({
               />
               <InfoRow
                 label={lang === "ru" ? "Макс. уровень" : "Max level"}
-                value="50"
+                value={
+                  lang === "ru"
+                    ? `10–${maxStarLeadLevel} (зависит от звёзд)`
+                    : `10–${maxStarLeadLevel} (depends on stars)`
+                }
               />
             </div>
           </div>
@@ -170,84 +186,47 @@ export default async function HeroDetailPage({
 
       {/* Bonus per level summary */}
       {bonusEntries.length > 0 && (
-        <div className="flex flex-wrap gap-3">
-          {bonusEntries.map(([k, v]) => (
-            <div
-              key={k}
-              className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2"
-            >
-              <span className="text-sm text-zinc-500">{humanizeBonus(k)}</span>
-              <span className="text-sm font-bold text-emerald-700">+{v}</span>
-              <span className="text-[10px] text-zinc-400">
-                {lang === "ru" ? "/ ур." : "/ lvl"}
-              </span>
-            </div>
-          ))}
+        <div className="space-y-2">
+          <div className="flex flex-wrap gap-3">
+            {bonusEntries.map(([k, v]) => (
+              <div
+                key={k}
+                className="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2"
+              >
+                <span className="text-sm text-zinc-500">{humanizeBonus(k)}</span>
+                <span className="text-sm font-bold text-emerald-700">+{v}</span>
+                <span className="text-[10px] text-zinc-400">
+                  {lang === "ru" ? "/ ур." : "/ lvl"}
+                </span>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-zinc-500">
+            {lang === "ru"
+              ? "Итоговый бонус = (значение × уровень героя) × бонусный множитель звёзд. Звёзды не привязаны к уровню: герой 1-го уровня с ★★★★★ получает ×200% к бонусу."
+              : "Total bonus = (value × hero level) × star bonus multiplier. Stars are independent of level: a level-1 hero with ★★★★★ still gets ×200% on bonuses."}
+          </p>
         </div>
       )}
 
-      {/* Level Progression Table */}
-      <section className="rounded-xl border border-zinc-200 bg-white">
-        <div className="border-b border-zinc-100 px-5 py-3">
-          <h2 className="text-lg font-bold text-slate-800">
-            {lang === "ru" ? "Прогресс по уровням" : "Level Progression"}
-          </h2>
-          {tierInfo && tierInfo.leadExpMultiplicator > 1 && (
-            <p className="text-xs text-zinc-400">
-              {lang === "ru"
-                ? `Множитель EXP для этого тира: x${tierInfo.leadExpMultiplicator}`
-                : `EXP multiplier for this tier: x${tierInfo.leadExpMultiplicator}`}
-            </p>
-          )}
-        </div>
-        <div className="overflow-auto">
-          <table className="min-w-full text-sm">
-            <thead>
-              <tr className="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                <th className="px-4 py-2.5">
-                  {lang === "ru" ? "Ур." : "Lvl"}
-                </th>
-                <th className="px-4 py-2.5 text-right">EXP</th>
-                {bonusEntries.map(([k]) => (
-                  <th key={k} className="px-4 py-2.5 text-right">
-                    {humanizeBonus(k)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {leadExp.map((e, i) => {
-                const mult = tierInfo?.leadExpMultiplicator ?? 1;
-                const actualExp = e.exp * mult;
-                return (
-                  <tr
-                    key={e.level}
-                    className={`border-b border-zinc-100 ${i % 2 === 1 ? "bg-zinc-50/50" : ""}`}
-                  >
-                    <td className={`px-4 py-2 font-bold ${tc.text}`}>
-                      {e.level}
-                    </td>
-                    <td className="px-4 py-2 text-right tabular-nums text-zinc-700">
-                      {actualExp.toLocaleString("en-US")}
-                    </td>
-                    {bonusEntries.map(([k, v]) => {
-                      const total = +(v * e.level).toFixed(2);
-                      return (
-                        <td
-                          key={k}
-                          className="px-4 py-2 text-right tabular-nums font-medium text-emerald-700"
-                        >
-                          +{total % 1 === 0 ? total : total.toFixed(2).replace(/0+$/, "")}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <HeroLevelProgression
+        lang={lang}
+        expTierMult={tierInfo?.leadExpMultiplicator ?? 1}
+        levelTextClass={tc.text}
+        rows={leadExp.map((e) => ({ level: e.level, exp: e.exp }))}
+        bonusCols={bonusEntries.map(([k, v]) => ({
+          key: k,
+          label: humanizeBonus(k),
+          perLevel: v,
+        }))}
+        starRanks={starRanks
+          .map((s) => ({
+            stars: s.level,
+            maxLevel: s.leadMaxLevel,
+            bonusMult: s.bonusMultiplicator,
+          }))
+          .sort((a, b) => a.stars - b.stars)}
+      />
     </div>
   );
 }
@@ -260,3 +239,4 @@ function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
     </div>
   );
 }
+

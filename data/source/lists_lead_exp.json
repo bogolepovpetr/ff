@@ -48,5 +48,15 @@
   {"level": 47, "exp": 7527500, "rate": 3710, "max": 38159, "maxStar": 1400},
   {"level": 48, "exp": 8627500, "rate": 3980, "max": 43413, "maxStar": 1500},
   {"level": 49, "exp": 9927500, "rate": 4260, "max": 49409, "maxStar": 1600},
-  {"level": 50, "exp": 11427500, "rate": 4550, "max": 56253, "maxStar": 2000}
+  {"level": 50, "exp": 11327500, "rate": 4550, "max": 51888, "maxStar": 2000},
+  {"level": 51, "exp": 12827500, "rate": 4850},
+  {"level": 52, "exp": 14427500, "rate": 5160},
+  {"level": 53, "exp": 16127500, "rate": 5480},
+  {"level": 54, "exp": 17927500, "rate": 5810},
+  {"level": 55, "exp": 19927500, "rate": 6150},
+  {"level": 56, "exp": 22127500, "rate": 6500},
+  {"level": 57, "exp": 24327500, "rate": 6860},
+  {"level": 58, "exp": 26727500, "rate": 7230},
+  {"level": 59, "exp": 29327500, "rate": 7610},
+  {"level": 60, "exp": 32127500, "rate": 8000}
 ]

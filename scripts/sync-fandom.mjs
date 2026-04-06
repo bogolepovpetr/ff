@@ -588,7 +588,7 @@ function heroWikitext(h) {
   const bonusEntries = h.bonusPerLevel ? Object.entries(h.bonusPerLevel) : [];
 
   let wt = `{{Infobox hero|key=${h.key}|name=${h.title}|image=Hero_${h.key}.png|tier=${tierLabel}|tier_num=${h.tier}|aspect=${titleCase(h.aspect ?? "\u2014")}|role=${roleLabel}|price_gem=${h.priceGem ?? "\u2014"}|card_count=${h.cardCount ?? "\u2014"}}}\n\n`;
-  wt += `'''${h.title}''' is a ${tierLabel} hero in FOMO Fighters. Max level: '''50'''.\n`;
+  wt += `'''${h.title}''' is a ${tierLabel} hero in FOMO Fighters. Max hero level at ★★★★★: '''60''' (lower star counts cap level; see in-game).\n`;
   if (h.desc) wt += `\n''${h.desc}''\n`;
 
   if (h.blockedTimerInBuilding) {
