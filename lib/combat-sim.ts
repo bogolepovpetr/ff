@@ -81,7 +81,7 @@ export function calcBattleLossesPercent(ATK: number, DEF: number): {
     };
   }
 
-  let defenderLosses = 50 - 13 * (DEF / ATK);
+  const defenderLosses = 50 - 13 * (DEF / ATK);
   let attackerLosses: number;
 
   if (ATK >= DEF * 75) {
