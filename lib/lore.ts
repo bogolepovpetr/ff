@@ -63,10 +63,24 @@ const LORE: LoreMap = {
         "От божественного сияния Афины до неудержимой ярости Чингисхана — герои являются живым воплощением мифов и истории. Призывайте и усиливайте этих легендарных личностей, чтобы вести армии, укреплять города и сокрушать врагов. Каждый герой приносит уникальные бонусы, способные изменить ход войны.",
     },
   },
+  battleSim: {
+    en: {
+      title: "Battle simulator",
+      subtitle: "Estimate troop losses for attack and defense",
+      intro:
+        "Build two armies from wiki troop stats, set optional attacker ATK % and defender DEF % bonuses, and see loss percentages and survivors per stack. The percentages follow the server’s Combat::_calcBattleLosses; per-unit rounding follows Combat::_decreaseTroopCount (PVP-style totals only — camp and extra modifiers are not modeled).",
+    },
+    ru: {
+      title: "Симулятор боя",
+      subtitle: "Оценка потерь при атаке и обороне",
+      intro:
+        "Соберите две армии по характеристикам войск из вики, задайте бонусы к АТК нападающего и ЗАЩ защитника в процентах и посмотрите проценты потерь и выживших по стекам. Проценты совпадают с Combat::_calcBattleLosses на сервере; округление по юнитам — как в Combat::_decreaseTroopCount (только PVP-суммы; лагерь и прочие модификаторы не учитываются).",
+    },
+  },
 };
 
 export function getLore(
-  category: "buildings" | "troops" | "skills" | "heroes",
+  category: "buildings" | "troops" | "skills" | "heroes" | "battleSim",
   lang: string,
 ): LoreEntry {
   return LORE[category][lang] ?? LORE[category]["en"];

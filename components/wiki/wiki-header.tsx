@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { key: "races", en: "Races", ru: "Расы" },
   { key: "buildings", en: "Buildings", ru: "Здания" },
   { key: "troops", en: "Troops", ru: "Войска" },
+  { key: "battle-sim", en: "Battle sim", ru: "Симулятор боя" },
   { key: "skills", en: "Skills", ru: "Навыки" },
   { key: "heroes", en: "Heroes", ru: "Герои" },
   { key: "war", en: "WAR", ru: "WAR" },

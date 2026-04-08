@@ -35,6 +35,16 @@ const CATEGORIES = [
     iconBg: "bg-red-200",
   },
   {
+    key: "battle-sim",
+    iconSrc: "/img/icon/sword_fire.svg",
+    en: "Battle simulator",
+    ru: "Симулятор боя",
+    descEn: "Estimate troop losses for attacks and defense (approx.)",
+    descRu: "Оценка потерь войск при атаке и защите (приближённо)",
+    color: "border-rose-300 bg-rose-50 hover:bg-rose-100",
+    iconBg: "bg-rose-200",
+  },
+  {
     key: "skills",
     iconSrc: "/img/icon/skills.svg",
     en: "Skills",
