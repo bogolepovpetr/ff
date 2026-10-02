@@ -18,11 +18,11 @@ const token = `$${data.token}`;
   </nav>
 
   <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-rose-50 p-6">
-    <h1 class="text-2xl font-bold text-slate-900">{ru ? `${token} на Server 2` : `${token} on Server 2`}</h1>
+    <h1 class="text-2xl font-bold text-slate-900">{token}</h1>
     <p class="mt-2 text-sm leading-relaxed text-zinc-700">
       {ru
-        ? `На Server 2 ${token} — постоянный накопительный баланс, который виден в рейтинге игроков. Потратить его в игре сейчас негде: нет ни магазина, ни обмена на USDT.`
-        : `On Server 2, ${token} is a persistent balance shown in the player ranking. There is currently nowhere to spend it in-game: no shop and no USDT exchange.`}
+        ? `${token} — постоянный накопительный баланс, который виден в рейтинге игроков. Потратить его в игре сейчас негде: нет ни магазина, ни обмена на USDT.`
+        : `${token} is a persistent balance shown in the player ranking. There is currently nowhere to spend it in-game: no shop and no USDT exchange.`}
     </p>
     <div class="mt-4">
       <a

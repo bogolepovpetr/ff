@@ -2,22 +2,22 @@
   "war": {
     "token": "WAR",
     "access": {
-      "title_ru": "Доступ на Server 2",
-      "title_en": "Access on Server 2",
+      "title_ru": "Доступ",
+      "title_en": "Access",
       "bullets_ru": [
         "Пункт меню «Война» скрыт, переход на любой адрес раздела «Война» (активные войны, отправка войск, история войн для клейма, архив) перенаправляет на главный экран.",
         "В карточке клана остаются доступны: счётчик побед/поражений в войнах, кнопка объявления войны (при выполнении общих условий начала войны) и список завершённых войн клана старше 6 часов — без личных наград.",
-        "Личный клейм наград за участие в завершённой войне (ресурсы, предметы, военные очки) на Server 2 недостижим ни одним доступным игроку способом."
+        "Личный клейм наград за участие в завершённой войне (ресурсы, предметы, военные очки) недостижим ни одним доступным игроку способом."
       ],
       "bullets_en": [
         "The War menu item is hidden; any War URL (active wars, sending troops, reward history, archive) redirects to the home screen.",
         "The clan card still shows: the clan's war win/loss counter, a declare-war button (if general start conditions are met), and a list of completed wars older than 6 hours — without personal rewards.",
-        "Personal reward claim for a completed war (resources, items, war points) is unreachable by any available means on Server 2."
+        "Personal reward claim for a completed war (resources, items, war points) is unreachable by any available means."
       ]
     },
     "earn": {
-      "title_ru": "Как заработать $WAR на Server 2",
-      "title_en": "How to earn $WAR on Server 2",
+      "title_ru": "Как заработать $WAR",
+      "title_en": "How to earn $WAR",
       "bullets_ru": [
         "Награда топ-5 завершённого турнира Arena включает военные очки (см. раздел Arena).",
         "Доля $WAR из пула лога осады аванпоста — участнику клана-победителя с положительным вкладом.",
@@ -47,12 +47,12 @@
       "title_ru": "Траты нет",
       "title_en": "No spending",
       "bullets_ru": [
-        "На Server 2 нет действия, которое списывает $WAR в обмен на награды, валюту или вывод: ни магазина за $WAR, ни обмена $WAR на USDT, ни иного игрового sink.",
-        "Сезонный buyback ($WAR → USDT) и вывод USDT — механика Server 1, на Server 2 её нет."
+        "Нет действия, которое списывает $WAR в обмен на награды, валюту или вывод: ни магазина за $WAR, ни обмена $WAR на USDT, ни иного игрового sink.",
+        "Сезонного buyback'а ($WAR → USDT) и вывода USDT в игре нет."
       ],
       "bullets_en": [
-        "There is no action on Server 2 that spends $WAR for rewards, currency, or withdrawal: no $WAR shop, no $WAR → USDT exchange, no other in-game sink.",
-        "The seasonal buyback ($WAR → USDT) and USDT withdrawal are a Server 1 mechanic and do not exist on Server 2."
+        "There is no action that spends $WAR for rewards, currency, or withdrawal: no $WAR shop, no $WAR → USDT exchange, no other in-game sink.",
+        "There is no seasonal buyback ($WAR → USDT) or USDT withdrawal in the game."
       ]
     }
   }
