@@ -50,7 +50,7 @@ function pickDefaultTab(): string {
 }
 
 const activeTab = ref(pickDefaultTab());
-const imgOk = ref<Record<string, boolean>>({});
+const imgError = ref<Record<string, boolean>>({});
 
 const tree = computed(() => props.trees[activeTab.value] ?? props.trees[pickDefaultTab()] ?? null);
 
@@ -152,16 +152,15 @@ const edges = computed<Edge[]>(() => {
           }"
         >
           <div class="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-zinc-100 ring-1 ring-zinc-200 group-hover:bg-amber-50 group-hover:ring-amber-200">
-            <span v-if="!imgOk[node.key]" class="text-sm font-extrabold text-zinc-700">
+            <span v-if="imgError[node.key]" class="text-sm font-extrabold text-zinc-700">
               {{ (node.title?.trim()?.[0] ?? "?").toUpperCase() }}
             </span>
             <img
+              v-else
               :src="skillImage(node.key)"
               :alt="node.title"
               class="h-10 w-10 object-cover"
-              :class="imgOk[node.key] ? '' : 'hidden'"
-              @load="imgOk[node.key] = true"
-              @error="(e: Event) => ((e.target as HTMLElement).style.display = 'none')"
+              @error="imgError[node.key] = true"
             />
           </div>
           <p class="mt-1 w-full truncate text-center text-[11px] font-semibold leading-tight text-zinc-800">
