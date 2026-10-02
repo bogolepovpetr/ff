@@ -35,7 +35,7 @@ export default async function ReferralPage({
         <span className="font-medium text-zinc-700">{ru ? "Рефералы" : "Referral"}</span>
       </nav>
 
-      <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-emerald-50 p-6">
+      <div className="wiki-hero p-6">
         <h1 className="text-2xl font-bold text-slate-900">
           {ru ? "Реферальная система" : "Referral system"}
         </h1>

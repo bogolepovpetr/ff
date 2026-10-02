@@ -2,12 +2,13 @@ import fs from "node:fs";
 import path from "node:path";
 
 export type PatchChange = { en: string; ru: string };
-export type Patch = { version: string; date: string; changes: PatchChange[] };
+export type Patch = { version: string; date: string; changes: PatchChange[]; monorepoCommit?: string };
 
 export type GameVersion = {
   gameVersion: string;
   dataUpdated: string;
   patchNotes: string;
+  sourceMonorepoCommit?: string;
   patches?: Patch[];
 };
 

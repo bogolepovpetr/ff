@@ -434,13 +434,6 @@ export function getReferralData(): ReferralData {
 
 // --------------- WAR ---------------
 
-export type WarTimelineEvent = {
-  key: string;
-  label_ru: string;
-  label_en: string;
-  at: string; // ISO string in UTC (Z)
-};
-
 export type WarSection = {
   title_ru: string;
   title_en: string;
@@ -448,44 +441,13 @@ export type WarSection = {
   bullets_en: string[];
 };
 
-export type WarBuyback = {
-  title_ru: string;
-  title_en: string;
-  rules_ru: string[];
-  rules_en: string[];
-  timeline_utc0: WarTimelineEvent[];
-  fund_ru: string[];
-  fund_en: string[];
-};
-
-export type WarWithdraw = {
-  title_ru: string;
-  title_en: string;
-  bullets_ru: string[];
-  bullets_en: string[];
-  constraints: {
-    min_balance_usdt: number;
-    network_fee_usdt_max: number;
-    payout_date_utc0: string; // YYYY-MM-DD
-  };
-};
-
 export type WarData = {
   war: {
-    season: {
-      number: number;
-      pool_usdt_current: number;
-      pool_label_ru: string;
-      pool_label_en: string;
-    };
     token: string;
-    usdt: string;
+    access: WarSection;
     earn: WarSection;
-    buyback: WarBuyback;
-    min_threshold: WarSection;
-    seasons: WarSection;
-    withdraw_usdt: WarWithdraw;
-    important: WarSection;
+    balance: WarSection;
+    noSink: WarSection;
   };
 };
 
@@ -571,6 +533,119 @@ export function getQuestsDailyRewards(): QuestDailyReward[] {
 
 export function getQuestsBot(): QuestBot[] {
   return readJsonFile<QuestBot[]>("lists_quests_bot.json");
+}
+
+// --------------- VIP ---------------
+
+export type VipWiki = {
+  intro_ru: string;
+  intro_en: string;
+  bullets_ru: string[];
+  bullets_en: string[];
+};
+
+export type VipPassLevel = {
+  key: string;
+  lvl: number;
+  title: string;
+  gem_cost: number;
+  skinKey?: string;
+  [k: string]: unknown;
+};
+
+export type VipStreakDay = {
+  key: string;
+  points: number;
+};
+
+export type VipTimePack = {
+  key: string;
+  days: number;
+  gem_cost: number;
+};
+
+export function getVipWiki(): VipWiki {
+  return readJsonFile<VipWiki>("lists_vip_wiki.json");
+}
+
+export function getVipPassLevels(): VipPassLevel[] {
+  return readJsonFile<VipPassLevel[]>("lists_vip_pass.json");
+}
+
+export function getVipStreak(): VipStreakDay[] {
+  return readJsonFile<VipStreakDay[]>("lists_vip_streak.json");
+}
+
+export function getVipTimePacks(): VipTimePack[] {
+  return readJsonFile<VipTimePack[]>("lists_vip_time.json");
+}
+
+// --------------- Dawn Fund ---------------
+
+export type DawnFundLevel = {
+  lvl: number;
+  free: Record<string, number | string>;
+  premium: Record<string, number | string>;
+  requiredBuildings: Record<string, number>;
+};
+
+export type DawnFundPass = {
+  name: string;
+  title: string;
+  description: string;
+  levels: DawnFundLevel[];
+};
+
+export type DawnFundTopup = {
+  name: string;
+  priceStar: number;
+  priceTon: number;
+  priceTonOld?: number;
+  priceUsdt: number;
+};
+
+export function getDawnFundPass(): DawnFundPass {
+  const all = readJsonFile<DawnFundPass[]>("lists_battlepass.json");
+  const pass = all.find((p) => p.name === "dawnfund");
+  if (!pass) throw new Error("dawnfund pass not found");
+  return pass;
+}
+
+export function getDawnFundTopup(): DawnFundTopup {
+  const all = readJsonFile<DawnFundTopup[]>("lists_battlepass_topup.json");
+  const topup = all.find((t) => t.name === "dawnfund");
+  if (!topup) throw new Error("dawnfund topup not found");
+  return topup;
+}
+
+// --------------- Arena PvP ---------------
+
+export type ArenaWiki = {
+  title_ru: string;
+  title_en: string;
+  intro_ru: string;
+  intro_en: string;
+  bullets_ru: string[];
+  bullets_en: string[];
+};
+
+export type ArenaPvpTier = {
+  minLevel: number;
+  maxLevel: number;
+  league: string;
+  requiredKillPoints: number;
+  top1: Record<string, number>;
+  top5: Record<string, number>;
+  top10: Record<string, number>;
+  top100: Record<string, number>;
+};
+
+export function getArenaWiki(): ArenaWiki {
+  return readJsonFile<ArenaWiki>("lists_arena_wiki.json");
+}
+
+export function getArenaPvpTiers(): ArenaPvpTier[] {
+  return readJsonFile<ArenaPvpTier[]>("lists_arena_pvp.json");
 }
 
 // --------------- Shared ---------------

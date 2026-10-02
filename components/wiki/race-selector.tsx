@@ -6,23 +6,23 @@ const RACE_META: Record<string, {
   activeAccent: string;
   textColor: string;
 }> = {
-  cat: {
-    img: "/img/avatars/cat_f_prem_huntress.png",
-    accent: "border-rose-300 bg-rose-50",
-    activeAccent: "border-rose-400 bg-rose-100 ring-2 ring-rose-300",
-    textColor: "text-rose-800",
+  elf: {
+    img: "/img/races/race-elf.png",
+    accent: "border-emerald-300 bg-emerald-50",
+    activeAccent: "border-emerald-400 bg-emerald-100 ring-2 ring-emerald-300",
+    textColor: "text-emerald-800",
   },
-  dog: {
-    img: "/img/avatars/original/dog_prem_aviator.png",
+  human: {
+    img: "/img/races/race-human.png",
     accent: "border-sky-300 bg-sky-50",
     activeAccent: "border-sky-400 bg-sky-100 ring-2 ring-sky-300",
     textColor: "text-sky-800",
   },
-  frog: {
-    img: "/img/avatars/original/frog_f_prem_princess.png",
-    accent: "border-emerald-300 bg-emerald-50",
-    activeAccent: "border-emerald-400 bg-emerald-100 ring-2 ring-emerald-300",
-    textColor: "text-emerald-800",
+  demon: {
+    img: "/img/races/race-demon.png",
+    accent: "border-rose-300 bg-rose-50",
+    activeAccent: "border-rose-400 bg-rose-100 ring-2 ring-rose-300",
+    textColor: "text-rose-800",
   },
 };
 

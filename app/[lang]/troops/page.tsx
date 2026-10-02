@@ -1,6 +1,6 @@
 import { getTroopGroups, getPlayableRaces } from "@/lib/data";
 import { getLore } from "@/lib/lore";
-import { tierColor, buildingName, troopTypeName } from "@/lib/format";
+import { tierColor, buildingName, troopTypeName, raceName } from "@/lib/format";
 import TroopsPageClient from "@/components/wiki/troops-page-client";
 
 const BUILDING_ORDER = [
@@ -69,7 +69,7 @@ export default async function TroopsIndex({
         buildingLabels={buildingLabels}
         tierLabels={tierLabels}
         troopTypeLabels={troopTypeLabels}
-        races={getPlayableRaces().map((r) => ({ key: r.key, title: r.title, desc: r.desc }))}
+        races={getPlayableRaces().map((r) => ({ key: r.key, title: raceName(r.key, lang), desc: r.desc }))}
       />
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { getPlayableRaces } from "@/lib/data";
+import { raceName } from "@/lib/format";
 import { Zap, Hammer, GraduationCap, Battery, Swords } from "lucide-react";
 
 const RACE_STYLE: Record<string, {
@@ -10,30 +11,36 @@ const RACE_STYLE: Record<string, {
   headerText: string;
   accent: string;
 }> = {
-  cat: {
-    img: "/img/avatars/cat_f_prem_huntress.png",
-    border: "border-rose-300",
-    bg: "bg-rose-50",
-    headerBg: "bg-rose-100",
-    headerText: "text-rose-900",
-    accent: "text-rose-700",
-  },
-  dog: {
-    img: "/img/avatars/original/dog_prem_aviator.png",
-    border: "border-sky-300",
-    bg: "bg-sky-50",
-    headerBg: "bg-sky-100",
-    headerText: "text-sky-900",
-    accent: "text-sky-700",
-  },
-  frog: {
-    img: "/img/avatars/original/frog_f_prem_princess.png",
+  elf: {
+    img: "/img/races/race-elf.png",
     border: "border-emerald-300",
     bg: "bg-emerald-50",
     headerBg: "bg-emerald-100",
     headerText: "text-emerald-900",
     accent: "text-emerald-700",
   },
+  human: {
+    img: "/img/races/race-human.png",
+    border: "border-sky-300",
+    bg: "bg-sky-50",
+    headerBg: "bg-sky-100",
+    headerText: "text-sky-900",
+    accent: "text-sky-700",
+  },
+  demon: {
+    img: "/img/races/race-demon.png",
+    border: "border-rose-300",
+    bg: "bg-rose-50",
+    headerBg: "bg-rose-100",
+    headerText: "text-rose-900",
+    accent: "text-rose-700",
+  },
+};
+
+const RACE_SPEC: Record<string, { en: string; ru: string }> = {
+  elf:   { en: "Economy / builders", ru: "Экономика / строители" },
+  human: { en: "Defense",            ru: "Защита" },
+  demon: { en: "Attack",             ru: "Атака" },
 };
 
 const BONUS_LABELS: Record<string, { en: string; ru: string; icon: typeof Zap }> = {
@@ -91,7 +98,7 @@ export default async function RacesPage({
                 />
                 <div>
                   <h2 className={`text-xl font-bold ${style.headerText}`}>
-                    {race.title}
+                    {raceName(race.key, lang)}
                   </h2>
                   <p className="mt-1 text-sm leading-snug text-zinc-600">
                     {race.desc}
@@ -159,7 +166,7 @@ export default async function RacesPage({
               <tr className="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
                 <th className="px-4 py-2.5">{ru ? "Параметр" : "Stat"}</th>
                 {races.map((r) => (
-                  <th key={r.key} className="px-4 py-2.5 text-center">{r.title}</th>
+                  <th key={r.key} className="px-4 py-2.5 text-center">{raceName(r.key, lang)}</th>
                 ))}
               </tr>
             </thead>
@@ -194,9 +201,14 @@ export default async function RacesPage({
               </tr>
               <tr className="border-b border-zinc-100">
                 <td className="px-4 py-2 font-medium text-zinc-700">{ru ? "Специализация" : "Specialization"}</td>
-                <td className="px-4 py-2 text-center text-zinc-600">{ru ? "Атака" : "Attack"}</td>
-                <td className="px-4 py-2 text-center text-zinc-600">{ru ? "Защита" : "Defense"}</td>
-                <td className="px-4 py-2 text-center text-zinc-600">{ru ? "Баланс" : "Balanced"}</td>
+                {races.map((r) => {
+                  const spec = RACE_SPEC[r.key];
+                  return (
+                    <td key={r.key} className="px-4 py-2 text-center text-zinc-600">
+                      {spec ? (ru ? spec.ru : spec.en) : "—"}
+                    </td>
+                  );
+                })}
               </tr>
             </tbody>
           </table>

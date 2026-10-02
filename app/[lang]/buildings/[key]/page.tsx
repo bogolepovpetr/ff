@@ -6,7 +6,6 @@ import { getManualDoc } from "@/lib/manual";
 import { formatCost, formatTime, joinReqs, buildingName } from "@/lib/format";
 import { getGameVersion } from "@/lib/version";
 import { buildingImage } from "@/lib/images";
-import LoreQuote from "@/components/wiki/lore-quote";
 import PatchBadge from "@/components/wiki/patch-badge";
 import { ResourceIcon, type ResourceKey } from "@/components/wiki/resource-icon";
 
@@ -39,11 +38,6 @@ export default async function BuildingPage({
 
   const ver = getGameVersion();
 
-  const loreText =
-    lang === "ru"
-      ? `${building.title} — одно из ключевых зданий вашей империи. Развивайте его, чтобы открыть новые возможности и усилить свои позиции.`
-      : `The ${building.title} is a vital structure in your empire. Upgrade it to unlock new capabilities and strengthen your position.`;
-
   return (
     <div className="space-y-6">
       {/* Breadcrumbs */}
@@ -69,9 +63,6 @@ export default async function BuildingPage({
               </span>
             )}
           </div>
-
-          {building.desc && <LoreQuote text={building.desc} />}
-          {!building.desc && <LoreQuote text={loreText} />}
 
           {manual && (
             <div

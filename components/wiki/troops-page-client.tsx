@@ -76,7 +76,7 @@ export default function TroopsPageClient({
   const searchParams = useSearchParams();
   const [race, setRace] = useState(() => {
     const fromUrl = searchParams.get("race");
-    return fromUrl && ["cat", "dog", "frog"].includes(fromUrl) ? fromUrl : "cat";
+    return fromUrl && ["elf", "human", "demon"].includes(fromUrl) ? fromUrl : "elf";
   });
 
   function troopForRace(troops: TroopData[]): TroopData | undefined {

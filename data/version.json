@@ -1,23 +1,144 @@
 {
-  "gameVersion": "1.1.0",
-  "dataUpdated": "2026-03-30",
-  "patchNotes": "Energy shop prices reduced (10 energy: 200→150 gems, 50 energy: 600→450 gems). New energy mechanic: +1 energy every 12 min for all races (no daily reset). Clan leader rewards increased by ~1.25x (WAR, resources, EXP, stars, chests).",
+  "gameVersion": "1.3.3",
+  "dataUpdated": "2026-10-02",
+  "patchNotes": "Season 2 races: Elf, Human, Demon replace Cat/Dog/Frog; troops and shop skins retuned for the new roster; heroes Talpor, Minos, Imhotep, Gerard, Horus; academy skills and clan rewards expanded",
   "patches": [
+    {
+      "version": "1.3.3",
+      "date": "2026-10-02",
+      "changes": [
+        {
+          "en": "Season 2 races: Elf, Human and Demon replace Cat, Dog and Frog",
+          "ru": "Расы сезона 2: Эльфы, Люди и Демоны вместо Котов, Псов и Лягушек"
+        },
+        {
+          "en": "Troops and shop skins rebuilt for the new race roster",
+          "ru": "Войска и скины магазина пересобраны под новый набор рас"
+        },
+        {
+          "en": "New heroes: Talpor, Minos, Imhotep, Gerard, Horus",
+          "ru": "Новые герои: Talpor, Minos, Imhotep, Gerard, Horus"
+        },
+        {
+          "en": "Academy skills expanded; clan reward levels 26–30 added",
+          "ru": "Расширены навыки академии; добавлены уровни наград клана 26–30"
+        }
+      ],
+      "monorepoCommit": "03b4b6878aa7"
+    },
+    {
+      "version": "1.3.2",
+      "date": "2026-06-29",
+      "changes": [
+        {
+          "en": "New buildings: Adventure Hall, Arena",
+          "ru": "Новые здания: Центр приключений, Арена"
+        },
+        {
+          "en": "10 new heroes added to the roster",
+          "ru": "Добавлено 10 новых героев"
+        },
+        {
+          "en": "Main quest line and daily quests refreshed",
+          "ru": "Обновлены основные и ежедневные квесты"
+        },
+        {
+          "en": "Updated troops, skills, shop and clan reward tables",
+          "ru": "Обновлены таблицы войск, навыков, магазина и наград кланов"
+        }
+      ],
+      "monorepoCommit": "2866a0feafd9"
+    },
+    {
+      "version": "1.3.1",
+      "date": "2026-06-29",
+      "changes": [
+        {
+          "en": "VIP and Dawn Fund merged into Deals section",
+          "ru": "VIP и Fund of Dawn объединены в раздел Deals"
+        },
+        {
+          "en": "Removed FomoPass (not in game)",
+          "ru": "Удалён FomoPass (нет в игре)"
+        },
+        {
+          "en": "VIP levels table shows newly unlocked passive bonuses",
+          "ru": "Таблица VIP-уровней показывает новые пассивные бонусы"
+        }
+      ]
+    },
+    {
+      "version": "1.3.0",
+      "date": "2026-06-29",
+      "changes": [
+        {
+          "en": "New section: VIP (levels, time packs, chest streak)",
+          "ru": "Новый раздел: VIP (уровни, VIP-время, стрик сундука)"
+        },
+        {
+          "en": "New section: FomoPass (seasonal battle pass, draft data)",
+          "ru": "Новый раздел: FomoPass (сезонный battle pass, черновые данные)"
+        },
+        {
+          "en": "New section: Dawn Fund (Fund of Dawn reward tracks)",
+          "ru": "Новый раздел: Фонд Рассвета (треки наград)"
+        },
+        {
+          "en": "New section: Arena PvP (floors, leagues, rewards)",
+          "ru": "Новый раздел: Арена PvP (этажи, лиги, награды)"
+        }
+      ]
+    },
+    {
+      "version": "1.2.0",
+      "date": "2026-06-29",
+      "changes": [
+        {
+          "en": "New buildings: Adventure Center, Arena",
+          "ru": "Новые здания: Центр приключений, Арена"
+        },
+        {
+          "en": "10 new heroes added to the roster",
+          "ru": "Добавлено 10 новых героев"
+        },
+        {
+          "en": "Updated troops, skills, buildings, clans, quests, races and shop data",
+          "ru": "Обновлены данные по войскам, навыкам, зданиям, кланам, квестам, расам и магазину"
+        },
+        {
+          "en": "Removed decorative SEO quote blocks from entity pages",
+          "ru": "Убраны декоративные SEO-цитаты со страниц сущностей"
+        }
+      ]
+    },
     {
       "version": "1.1.0",
       "date": "2026-03-30",
       "changes": [
-        { "en": "Energy shop prices reduced: 10 energy 200→150 💎, 50 energy 600→450 💎", "ru": "Снижены цены на энергию в магазине: 10 энергии 200→150 💎, 50 энергии 600→450 💎" },
-        { "en": "New energy mechanic: +1 energy every 12 min for all races (no daily reset)", "ru": "Новая механика энергии: +1 энергия каждые 12 мин для всех рас (без ежедневного сброса)" },
-        { "en": "Clan leader rewards increased by ~1.25x (WAR, resources, EXP, stars, chests)", "ru": "Награды клан-лидеров увеличены в ~1.25 раза (WAR, ресурсы, опыт, звёзды, сундуки)" }
+        {
+          "en": "Energy shop prices reduced: 10 energy 200→150 💎, 50 energy 600→450 💎",
+          "ru": "Снижены цены на энергию в магазине: 10 энергии 200→150 💎, 50 энергии 600→450 💎"
+        },
+        {
+          "en": "New energy mechanic: +1 energy every 12 min for all races (no daily reset)",
+          "ru": "Новая механика энергии: +1 энергия каждые 12 мин для всех рас (без ежедневного сброса)"
+        },
+        {
+          "en": "Clan leader rewards increased by ~1.25x (WAR, resources, EXP, stars, chests)",
+          "ru": "Награды клан-лидеров увеличены в ~1.25 раза (WAR, ресурсы, опыт, звёзды, сундуки)"
+        }
       ]
     },
     {
       "version": "1.0.0",
       "date": "2025-10-25",
       "changes": [
-        { "en": "Initial release — all buildings, troops, skills and heroes data", "ru": "Начальный релиз — все здания, войска, навыки и герои" }
+        {
+          "en": "Initial release — all buildings, troops, skills and heroes data",
+          "ru": "Начальный релиз — все здания, войска, навыки и герои"
+        }
       ]
     }
-  ]
+  ],
+  "sourceMonorepoCommit": "03b4b6878aa74c8e9f4d56f1525c290598b4757f"
 }

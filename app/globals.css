@@ -10,7 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-marmelad), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-marmelad), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-philosopher), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -83,6 +83,15 @@
   --sidebar-accent-foreground: oklch(0.3 0.035 55);
   --sidebar-border: oklch(0.86 0.028 78);
   --sidebar-ring: oklch(0.52 0.12 152);
+
+  /* Game styleguide tokens (vars.less) — for Deals and premium sections */
+  --game-bg: #f9f4ed;
+  --game-bg2: #c7bbac;
+  --game-frame: #c3b6a5;
+  --game-main: #5c4b38;
+  --game-orange: #f39501;
+  --game-green: #469a32;
+  --game-atk: #ff7853;
 }
 
 /* Browsers without oklch(): avoid invalid CSS vars that can break colors */
@@ -174,4 +183,83 @@
    Use a class (not inline styles) so CSP on production cannot strip the filter. */
 .wiki-section-icon {
   filter: brightness(0);
+}
+
+@layer components {
+  .wiki-hero {
+    border-radius: 0.75rem;
+    border: 1px solid var(--game-frame);
+    background: linear-gradient(135deg, var(--game-bg) 0%, #fdf8f0 100%);
+    padding: 1.5rem;
+    color: var(--game-main);
+  }
+  .wiki-panel {
+    border-radius: 0.75rem;
+    border: 1px solid var(--game-frame);
+    background: var(--card);
+  }
+  .wiki-link {
+    color: var(--game-orange);
+  }
+  .wiki-link:hover {
+    text-decoration: underline;
+  }
+  .wiki-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    border-radius: 9999px;
+    border: 1px solid var(--game-frame);
+    background: var(--game-bg);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    color: var(--game-main);
+  }
+  .wiki-chip-accent {
+    border-color: color-mix(in srgb, var(--game-orange) 40%, var(--game-frame));
+    background: color-mix(in srgb, var(--game-orange) 12%, var(--game-bg));
+    color: color-mix(in srgb, var(--game-main) 90%, var(--game-orange));
+  }
+  .wiki-unlock-new {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 0.375rem;
+    background: color-mix(in srgb, var(--game-green) 14%, white);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--game-green);
+  }
+  .wiki-unlock-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    border-radius: 0.375rem;
+    background: color-mix(in srgb, var(--game-orange) 14%, white);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--game-main) 80%, var(--game-orange));
+  }
+  .wiki-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    border-radius: 100px;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .wiki-btn:hover {
+    opacity: 0.9;
+  }
+  .wiki-btn-premium {
+    background: var(--game-orange);
+    color: white;
+  }
+  .wiki-btn-success {
+    background: var(--game-green);
+    color: white;
+  }
 }

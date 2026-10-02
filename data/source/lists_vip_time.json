@@ -1,0 +1,5 @@
+[
+  {"key": "24h", "days": 1, "gem_cost": 500},
+  {"key": "7d", "days": 7, "gem_cost": 3000},
+  {"key": "30d", "days": 30, "gem_cost": 10000}
+]

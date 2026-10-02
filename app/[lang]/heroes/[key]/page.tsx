@@ -17,7 +17,6 @@ import {
 } from "@/lib/format";
 import { getGameVersion } from "@/lib/version";
 import { heroImage } from "@/lib/images";
-import LoreQuote from "@/components/wiki/lore-quote";
 import PatchBadge from "@/components/wiki/patch-badge";
 import { ResourceIcon } from "@/components/wiki/resource-icon";
 import HeroLevelProgression from "@/components/wiki/hero-level-progression";
@@ -46,12 +45,6 @@ export default async function HeroDetailPage({
   const bonusEntries = hero.bonusPerLevel
     ? Object.entries(hero.bonusPerLevel)
     : [];
-
-  const loreText =
-    hero.desc ??
-    (lang === "ru"
-      ? `${hero.title} — легендарный герой, способный изменить ход сражения.`
-      : `${hero.title} is a legendary hero capable of turning the tide of battle.`);
 
   return (
     <div className="space-y-6">
@@ -92,8 +85,6 @@ export default async function HeroDetailPage({
               )}
             </div>
           </div>
-
-          <LoreQuote text={loreText} />
         </div>
 
         {/* Infobox */}

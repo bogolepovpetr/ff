@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { getFilteredTroops } from "@/lib/data";
+import { buildBattleSimLayouts } from "@/lib/battle-sim-layout";
 import { buildingName, troopTypeName, raceName } from "@/lib/format";
 import { getLore } from "@/lib/lore";
 import PatchBadge from "@/components/wiki/patch-badge";
 import BattleSimClient from "@/components/wiki/battle-sim-client";
 import { getGameVersion } from "@/lib/version";
+import { WIKI_DISPLAY_NAME } from "@/lib/site-brand";
 
 export async function generateMetadata({
   params,
@@ -14,13 +16,13 @@ export async function generateMetadata({
   const { lang } = await params;
   if (lang === "ru") {
     return {
-      title: "Симулятор боя — FOMO Fighters Wiki",
+      title: `Симулятор боя — ${WIKI_DISPLAY_NAME}`,
       description:
         "Калькулятор потерь по формулам Combat::_calcBattleLosses и _decreaseTroopCount (PVP-суммы).",
     };
   }
   return {
-    title: "Battle simulator — FOMO Fighters Wiki",
+    title: `Battle simulator — ${WIKI_DISPLAY_NAME}`,
     description:
       "Troop loss calculator aligned with Combat::_calcBattleLosses and _decreaseTroopCount (PVP totals).",
   };
@@ -35,6 +37,7 @@ export default async function BattleSimPage({
   const lore = getLore("battleSim", lang);
   const ver = getGameVersion();
   const raw = getFilteredTroops();
+  const battleLayout = buildBattleSimLayouts(raw, lang);
 
   const troops = raw
     .map((t) => {
@@ -60,7 +63,13 @@ export default async function BattleSimPage({
 
       <PatchBadge gameVersion={ver.gameVersion} dataUpdated={ver.dataUpdated} lang={lang} />
 
-      <BattleSimClient lang={lang} troops={troops} />
+      {battleLayout.length > 0 ? (
+        <BattleSimClient lang={lang} troops={troops} battleLayout={battleLayout} />
+      ) : (
+        <p className="text-sm text-zinc-600">
+          {lang === "ru" ? "Нет данных войск для симулятора." : "No troop data for the simulator."}
+        </p>
+      )}
     </div>
   );
 }

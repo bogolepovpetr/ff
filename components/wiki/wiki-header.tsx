@@ -3,20 +3,24 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Swords, ChevronDown } from "lucide-react";
+import { Swords, ChevronDown, Calculator } from "lucide-react";
+import { WIKI_DISPLAY_NAME } from "@/lib/site-brand";
 
 const NAV_ITEMS = [
   { key: "races", en: "Races", ru: "Расы" },
   { key: "buildings", en: "Buildings", ru: "Здания" },
   { key: "troops", en: "Troops", ru: "Войска" },
-  { key: "battle-sim", en: "Battle sim", ru: "Симулятор боя" },
   { key: "skills", en: "Skills", ru: "Навыки" },
   { key: "heroes", en: "Heroes", ru: "Герои" },
   { key: "war", en: "WAR", ru: "WAR" },
   { key: "clans", en: "Clans", ru: "Кланы" },
   { key: "referral", en: "Referral", ru: "Рефералы" },
+  { key: "deals", en: "Deals", ru: "Deals" },
+  { key: "arena", en: "Arena", ru: "Арена" },
   { key: "quests", en: "Quests", ru: "Задания" },
 ];
+
+const BATTLE_SIM_NAV = { key: "battle-sim", en: "Battle sim", ru: "Симулятор боя" } as const;
 
 const LANGS = [
   { code: "en", label: "English", flag: "🇺🇸" },
@@ -124,7 +128,7 @@ export default function WikiHeader({ lang }: { lang: string }) {
             className="flex items-center gap-2 text-lg font-bold text-primary transition-colors hover:text-primary/85 sm:gap-2.5 sm:text-xl"
           >
             <Swords className="h-5 w-5 sm:h-6 sm:w-6" />
-            <span>FOMO Fighters Wiki</span>
+            <span>{WIKI_DISPLAY_NAME}</span>
           </Link>
 
           <LangDropdown lang={lang} pathname={pathname} />
@@ -163,6 +167,29 @@ export default function WikiHeader({ lang }: { lang: string }) {
                 </Link>
               );
             })}
+            {(() => {
+              const item = BATTLE_SIM_NAV;
+              const active = pathname.startsWith(`/${lang}/${item.key}`);
+              return (
+                <Link
+                  key={item.key}
+                  href={`/${lang}/${item.key}`}
+                  role="tab"
+                  aria-selected={active}
+                  data-active={active}
+                  className={`shrink-0 rounded-full px-4 py-2 text-sm font-bold whitespace-nowrap shadow-sm transition-all sm:px-5 ${
+                    active
+                      ? "bg-gradient-to-r from-rose-600 to-amber-600 text-white ring-2 ring-rose-400/80 ring-offset-2 ring-offset-card"
+                      : "bg-gradient-to-r from-rose-500/90 to-amber-500/90 text-white hover:from-rose-600 hover:to-amber-600 hover:shadow-md"
+                  }`}
+                >
+                  <span className="inline-flex items-center gap-1.5">
+                    <Calculator className="h-3.5 w-3.5 opacity-95 sm:h-4 sm:w-4" />
+                    {lang === "ru" ? item.ru : item.en}
+                  </span>
+                </Link>
+              );
+            })()}
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Trophy, Newspaper } from "lucide-react";
 import { getGameVersion } from "@/lib/version";
 import PatchBadge from "@/components/wiki/patch-badge";
+import { GAME_DISPLAY_NAME, WIKI_DISPLAY_NAME } from "@/lib/site-brand";
 
 const CATEGORIES = [
   {
@@ -9,8 +10,8 @@ const CATEGORIES = [
     iconSrc: "/img/icon/power_troops.svg",
     en: "Races",
     ru: "Расы",
-    descEn: "Choose your race: Cat, Dog, or Frog",
-    descRu: "Выберите расу: Коты, Псы или Лягушки",
+    descEn: "Choose your race: Elf, Human, or Demon",
+    descRu: "Выберите расу: Эльфы, Люди или Демоны",
     color: "border-orange-300 bg-orange-50 hover:bg-orange-100",
     iconBg: "bg-orange-200",
   },
@@ -105,6 +106,26 @@ const CATEGORIES = [
     iconBg: "bg-sky-200",
   },
   {
+    key: "deals",
+    iconSrc: "/img/icon/quests_premium.svg",
+    en: "Deals",
+    ru: "Deals",
+    descEn: "VIP perks and Fund of Dawn reward tracks",
+    descRu: "VIP-привилегии и треки наград Fund of Dawn",
+    color: "border-yellow-300 bg-yellow-50 hover:bg-yellow-100",
+    iconBg: "bg-yellow-200",
+  },
+  {
+    key: "arena",
+    iconSrc: "/img/icon/rating.svg",
+    en: "Arena PvP",
+    ru: "Арена PvP",
+    descEn: "Kill Points, leagues, and leaderboard rewards",
+    descRu: "Kill Points, лиги и награды рейтинга",
+    color: "border-rose-300 bg-rose-50 hover:bg-rose-100",
+    iconBg: "bg-rose-200",
+  },
+  {
     key: "shop",
     iconSrc: "/img/icon/shop.svg",
     en: "Premium Shop",
@@ -139,24 +160,22 @@ export default async function HomePage({
       <section className="overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-emerald-50/90 via-amber-50/80 to-orange-50/70 shadow-sm">
         <div className="flex flex-col items-center gap-6 px-8 py-12 text-center md:flex-row md:text-left">
           <div className="flex-1">
-            <h1 className="text-4xl font-extrabold tracking-tight text-foreground">
-              FOMO Fighters Wiki
-            </h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-foreground">{WIKI_DISPLAY_NAME}</h1>
             <p className="mt-2 text-lg text-primary">
               {lang === "ru"
-                ? "Полное руководство по игре FOMO Fighters"
-                : "The comprehensive guide to FOMO Fighters"}
+                ? `Полное руководство по игре ${GAME_DISPLAY_NAME}`
+                : `The comprehensive guide to ${GAME_DISPLAY_NAME}`}
             </p>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
               {lang === "ru"
-                ? "Добро пожаловать в вики FOMO Fighters! Здесь вы найдёте полную информацию о зданиях, войсках, навыках и героях. Данные обновляются автоматически при каждом обновлении игрового баланса."
-                : "Welcome to the FOMO Fighters Wiki! Find complete information on buildings, troops, skills, and heroes. Data updates automatically with every game balance patch."}
+                ? `Добро пожаловать в вики ${GAME_DISPLAY_NAME}! Здесь вы найдёте полную информацию о зданиях, войсках, навыках и героях. Данные обновляются автоматически при каждом обновлении игрового баланса.`
+                : `Welcome to the ${WIKI_DISPLAY_NAME}! Find complete information on buildings, troops, skills, and heroes. Data updates automatically with every game balance patch.`}
             </p>
           </div>
           <div className="hidden shrink-0 md:block">
             <img
               src="/img/_frog/buildings/castle.png"
-              alt="FOMO Fighters"
+              alt={GAME_DISPLAY_NAME}
               className="h-32 w-32 rounded-2xl object-cover shadow-lg ring-2 ring-primary/20"
             />
           </div>

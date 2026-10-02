@@ -1,0 +1,3 @@
+[
+    {"key": "1", "title": "Call of Blades", "startDate": "2026-05-01 00:00:00", "endDate": "2026-05-31 23:59:59", "maxLevel": 50, "premiumPriceGem": 500, "premiumBundlePriceGem": 750, "premiumBundleLevels": 10, "xpPerLevel": 300, "xpDailyCap": 600}
+]

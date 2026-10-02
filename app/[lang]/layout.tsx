@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Suspense } from "react";
 import WikiHeader from "@/components/wiki/wiki-header";
 import WikiSidebar from "@/components/wiki/sidebar";
+import { WIKI_DISPLAY_NAME } from "@/lib/site-brand";
 
 function WikiHeaderFallback() {
   return (
@@ -40,7 +41,7 @@ export default async function LangLayout({
 
       <footer className="border-t border-border bg-card">
         <div className="mx-auto max-w-7xl px-4 py-4 text-center text-xs text-muted-foreground">
-          FOMO Fighters Wiki &copy; {new Date().getFullYear()} &mdash;
+          {WIKI_DISPLAY_NAME} &copy; {new Date().getFullYear()} &mdash;
           Game data updates automatically from the balance server.
         </div>
       </footer>

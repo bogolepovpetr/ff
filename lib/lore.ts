@@ -68,13 +68,13 @@ const LORE: LoreMap = {
       title: "Battle simulator",
       subtitle: "Estimate troop losses for attack and defense",
       intro:
-        "Build two armies from wiki troop stats, set optional attacker ATK % and defender DEF % bonuses, and see loss percentages and survivors per stack. The percentages follow the server’s Combat::_calcBattleLosses; per-unit rounding follows Combat::_decreaseTroopCount (PVP-style totals only — camp and extra modifiers are not modeled).",
+        "Pick race per side, fill counts per building line (tier 1 by default; add rows for more tiers). Hero and academy bonuses stack into ATK/DEF %. Hospital: UserHospital::calcWounded (floor), attacker wiped → immediate, else on return; defender immediate; optional capacity trim. Loss math: Combat::_calcBattleLosses; rounding: Combat::_decreaseTroopCount. Reinforcements not modeled.",
     },
     ru: {
       title: "Симулятор боя",
       subtitle: "Оценка потерь при атаке и обороне",
       intro:
-        "Соберите две армии по характеристикам войск из вики, задайте бонусы к АТК нападающего и ЗАЩ защитника в процентах и посмотрите проценты потерь и выживших по стекам. Проценты совпадают с Combat::_calcBattleLosses на сервере; округление по юнитам — как в Combat::_decreaseTroopCount (только PVP-суммы; лагерь и прочие модификаторы не учитываются).",
+        "Раса и количества по зданиям (тир 1 по умолчанию; строки для других тиров). Герои и академия — к АТК/ЗАЩ. Госпиталь: calcWounded (floor), убитая армия нападения — сразу, иначе раненые при возврате; у защитника сразу; ёмкость обрезает излишек. Потери — Combat::_calcBattleLosses. Подкрепления не моделируются.",
     },
   },
 };

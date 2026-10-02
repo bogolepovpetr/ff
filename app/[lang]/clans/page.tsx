@@ -89,7 +89,7 @@ export default async function ClansPage({
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-emerald-50 p-6">
+      <div className="wiki-hero p-6">
         <h1 className="text-2xl font-bold text-slate-900">
           {ru ? "Кланы" : "Clans"}
         </h1>

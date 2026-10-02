@@ -99,12 +99,170 @@ export function humanizeBonus(key: string): string {
     .trim();
 }
 
+const LEAGUE_LABELS: Record<string, { en: string; ru: string }> = {
+  newbie:   { en: "Newbie",   ru: "Новичок" },
+  bronze:   { en: "Bronze",   ru: "Бронза" },
+  silver:   { en: "Silver",   ru: "Серебро" },
+  gold:     { en: "Gold",     ru: "Золото" },
+  platinum: { en: "Platinum", ru: "Платина" },
+  diamond:  { en: "Diamond",  ru: "Алмаз" },
+  emerald:  { en: "Emerald",  ru: "Изумруд" },
+};
+
+export function leagueLabel(league: string, lang: string): string {
+  const entry = LEAGUE_LABELS[league];
+  if (!entry) return league.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return lang === "ru" ? entry.ru : entry.en;
+}
+
+const VIP_PERM_LABELS: Record<string, { en: string; ru: string }> = {
+  permVipBadge:   { en: "VIP badge",       ru: "VIP-значок" },
+  permCollectAll: { en: "Collect all",     ru: "Собрать всё" },
+  permVipFrame:   { en: "VIP frame",       ru: "VIP-рамка" },
+  permVipSkin:    { en: "VIP city skin",   ru: "VIP-скин города" },
+};
+
+export function vipPermLabels(row: Record<string, unknown>, lang: string): string[] {
+  const out: string[] = [];
+  for (const [key, labels] of Object.entries(VIP_PERM_LABELS)) {
+    if (row[key]) out.push(lang === "ru" ? labels.ru : labels.en);
+  }
+  return out;
+}
+
+export type RewardEntry = {
+  key: string;
+  amount: number;
+  kind: "resource" | "other";
+};
+
+const RESOURCE_KEYS = new Set(["food", "wood", "stone", "gem"]);
+
+export function parseRewardDict(dict?: Record<string, number | string>): RewardEntry[] {
+  if (!dict) return [];
+  return Object.entries(dict).map(([key, val]) => {
+    const amount = typeof val === "number" ? val : Number(val) || 0;
+    return {
+      key,
+      amount,
+      kind: RESOURCE_KEYS.has(key) ? "resource" as const : "other" as const,
+    };
+  });
+}
+
+export function rewardKeyLabel(key: string, lang: string): string {
+  if (RESOURCE_KEYS.has(key)) return key;
+  const labels: Record<string, { en: string; ru: string }> = {
+    war: { en: "War points", ru: "War-очки" },
+    lead_exp: { en: "Hero XP", ru: "Опыт героя" },
+    lead_card: { en: "Hero cards", ru: "Карты героя" },
+  };
+  if (labels[key]) return lang === "ru" ? labels[key].ru : labels[key].en;
+  if (key.startsWith("box_")) {
+    const name = key.replace(/^box_/, "").replace(/_/g, " ");
+    return lang === "ru" ? `Сундук: ${name}` : `Box: ${name}`;
+  }
+  return key.replace(/_/g, " ");
+}
+
+export function extractVipBonuses(row: Record<string, unknown>): { key: string; value: number }[] {
+  return Object.entries(row)
+    .filter(([k, v]) => k.startsWith("bonus") && typeof v === "number" && v !== 0)
+    .map(([key, value]) => ({ key, value: value as number }));
+}
+
+const BONUS_LABELS: Record<string, { en: string; ru: string }> = {
+  bonusRateFoodPH: { en: "Food production", ru: "Производство еды" },
+  bonusRateWoodPH: { en: "Wood production", ru: "Производство дерева" },
+  bonusRateStonePH: { en: "Stone production", ru: "Производство камня" },
+  bonusRateFoodStorageLimit: { en: "Food storage", ru: "Склад еды" },
+  bonusRateWoodStorageLimit: { en: "Wood storage", ru: "Склад дерева" },
+  bonusRateStoneStorageLimit: { en: "Stone storage", ru: "Склад камня" },
+  bonusRateLoad: { en: "Troop load", ru: "Грузоподъёмность" },
+  bonusRateSpeed: { en: "March speed", ru: "Скорость марша" },
+  bonusRateBuildTimeSpeedIncrease: { en: "Build speed", ru: "Скорость строительства" },
+  bonusRateResearchTimeSpeedIncrease: { en: "Research speed", ru: "Скорость исследований" },
+  bonusRateTrainTimeSpeedIncrease: { en: "Training speed", ru: "Скорость обучения" },
+  bonusRateAtk: { en: "Attack", ru: "Атака" },
+  bonusRateDef: { en: "Defense", ru: "Защита" },
+  bonusArmyCapacityBarracks: { en: "Barracks capacity", ru: "Вместимость казарм" },
+  bonusArmyCapacityArcheryRange: { en: "Archery capacity", ru: "Вместимость стрельбища" },
+  bonusArmyCapacityStable: { en: "Stable capacity", ru: "Вместимость конюшни" },
+  bonusArmyCapacitySiegeWorkshop: { en: "Siege capacity", ru: "Вместимость осадной мастерской" },
+  bonusArmyCapacityScoutCamp: { en: "Scout capacity", ru: "Вместимость разведчиков" },
+  bonusHospitalHealDiscount: { en: "Hospital heal discount", ru: "Скидка на лечение" },
+  bonusHospitalCapacity: { en: "Hospital capacity", ru: "Вместимость госпиталя" },
+  bonusHospitalHealTimeDivisor: { en: "Hospital heal time", ru: "Время лечения" },
+  bonusMarketSlotCount: { en: "Market slots", ru: "Слоты рынка" },
+  bonusMarketPurchaseCount: { en: "Market purchases", ru: "Покупки на рынке" },
+  bonusBuilders: { en: "Builders", ru: "Строители" },
+  bonusAcademics: { en: "Researchers", ru: "Учёные" },
+  bonusBuildDiscount: { en: "Build discount", ru: "Скидка на строительство" },
+  bonusResearchDiscount: { en: "Research discount", ru: "Скидка на исследования" },
+  bonusTrainDiscount: { en: "Training discount", ru: "Скидка на обучение" },
+  bonusFriends: { en: "Friend slots", ru: "Слоты друзей" },
+  bonusEnergy: { en: "Energy", ru: "Энергия" },
+  bonusLimitDailyPurchase: { en: "Daily purchase limit", ru: "Лимит покупок в день" },
+};
+
+export function bonusLabel(key: string, lang: string): string {
+  const entry = BONUS_LABELS[key];
+  if (entry) return lang === "ru" ? entry.ru : entry.en;
+  return humanizeBonus(key);
+}
+
+export type VipUnlock = {
+  key: string;
+  label: string;
+  kind: "new" | "upgrade";
+  value: number;
+  prevValue?: number;
+};
+
+export function extractVipNewUnlocks(
+  current: Record<string, unknown>,
+  previous: Record<string, unknown> | null,
+  lang: string,
+): VipUnlock[] {
+  const curr = extractVipBonuses(current);
+  const prevMap = new Map(
+    previous ? extractVipBonuses(previous).map((b) => [b.key, b.value]) : [],
+  );
+  const out: VipUnlock[] = [];
+  for (const b of curr) {
+    const prevVal = prevMap.get(b.key);
+    if (prevVal === undefined) {
+      out.push({ key: b.key, label: bonusLabel(b.key, lang), kind: "new", value: b.value });
+    } else if (b.value > prevVal) {
+      out.push({
+        key: b.key,
+        label: bonusLabel(b.key, lang),
+        kind: "upgrade",
+        value: b.value,
+        prevValue: prevVal,
+      });
+    }
+  }
+  return out;
+}
+
+export function extractVipNewPerms(
+  current: Record<string, unknown>,
+  previous: Record<string, unknown> | null,
+  lang: string,
+): string[] {
+  const curr = vipPermLabels(current, lang);
+  if (!previous) return curr;
+  const prev = new Set(vipPermLabels(previous, lang));
+  return curr.filter((p) => !prev.has(p));
+}
+
 // --------------- Race names ---------------
 
 const RACE_NAMES: Record<string, { en: string; ru: string }> = {
-  cat:  { en: "Cat",  ru: "Коты" },
-  dog:  { en: "Dog",  ru: "Псы" },
-  frog: { en: "Frog", ru: "Лягушки" },
+  elf:   { en: "Elf",   ru: "Эльфы" },
+  human: { en: "Human", ru: "Люди" },
+  demon: { en: "Demon", ru: "Демоны" },
 };
 
 export function raceName(key: string, lang: string): string {

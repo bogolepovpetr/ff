@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight, Swords, Trophy, Users, ShieldAlert, Timer, Percent, Coins, ArrowRight } from "lucide-react";
+import { ChevronRight, Swords, Trophy, Users, ShieldAlert, Timer, Percent, Coins, ArrowRight, Ban } from "lucide-react";
 
 export default async function ClanWarPage({
   params,
@@ -36,11 +36,39 @@ export default async function ClanWarPage({
             className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-semibold text-emerald-800 hover:bg-emerald-100"
           >
             <Coins className="h-3.5 w-3.5" />
-            {ru ? "$WAR и Buyback (обмен на USDT)" : "$WAR & Buyback (exchange to USDT)"}
+            {ru ? "$WAR на Server 2 (баланс, источники)" : "$WAR on Server 2 (balance, sources)"}
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
       </div>
+
+      <section className="rounded-xl border border-rose-200 bg-rose-50">
+        <div className="flex items-center gap-2 border-b border-rose-100 px-5 py-3">
+          <Ban className="h-4 w-4 text-rose-700" />
+          <h2 className="text-lg font-bold text-rose-900">
+            {ru ? "Доступ на Server 2" : "Access on Server 2"}
+          </h2>
+        </div>
+        <div className="px-5 py-4 text-sm text-rose-900/90">
+          <ul className="list-disc space-y-2 pl-5">
+            <li>
+              {ru
+                ? "Экран «Война» скрыт из меню; любая ссылка раздела (активные войны, отправка войск, история клейма, архив) ведёт на главный экран."
+                : "The War screen is hidden from the menu; any section link (active wars, sending troops, claim history, archive) redirects to the home screen."}
+            </li>
+            <li>
+              {ru
+                ? "В карточке клана всё ещё видны: счётчик побед/поражений, кнопка объявления войны и список завершённых войн старше 6 часов — без личных наград."
+                : "The clan card still shows: the win/loss counter, a declare-war button, and a list of completed wars older than 6 hours — without personal rewards."}
+            </li>
+            <li>
+              {ru
+                ? "Личный клейм наград за участие в войне недостижим ни одним доступным способом."
+                : "Personal reward claim for war participation is unreachable by any available means."}
+            </li>
+          </ul>
+        </div>
+      </section>
 
       <section className="grid gap-3 lg:grid-cols-3">
         <div className="rounded-xl border border-emerald-200 bg-emerald-50 p-5">

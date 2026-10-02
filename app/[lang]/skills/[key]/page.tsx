@@ -6,7 +6,6 @@ import { getManualDoc } from "@/lib/manual";
 import { formatCost, formatTime, joinReqs, buildingName } from "@/lib/format";
 import { getGameVersion } from "@/lib/version";
 import { troopImage } from "@/lib/images";
-import LoreQuote from "@/components/wiki/lore-quote";
 import PatchBadge from "@/components/wiki/patch-badge";
 import { ResourceIcon } from "@/components/wiki/resource-icon";
 import SkillArt from "@/components/wiki/skill-art";
@@ -44,12 +43,6 @@ export default async function SkillPage({
       Object.prototype.hasOwnProperty.call(t.requiredSkills, key),
   );
 
-  const loreText =
-    skill.desc ??
-    (lang === "ru"
-      ? `${skill.title} — навык, открывающий новые горизонты для вашей империи. Исследуйте его, чтобы получить стратегическое преимущество.`
-      : `${skill.title} is a skill that opens new horizons for your empire. Research it to gain a strategic advantage over your rivals.`);
-
   return (
     <div className="space-y-6">
       {/* Breadcrumbs */}
@@ -80,8 +73,6 @@ export default async function SkillPage({
               )}
             </div>
           </div>
-
-          <LoreQuote text={loreText} />
 
           {manual && (
             <div
