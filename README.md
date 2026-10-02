@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FOMO fighters — Wiki
 
-## Getting Started
+Статическая вики по игре FOMO fighters. Astro SSG + Vue islands, EN (без префикса) и RU (`/ru`).
 
-First, run the development server:
+## Требования
+
+- **Node.js >= 22.12.0** (см. `engines` в `package.json`).
+
+## Старт
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откроется `http://localhost:4321`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Скрипты
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Скрипт            | Действие                                      |
+| ----------------- | ---------------------------------------------- |
+| `npm run dev`     | dev-сервер с HMR                               |
+| `npm run build`   | прод-билд в `dist/`                            |
+| `npm run preview` | локальный preview прод-билда                   |
+| `npm run check`   | type-check `.astro` + TS                        |
 
-## Learn More
+Остальные скрипты (`sync:mono`, `sync:images`, `check:assets`, `compare:heroes`, `sync:patch*`, `patch:*`, `sync:fandom*`) синхронизируют игровые данные и ассеты из монорепо — см. их исходники в `scripts/`.
 
-To learn more about Next.js, take a look at the following resources:
+## Публикация
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Готовый SSG-билд лежит в `dist/` и **коммитится в репозиторий**. На VPS nginx отдаёт `dist/` как статику напрямую — Node-процесс в проде не нужен.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run build
+```
 
-## Deploy on Vercel
+Закоммитьте обновлённый `dist/` вместе с исходниками в том же PR/коммите.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### VPS
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `deploy/fomowiki.nginx.conf` — конфиг nginx (static root на `dist/`, legacy-редиректы `/vip`, `/dawn-fund`, `/fomopass`, `/en/*`).
+- `scripts/update-from-git.sh` — безопасный `git pull` + локальная пересборка на сервере (sanity-check, что `dist/` соответствует исходникам).
+- `scripts/force-sync-from-remote.sh` — деструктивный full reset до `origin/<branch>` (на случай расхождений).
+
+## Стек
+
+- **Astro 7** (SSG)
+- **Vue 3** для интерактивных островов (language switcher, quest tabs, skill tree, troop race panel, hero level progression)
+- **Tailwind CSS**
+- **TypeScript**

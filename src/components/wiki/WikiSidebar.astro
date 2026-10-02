@@ -1,0 +1,30 @@
+---
+import { Icon } from "astro-icon/components";
+
+const SOCIALS = [
+  {
+    name: "Telegram",
+    desc: "Official channel",
+    href: "https://t.me/fomofighters",
+    bg: "bg-[#0088cc]",
+    hover: "hover:bg-[#006699]",
+  },
+];
+---
+
+<aside class="space-y-3">
+  {SOCIALS.map((s) => (
+    <a
+      href={s.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={`group block rounded-lg ${s.bg} ${s.hover} p-4 text-white transition-colors`}
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-base font-bold">{s.name}</span>
+        <Icon name="lucide:external-link" class="h-4 w-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+      </div>
+      <p class="mt-1 text-sm text-white/80">{s.desc}</p>
+    </a>
+  ))}
+</aside>

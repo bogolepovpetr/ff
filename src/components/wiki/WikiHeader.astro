@@ -1,0 +1,99 @@
+---
+import { Icon } from "astro-icon/components";
+import { WIKI_DISPLAY_NAME } from "@/lib/site-brand";
+import { localizedPath } from "@/lib/i18n";
+import LangDropdown from "./LangDropdown.vue";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+
+const NAV_ITEMS = [
+  { key: "races", en: "Races", ru: "Расы" },
+  { key: "buildings", en: "Buildings", ru: "Здания" },
+  { key: "troops", en: "Troops", ru: "Войска" },
+  { key: "skills", en: "Skills", ru: "Навыки" },
+  { key: "heroes", en: "Heroes", ru: "Герои" },
+  { key: "war", en: "WAR", ru: "WAR" },
+  { key: "clans", en: "Clans", ru: "Кланы" },
+  { key: "referral", en: "Referral", ru: "Рефералы" },
+  { key: "deals", en: "Deals", ru: "Deals" },
+  { key: "arena", en: "Arena", ru: "Арена" },
+  { key: "quests", en: "Quests", ru: "Задания" },
+];
+
+const pathname = Astro.url.pathname;
+
+function isActive(key: string): boolean {
+  return pathname.startsWith(localizedPath(`/${key}`, lang));
+}
+---
+
+<header class="border-b border-border bg-card shadow-sm">
+  <div class="mx-auto max-w-7xl px-4">
+    <div class="flex items-center justify-between py-3">
+      <a
+        href={localizedPath("/", lang)}
+        class="flex items-center gap-2 text-lg font-bold text-primary transition-colors hover:text-primary/85 sm:gap-2.5 sm:text-xl"
+      >
+        <Icon name="lucide:swords" class="h-5 w-5 sm:h-6 sm:w-6" />
+        <span>{WIKI_DISPLAY_NAME}</span>
+      </a>
+
+      <LangDropdown lang={lang} client:idle />
+    </div>
+
+    <div class="relative">
+      <div data-fade="left" class="pointer-events-none absolute bottom-0 left-0 top-0 z-10 hidden w-6 bg-gradient-to-r from-card to-transparent"></div>
+      <div data-fade="right" class="pointer-events-none absolute bottom-0 right-0 top-0 z-10 hidden w-6 bg-gradient-to-l from-card to-transparent"></div>
+
+      <div id="wiki-header-scroll" class="-mx-4 flex gap-0.5 overflow-x-auto px-4 scrollbar-none" role="tablist">
+        {NAV_ITEMS.map((item) => {
+          const active = isActive(item.key);
+          return (
+            <a
+              href={localizedPath(`/${item.key}`, lang)}
+              role="tab"
+              aria-selected={active}
+              data-active={active ? "true" : "false"}
+              class={`shrink-0 rounded-t-lg px-4 py-2.5 text-sm font-semibold whitespace-nowrap transition-colors sm:px-5 ${
+                active
+                  ? "bg-background text-foreground shadow-[0_-1px_0_0_var(--border)]"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              {lang === "ru" ? item.ru : item.en}
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const scrollEl = document.getElementById("wiki-header-scroll");
+  const leftFade = document.querySelector('[data-fade="left"]');
+  const rightFade = document.querySelector('[data-fade="right"]');
+
+  function checkScroll() {
+    if (!scrollEl) return;
+    const canLeft = scrollEl.scrollLeft > 2;
+    const canRight = scrollEl.scrollLeft + scrollEl.clientWidth < scrollEl.scrollWidth - 2;
+    leftFade?.classList.toggle("hidden", !canLeft);
+    rightFade?.classList.toggle("hidden", !canRight);
+  }
+
+  if (scrollEl) {
+    checkScroll();
+    scrollEl.addEventListener("scroll", checkScroll, { passive: true });
+    new ResizeObserver(checkScroll).observe(scrollEl);
+
+    const active = scrollEl.querySelector('[data-active="true"]');
+    if (active) {
+      active.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    }
+  }
+</script>

@@ -1,0 +1,33 @@
+---
+import ResourceIcon, { type ResourceKey } from "./ResourceIcon.astro";
+import { parseRewardDict, rewardKeyLabel } from "@/lib/format";
+
+interface Props {
+  dict?: Record<string, number | string>;
+  lang: string;
+  class?: string;
+}
+
+const { dict, lang, class: className = "" } = Astro.props;
+const entries = parseRewardDict(dict);
+
+function fmtNumber(n: number): string {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+---
+
+{entries.length === 0 ? (
+  <span class="text-zinc-400">—</span>
+) : (
+  <div class={`flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-zinc-600 ${className}`}>
+    {entries.map((e) => (
+      <span class="inline-flex items-center gap-1">
+        {e.kind === "resource" ? <ResourceIcon res={e.key as ResourceKey} class="h-3.5 w-3.5" /> : null}
+        <span>
+          {e.kind === "other" ? `${rewardKeyLabel(e.key, lang)}: ` : ""}
+          {fmtNumber(e.amount)}
+        </span>
+      </span>
+    ))}
+  </div>
+)}

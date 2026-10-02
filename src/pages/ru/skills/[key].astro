@@ -1,0 +1,16 @@
+---
+import { getSkills } from "@/lib/data";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SkillDetailPage from "@/components/pages/SkillDetailPage.astro";
+
+export function getStaticPaths() {
+  return getSkills().map((s) => ({ params: { key: s.key }, props: { title: s.title } }));
+}
+
+const { key } = Astro.params as { key: string };
+const { title } = Astro.props as { title: string };
+---
+
+<BaseLayout lang="ru" title={title}>
+  <SkillDetailPage lang="ru" skillKey={key} />
+</BaseLayout>

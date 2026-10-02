@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 1024 1024">
+  <!-- Shield outline -->
+  <path fill="#fff" fill-rule="evenodd" d="M160 96h704v416c0 240-352 416-352 416S160 752 160 512V96Zm80 80v336c0 77 35 152 96 224 67 79 159 147 176 160 17-13 109-81 176-160 61-72 96-147 96-224V176H240Z" clip-rule="evenodd"/>
+  <!-- Left arrow (return) -->
+  <path fill="#fff" d="M448 320 288 528l160 208v-144h192V464H448V320Z"/>
+</svg>

@@ -1,0 +1,22 @@
+---
+import { getTroopGroups } from "@/lib/data";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import TroopTierPage from "@/components/pages/TroopTierPage.astro";
+
+export function getStaticPaths() {
+  const groups = getTroopGroups();
+  const paths: { params: { building: string; tier: string } }[] = [];
+  for (const [building, buildingGroups] of groups.entries()) {
+    for (const g of buildingGroups) {
+      paths.push({ params: { building, tier: String(g.tier) } });
+    }
+  }
+  return paths;
+}
+
+const { building, tier } = Astro.params as { building: string; tier: string };
+---
+
+<BaseLayout lang="ru">
+  <TroopTierPage lang="ru" building={building} tier={parseInt(tier, 10)} />
+</BaseLayout>

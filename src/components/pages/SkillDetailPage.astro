@@ -1,0 +1,208 @@
+---
+import { Icon } from "astro-icon/components";
+import { getSkills, getBuildings, getFilteredTroops, indexByKey } from "@/lib/data";
+import { getManualDoc } from "@/lib/manual";
+import { formatCost, formatTime, buildingName } from "@/lib/format";
+import { getGameVersion } from "@/lib/version";
+import { troopImage } from "@/lib/images";
+import PatchBadge from "@/components/wiki/PatchBadge.astro";
+import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
+import SkillArt from "@/components/wiki/SkillArt.astro";
+import { localizedPath } from "@/lib/i18n";
+
+interface Props {
+  lang: string;
+  skillKey: string;
+}
+
+const { lang, skillKey } = Astro.props;
+const skill = indexByKey(getSkills()).get(skillKey)!;
+const manual = getManualDoc({ lang, entity: "skills", key: skillKey });
+
+const effectKeys = new Set<string>();
+for (const lvl of skill.levels) {
+  for (const k of Object.keys(lvl)) {
+    if (k.startsWith("bonus")) effectKeys.add(k);
+  }
+}
+const effectCols = Array.from(effectKeys).sort();
+
+const allBuildings = getBuildings();
+const allSkills = getSkills();
+const nameMap = new Map<string, string>();
+for (const b of allBuildings) nameMap.set(b.key, b.title);
+for (const s of allSkills) nameMap.set(s.key, s.title);
+
+const ver = getGameVersion();
+
+const unlockedTroops = getFilteredTroops().filter(
+  (t) => t.requiredSkills && Object.prototype.hasOwnProperty.call(t.requiredSkills, skillKey),
+);
+
+function humanizeBonus(key: string): string {
+  return key.replace(/^bonus/, "").replace(/([A-Z])/g, " $1").trim();
+}
+
+type CostParts = { res: "food" | "wood" | "stone" | "gem"; val: string }[];
+function costParts(food?: number, wood?: number, stone?: number, gem?: number): CostParts {
+  const parts: CostParts = [];
+  if (food) parts.push({ res: "food", val: formatCost(food) });
+  if (wood) parts.push({ res: "wood", val: formatCost(wood) });
+  if (stone) parts.push({ res: "stone", val: formatCost(stone) });
+  if (gem) parts.push({ res: "gem", val: formatCost(gem) });
+  return parts;
+}
+---
+
+<div class="space-y-6">
+  <nav class="flex items-center gap-1 text-sm text-zinc-500">
+    <a href={localizedPath("/skills", lang)} class="hover:text-amber-700 hover:underline">{lang === "ru" ? "Навыки" : "Skills"}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <span class="font-medium text-zinc-700">{skill.title}</span>
+  </nav>
+
+  <div class="flex flex-col gap-5 md:flex-row">
+    <div class="flex-1 space-y-4">
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">{skill.title}</h1>
+        <div class="mt-1 flex flex-wrap gap-2">
+          {skill.type ? <span class="rounded-full bg-violet-100 px-3 py-0.5 text-xs font-semibold text-violet-800">{skill.type}</span> : null}
+          {skill.tier != null ? <span class="rounded-full bg-amber-100 px-3 py-0.5 text-xs font-semibold text-amber-800">Tier {skill.tier}</span> : null}
+        </div>
+      </div>
+
+      {manual ? (
+        <div class="prose prose-zinc max-w-none rounded-xl border border-zinc-200 bg-white p-5" set:html={manual.html} />
+      ) : null}
+    </div>
+
+    <div class="w-full shrink-0 md:w-64">
+      <div class="rounded-xl border border-zinc-200 bg-white">
+        <div class="flex justify-center border-b border-zinc-100 p-4">
+          <SkillArt lang={lang} skillKey={skillKey} skillTitle={skill.title} fallbackIconKey={effectCols[0]} />
+        </div>
+        <div class="space-y-2 p-4 text-sm">
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Тип" : "Type"}</span>
+            <span class="font-medium text-zinc-800">{skill.type ?? "—"}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Тир" : "Tier"}</span>
+            <span class="font-medium text-zinc-800">{skill.tier != null ? String(skill.tier) : "—"}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Макс. уровень" : "Max level"}</span>
+            <span class="font-medium text-zinc-800">{skill.levels.length}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <PatchBadge gameVersion={ver.gameVersion} dataUpdated={ver.dataUpdated} lang={lang} />
+
+  <section class="rounded-xl border border-zinc-200 bg-white">
+    <div class="border-b border-zinc-100 px-5 py-3">
+      <h2 class="text-lg font-bold text-slate-800">{lang === "ru" ? "Прогрессия" : "Progression"}</h2>
+      <p class="text-xs text-zinc-400">
+        {lang === "ru" ? "Время исследования указано без учёта бонусов" : "Research times shown without bonus modifiers"}
+      </p>
+    </div>
+    <div class="overflow-auto">
+      <table class="min-w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            <th class="px-4 py-2.5">{lang === "ru" ? "Ур." : "Lvl"}</th>
+            <th class="px-4 py-2.5">{lang === "ru" ? "Стоимость" : "Cost"}</th>
+            <th class="px-4 py-2.5">{lang === "ru" ? "Время" : "Time"}</th>
+            <th class="px-4 py-2.5">{lang === "ru" ? "Мощь" : "Power"}</th>
+            {effectCols.map((k) => <th class="px-4 py-2.5">{humanizeBonus(k)}</th>)}
+            <th class="px-4 py-2.5">{lang === "ru" ? "Требования" : "Requirements"}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {skill.levels.map((lvl: any, i: number) => {
+            const parts = costParts(lvl.priceFood, lvl.priceWood, lvl.priceStone, lvl.priceGem);
+            const bEntries = lvl.requiredBuildings ? (Object.entries(lvl.requiredBuildings) as [string, number][]) : [];
+            const sEntries = lvl.requiredSkills ? (Object.entries(lvl.requiredSkills) as [string, number][]) : [];
+            const hasReqs = bEntries.length > 0 || sEntries.length > 0 || !!lvl.requiredFriends;
+            return (
+              <tr class={`border-b border-zinc-100 align-top ${i % 2 === 1 ? "bg-zinc-50/50" : ""}`}>
+                <td class="px-4 py-2 font-bold text-violet-700">{lvl.level}</td>
+                <td class="px-4 py-2">
+                  {parts.length === 0 ? (
+                    <span class="text-zinc-400">—</span>
+                  ) : (
+                    <div class="flex flex-col gap-0.5">
+                      {parts.map((p) => (
+                        <span class="inline-flex items-center gap-0.5 whitespace-nowrap">
+                          <ResourceIcon res={p.res} class="inline-block h-4 w-4" />
+                          {p.val}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </td>
+                <td class="px-4 py-2 text-zinc-700">{formatTime(lvl.time)}</td>
+                <td class="px-4 py-2 font-medium">{lvl.power ?? "—"}</td>
+                {effectCols.map((k) => (
+                  <td class="px-4 py-2 text-zinc-700">
+                    {typeof lvl[k] === "number" ? (lvl[k] as number).toLocaleString("en-US") : String(lvl[k] ?? "—")}
+                  </td>
+                ))}
+                <td class="px-4 py-2 text-zinc-600">
+                  {hasReqs ? (
+                    <span class="flex flex-wrap gap-x-1.5 gap-y-0.5">
+                      {bEntries.map(([bk, bv]) => (
+                        <span>
+                          <a href={localizedPath(`/buildings/${bk}`, lang)} class="text-amber-700 underline decoration-amber-300 hover:text-amber-600">
+                            {nameMap.get(bk) ?? bk}
+                          </a>
+                          {" Lv."}{bv}
+                        </span>
+                      ))}
+                      {sEntries.map(([sk, sv]) => (
+                        <span>
+                          <a href={localizedPath(`/skills/${sk}`, lang)} class="text-violet-700 underline decoration-violet-300 hover:text-violet-600">
+                            {nameMap.get(sk) ?? sk}
+                          </a>
+                          {" Lv."}{sv}
+                        </span>
+                      ))}
+                      {lvl.requiredFriends ? <span>{lvl.requiredFriends} {lang === "ru" ? "друзей" : "friends"}</span> : null}
+                    </span>
+                  ) : (
+                    "—"
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  {unlockedTroops.length > 0 ? (
+    <section class="rounded-xl border border-zinc-200 bg-white p-5">
+      <h2 class="mb-3 text-lg font-bold text-slate-800">{lang === "ru" ? "Открывает войска" : "Unlocks Troops"}</h2>
+      <div class="grid gap-2 sm:grid-cols-2">
+        {unlockedTroops
+          .slice()
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .map((t) => (
+            <a
+              href={localizedPath(`/troops/${t.building}/${t.tier ?? 1}`, lang)}
+              class="flex items-center gap-2 rounded-lg border border-zinc-100 p-2 transition-colors hover:border-amber-300 hover:bg-amber-50/40"
+            >
+              <img src={troopImage(t.key)} alt={t.title} class="h-10 w-10 shrink-0 rounded-lg object-cover" />
+              <div class="min-w-0">
+                <p class="truncate text-sm font-semibold text-zinc-800">{t.title}</p>
+                <p class="text-xs text-zinc-400">{buildingName(t.building, lang)} &middot; Tier {t.tier ?? 1}</p>
+              </div>
+            </a>
+          ))}
+      </div>
+    </section>
+  ) : null}
+</div>

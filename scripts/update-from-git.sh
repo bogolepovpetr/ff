@@ -30,4 +30,6 @@ if command -v npm >/dev/null 2>&1; then
   npm run build
 fi
 
-echo "OK: git pull and build finished. Restart your process manager (e.g. pm2 restart fomowiki)."
+echo "OK: git pull and build finished. dist/ is a static build served directly by"
+echo "nginx — no Node process to restart (dist/ is also committed to git, so this"
+echo "local rebuild is just a safety check that the pulled dist/ matches sources)."

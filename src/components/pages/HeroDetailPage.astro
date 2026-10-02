@@ -1,0 +1,155 @@
+---
+import { Icon } from "astro-icon/components";
+import { getLeads, getLeadTiers, getLeadExp, getLeadStarRanks, indexByKey } from "@/lib/data";
+import { tierColor, heroTierName, roleName, formatCost, humanizeBonus } from "@/lib/format";
+import { getGameVersion } from "@/lib/version";
+import { heroImage } from "@/lib/images";
+import PatchBadge from "@/components/wiki/PatchBadge.astro";
+import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
+import HeroLevelProgression from "@/components/wiki/HeroLevelProgression.vue";
+import { localizedPath } from "@/lib/i18n";
+
+interface Props {
+  lang: string;
+  heroKey: string;
+}
+
+const { lang, heroKey } = Astro.props;
+const leads = getLeads();
+const hero = indexByKey(leads).get(heroKey)!;
+
+const leadTiers = getLeadTiers();
+const tierInfo = leadTiers.find((t) => t.key === hero.tier);
+const leadExp = getLeadExp();
+const starRanks = getLeadStarRanks();
+const maxStarLeadLevel = Math.max(...starRanks.map((s) => s.leadMaxLevel), leadExp.length);
+const tc = tierColor(hero.tier);
+
+const ver = getGameVersion();
+const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(hero.bonusPerLevel) : [];
+---
+
+<div class="space-y-6">
+  <nav class="flex items-center gap-1 text-sm text-zinc-500">
+    <a href={localizedPath("/heroes", lang)} class="hover:text-amber-700 hover:underline">{lang === "ru" ? "Герои" : "Heroes"}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <span class="font-medium text-zinc-700">{hero.title}</span>
+  </nav>
+
+  <PatchBadge gameVersion={ver.gameVersion} dataUpdated={ver.dataUpdated} lang={lang} />
+
+  <div class="flex flex-col gap-5 md:flex-row">
+    <div class="flex-1 space-y-4">
+      <div>
+        <h1 class="text-3xl font-bold text-slate-900">{hero.title}</h1>
+        <div class="mt-1 flex flex-wrap gap-2">
+          <span class={`rounded-full px-3 py-0.5 text-xs font-bold ${tc.badge}`}>{heroTierName(hero.tier, lang)}</span>
+          {hero.role ? <span class="rounded-full bg-zinc-100 px-3 py-0.5 text-xs font-semibold text-zinc-700">{roleName(hero.role, lang)}</span> : null}
+          {hero.aspect ? <span class="rounded-full bg-indigo-100 px-3 py-0.5 text-xs font-semibold capitalize text-indigo-800">{hero.aspect}</span> : null}
+        </div>
+      </div>
+    </div>
+
+    <div class="w-full shrink-0 md:w-64">
+      <div class={`rounded-xl border-2 ${tc.border} bg-white`}>
+        <div class="flex justify-center border-b border-zinc-100 p-4">
+          <img src={heroImage(heroKey)} alt={hero.title} class="h-56 w-56 rounded-lg object-cover" />
+        </div>
+        <div class="space-y-2 p-4 text-sm">
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Тир" : "Tier"}</span>
+            <span class="font-medium text-zinc-800">{heroTierName(hero.tier, lang)}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Роль" : "Role"}</span>
+            <span class="font-medium text-zinc-800">{hero.role ? roleName(hero.role, lang) : "—"}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Аспект" : "Aspect"}</span>
+            <span class="font-medium text-zinc-800">{hero.aspect ?? "—"}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Стоимость" : "Cost"}</span>
+            <span class="font-medium text-zinc-800">
+              {hero.priceGem ? (
+                <span class="inline-flex items-center gap-0.5">
+                  <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+                  {formatCost(hero.priceGem)}
+                </span>
+              ) : (
+                "—"
+              )}
+            </span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Карт для открытия" : "Cards to unlock"}</span>
+            <span class="font-medium text-zinc-800">{hero.cardCount ? String(hero.cardCount) : "—"}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Цена карты" : "Card price"}</span>
+            <span class="font-medium text-zinc-800">
+              {hero.cardPriceGem ? (
+                <span class="inline-flex items-center gap-0.5">
+                  <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+                  {formatCost(hero.cardPriceGem)}
+                </span>
+              ) : (
+                "—"
+              )}
+            </span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-zinc-500">{lang === "ru" ? "Макс. уровень" : "Max level"}</span>
+            <span class="font-medium text-zinc-800">
+              {lang === "ru" ? `10–${maxStarLeadLevel} (зависит от звёзд)` : `10–${maxStarLeadLevel} (depends on stars)`}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {hero.blockedTimerInBuilding ? (
+    <section class="rounded-xl border border-zinc-200 bg-white p-5">
+      <h2 class="mb-2 text-lg font-bold text-slate-800">{lang === "ru" ? "Ускоряет здания" : "Blocked Timer in Buildings"}</h2>
+      <div class="flex flex-wrap gap-2">
+        {hero.blockedTimerInBuilding.split(",").map((b: string) => (
+          <span class="rounded-lg bg-amber-50 px-3 py-1 text-sm font-medium text-amber-800">
+            {b.trim().replace(/_/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
+          </span>
+        ))}
+      </div>
+    </section>
+  ) : null}
+
+  {bonusEntries.length > 0 ? (
+    <div class="space-y-2">
+      <div class="flex flex-wrap gap-3">
+        {bonusEntries.map(([k, v]) => (
+          <div class="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2">
+            <span class="text-sm text-zinc-500">{humanizeBonus(k)}</span>
+            <span class="text-sm font-bold text-emerald-700">+{v}</span>
+            <span class="text-[10px] text-zinc-400">{lang === "ru" ? "/ ур." : "/ lvl"}</span>
+          </div>
+        ))}
+      </div>
+      <p class="text-xs text-zinc-500">
+        {lang === "ru"
+          ? "Итоговый бонус = (значение × уровень героя) × бонусный множитель звёзд. Звёзды не привязаны к уровню: герой 1-го уровня с ★★★★★ получает ×200% к бонусу."
+          : "Total bonus = (value × hero level) × star bonus multiplier. Stars are independent of level: a level-1 hero with ★★★★★ still gets ×200% on bonuses."}
+      </p>
+    </div>
+  ) : null}
+
+  <HeroLevelProgression
+    lang={lang}
+    expTierMult={tierInfo?.leadExpMultiplicator ?? 1}
+    levelTextClass={tc.text}
+    rows={leadExp.map((e) => ({ level: e.level, exp: e.exp }))}
+    bonusCols={bonusEntries.map(([k, v]) => ({ key: k, label: humanizeBonus(k), perLevel: v }))}
+    starRanks={starRanks
+      .map((s) => ({ stars: s.level, maxLevel: s.leadMaxLevel, bonusMult: s.bonusMultiplicator }))
+      .sort((a, b) => a.stars - b.stars)}
+    client:idle
+  />
+</div>

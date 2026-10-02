@@ -37,4 +37,4 @@ else
 fi
 npm run build
 
-echo "OK: tree matches origin/$BRANCH. Restart process manager (e.g. pm2 restart fomowiki)."
+echo "OK: tree matches origin/$BRANCH. dist/ is served directly by nginx — no process manager to restart."
