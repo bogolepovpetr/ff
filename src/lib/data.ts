@@ -31,7 +31,13 @@ export type Troop = {
   isScout?: boolean;
 };
 
-const EXCLUDED_RACES = new Set(["seal", "troll", "man"]);
+// "tyrant" isn't a playable race (absent from lists_races.json) — these entries
+// are the stat blocks for the separate world-boss "Tyrant" PvE feature, reusing
+// the troop schema with a placeholder building ("barracks") and zero training
+// cost/unlock requirements. They were never meant to appear as trainable troops
+// and have no unit art, so they're filtered out alongside other non-playable
+// placeholder races.
+const EXCLUDED_RACES = new Set(["seal", "troll", "man", "tyrant"]);
 
 export function getTroops(): Troop[] {
   return readJsonFile<Troop[]>("lists_troops.json");
