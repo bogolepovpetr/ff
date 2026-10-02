@@ -1,5 +1,6 @@
 import type { QuestMain, QuestSide, QuestDaily } from "./data";
 import { formatCost } from "./format";
+import { useT } from "@/lib/i18n";
 
 const B: Record<string, { en: string; ru: string }> = {
   castle:         { en: "Castle",          ru: "Замок" },
@@ -59,36 +60,30 @@ function n(v: number): string {
 // ─── Main quest description ───
 
 export function describeMainQuest(q: QuestMain, lang: string): string {
-  const ru = lang === "ru";
+  const t = useT(lang);
   switch (q.type) {
     case "build":
-      return ru
-        ? `Улучшить ${bName(q.data!, lang)} до ур. ${q.count}`
-        : `Upgrade ${bName(q.data!, lang)} to Lv.${q.count}`;
+      return t("questFormat.main.build")
+        .replace("{building}", bName(q.data!, lang))
+        .replace("{level}", String(q.count));
     case "trainTotal":
-      return ru
-        ? `Обучить ${n(q.count)} войск`
-        : `Train ${n(q.count)} troops`;
+      return t("questFormat.main.trainTotal").replace("{count}", n(q.count));
     case "attack":
-      return ru
-        ? `Атаковать ${n(q.count)} ${tName(q.data!, lang)}`
-        : `Attack ${n(q.count)} ${tName(q.data!, lang)}`;
+      return t("questFormat.main.attack")
+        .replace("{count}", n(q.count))
+        .replace("{target}", tName(q.data!, lang));
     case "power":
-      return ru
-        ? `Достичь ${n(q.count)} силы`
-        : `Reach ${n(q.count)} power`;
+      return t("questFormat.main.power").replace("{count}", n(q.count));
     case "resourceBuy":
-      return ru
-        ? `Купить ${n(q.count)} ${rName(q.data!, lang)} на рынке`
-        : `Buy ${n(q.count)} ${rName(q.data!, lang)} at market`;
+      return t("questFormat.main.resourceBuy")
+        .replace("{count}", n(q.count))
+        .replace("{resource}", rName(q.data!, lang));
     case "research":
-      return ru
-        ? `Исследовать ${bName(q.data!, lang)} до ур. ${q.count}`
-        : `Research ${bName(q.data!, lang)} to Lv.${q.count}`;
+      return t("questFormat.main.research")
+        .replace("{building}", bName(q.data!, lang))
+        .replace("{level}", String(q.count));
     case "clan":
-      return ru
-        ? `Пожертвовать ${n(q.count)} клану`
-        : `Donate ${n(q.count)} to clan`;
+      return t("questFormat.main.clan").replace("{count}", n(q.count));
     default:
       return q.key;
   }
@@ -97,40 +92,26 @@ export function describeMainQuest(q: QuestMain, lang: string): string {
 // ─── Side quest description ───
 
 export function describeSideQuest(q: QuestSide, lang: string): string {
-  const ru = lang === "ru";
+  const t = useT(lang);
   switch (q.type) {
     case "build":
-      return ru
-        ? `Улучшить ${bName(q.data!, lang)}`
-        : `Upgrade ${bName(q.data!, lang)}`;
+      return t("questFormat.side.build").replace("{building}", bName(q.data!, lang));
     case "trainBuilding":
-      return ru
-        ? `Обучить войска в ${bName(q.data!, lang)}`
-        : `Train troops in ${bName(q.data!, lang)}`;
+      return t("questFormat.side.trainBuilding").replace("{building}", bName(q.data!, lang));
     case "resourceClaim":
-      return ru
-        ? `Собрать ${rName(q.data!, lang)}`
-        : `Collect ${rName(q.data!, lang)}`;
+      return t("questFormat.side.resourceClaim").replace("{resource}", rName(q.data!, lang));
     case "resourceBuy":
-      return ru
-        ? `Купить ${rName(q.data!, lang)} на рынке`
-        : `Buy ${rName(q.data!, lang)} at market`;
+      return t("questFormat.side.resourceBuy").replace("{resource}", rName(q.data!, lang));
     case "resourceLoot":
-      return ru
-        ? `Награбить ${rName(q.data!, lang)}`
-        : `Loot ${rName(q.data!, lang)}`;
+      return t("questFormat.side.resourceLoot").replace("{resource}", rName(q.data!, lang));
     case "attack":
-      return ru
-        ? `Атаковать ${tName(q.data!, lang)}`
-        : `Attack ${tName(q.data!, lang)}`;
+      return t("questFormat.side.attack").replace("{target}", tName(q.data!, lang));
     case "killPoints":
-      return ru ? "Набрать очки убийств" : "Earn kill points";
+      return t("questFormat.side.killPoints");
     case "research":
-      return ru
-        ? `Исследовать ${bName(q.data!, lang)}`
-        : `Research ${bName(q.data!, lang)}`;
+      return t("questFormat.side.research").replace("{building}", bName(q.data!, lang));
     case "clan":
-      return ru ? "Пожертвовать клану" : "Donate to clan";
+      return t("questFormat.side.clan");
     default:
       return q.key;
   }
@@ -139,44 +120,36 @@ export function describeSideQuest(q: QuestSide, lang: string): string {
 // ─── Daily quest description ───
 
 export function describeDailyQuest(q: QuestDaily, lang: string): string {
-  const ru = lang === "ru";
+  const t = useT(lang);
   switch (q.type) {
     case "resourceClaim":
-      return ru
-        ? `Собрать ${n(q.count)} ${rName(q.data!, lang)}`
-        : `Collect ${n(q.count)} ${rName(q.data!, lang)}`;
+      return t("questFormat.daily.resourceClaim")
+        .replace("{count}", n(q.count))
+        .replace("{resource}", rName(q.data!, lang));
     case "trainBuilding":
-      return ru
-        ? `Обучить ${n(q.count)} войск в ${bName(q.data!, lang)}`
-        : `Train ${n(q.count)} troops in ${bName(q.data!, lang)}`;
+      return t("questFormat.daily.trainBuilding")
+        .replace("{count}", n(q.count))
+        .replace("{building}", bName(q.data!, lang));
     case "resourceLoot":
-      return ru
-        ? `Награбить ${n(q.count)} ${rName(q.data!, lang)}`
-        : `Loot ${n(q.count)} ${rName(q.data!, lang)}`;
+      return t("questFormat.daily.resourceLoot")
+        .replace("{count}", n(q.count))
+        .replace("{resource}", rName(q.data!, lang));
     case "attack":
-      return ru
-        ? `Атаковать ${n(q.count)} ${tName(q.data!, lang)}`
-        : `Attack ${n(q.count)} ${tName(q.data!, lang)}`;
+      return t("questFormat.daily.attack")
+        .replace("{count}", n(q.count))
+        .replace("{target}", tName(q.data!, lang));
     case "pvp":
-      return ru
-        ? `Набрать ${n(q.count)} очков убийств`
-        : `Earn ${n(q.count)} kill points`;
+      return t("questFormat.daily.pvp").replace("{count}", n(q.count));
     case "skills":
-      return ru
-        ? `Завершить ${q.count} исследование`
-        : `Complete ${q.count} research`;
+      return t("questFormat.daily.skills").replace("{count}", String(q.count));
     case "buildings":
-      return ru
-        ? `Завершить ${q.count} улучшение здания`
-        : `Complete ${q.count} building upgrade`;
+      return t("questFormat.daily.buildings").replace("{count}", String(q.count));
     case "clan":
-      return ru
-        ? `Пожертвовать ${n(q.count)} клану`
-        : `Donate ${n(q.count)} to clan`;
+      return t("questFormat.daily.clan").replace("{count}", n(q.count));
     case "resourceBuy":
-      return ru
-        ? `Купить ${n(q.count)} ${rName(q.data!, lang)} на рынке`
-        : `Buy ${n(q.count)} ${rName(q.data!, lang)} at market`;
+      return t("questFormat.daily.resourceBuy")
+        .replace("{count}", n(q.count))
+        .replace("{resource}", rName(q.data!, lang));
     default:
       return q.key;
   }

@@ -1,6 +1,6 @@
 ---
 import { WIKI_DISPLAY_NAME } from "@/lib/site-brand";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 import LangDropdown from "./LangDropdown.vue";
 
 interface Props {
@@ -8,21 +8,22 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const t = useT(lang);
 const PLAY_URL = "https://play.fomofighters.xyz";
 
 const NAV_ITEMS = [
-  { key: "races", en: "Races", ru: "Расы" },
-  { key: "buildings", en: "Buildings", ru: "Здания" },
-  { key: "troops", en: "Troops", ru: "Войска" },
-  { key: "skills", en: "Skills", ru: "Навыки" },
-  { key: "heroes", en: "Heroes", ru: "Герои" },
-  { key: "war", en: "WAR", ru: "WAR" },
-  { key: "clans", en: "Clans", ru: "Кланы" },
-  { key: "referral", en: "Referral", ru: "Рефералы" },
-  { key: "vip", en: "VIP", ru: "VIP" },
-  { key: "deals", en: "Deals", ru: "Deals" },
-  { key: "arena", en: "Arena", ru: "Арена" },
-  { key: "quests", en: "Quests", ru: "Задания" },
+  { key: "races", labelKey: "wikiHeader.navRaces" },
+  { key: "buildings", labelKey: "wikiHeader.navBuildings" },
+  { key: "troops", labelKey: "wikiHeader.navTroops" },
+  { key: "skills", labelKey: "wikiHeader.navSkills" },
+  { key: "heroes", labelKey: "wikiHeader.navHeroes" },
+  { key: "war", labelKey: "wikiHeader.navWar" },
+  { key: "clans", labelKey: "wikiHeader.navClans" },
+  { key: "referral", labelKey: "wikiHeader.navReferral" },
+  { key: "vip", labelKey: "wikiHeader.navVip" },
+  { key: "deals", labelKey: "wikiHeader.navDeals" },
+  { key: "arena", labelKey: "wikiHeader.navArena" },
+  { key: "quests", labelKey: "wikiHeader.navQuests" },
 ];
 
 const pathname = Astro.url.pathname;
@@ -56,7 +57,7 @@ function isActive(key: string): boolean {
           rel="noopener noreferrer"
           class="inline-block rounded-[14px] bg-[var(--game-atk)] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-[0_3px_0_#b04a30] transition-all hover:-translate-y-0.5 hover:bg-[#ff6034] hover:shadow-[0_5px_0_#b04a30] active:translate-y-0.5 active:shadow-none sm:px-5 lg:hidden"
         >
-          {lang === "ru" ? "Играть" : "Play"}
+          {t("wikiHeader.play")}
         </a>
       </div>
     </div>
@@ -78,7 +79,7 @@ function isActive(key: string): boolean {
                 active ? "text-[var(--game-main)]" : "text-[var(--game-main)]/70 hover:text-[var(--game-main)]"
               }`}
             >
-              {lang === "ru" ? item.ru : item.en}
+              {t(item.labelKey)}
               <span
                 class={`absolute inset-x-3.5 bottom-1.5 h-[2px] origin-left bg-[var(--game-atk)] transition-transform duration-200 ease-out sm:inset-x-4 ${
                   active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"

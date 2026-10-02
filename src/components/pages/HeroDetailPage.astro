@@ -7,7 +7,7 @@ import { heroImage } from "@/lib/images";
 import PatchBadge from "@/components/wiki/PatchBadge.astro";
 import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
 import HeroLevelProgression from "@/components/wiki/HeroLevelProgression.vue";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props {
   lang: string;
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { lang, heroKey } = Astro.props;
+const t = useT(lang);
 const leads = getLeads();
 const hero = indexByKey(leads).get(heroKey)!;
 
@@ -31,7 +32,7 @@ const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(her
 
 <div class="space-y-6">
   <nav class="flex items-center gap-1 text-sm text-zinc-500">
-    <a href={localizedPath("/heroes", lang)} class="hover:text-amber-700 hover:underline">{lang === "ru" ? "Герои" : "Heroes"}</a>
+    <a href={localizedPath("/heroes", lang)} class="hover:text-amber-700 hover:underline">{t("heroDetail.breadcrumbHeroes")}</a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
     <span class="font-medium text-zinc-700">{hero.title}</span>
   </nav>
@@ -57,19 +58,19 @@ const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(her
         </div>
         <div class="space-y-2 p-4 text-sm">
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Тир" : "Tier"}</span>
+            <span class="text-zinc-500">{t("heroDetail.tierLabel")}</span>
             <span class="font-medium text-zinc-800">{heroTierName(hero.tier, lang)}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Роль" : "Role"}</span>
+            <span class="text-zinc-500">{t("heroDetail.roleLabel")}</span>
             <span class="font-medium text-zinc-800">{hero.role ? roleName(hero.role, lang) : "—"}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Аспект" : "Aspect"}</span>
+            <span class="text-zinc-500">{t("heroDetail.aspectLabel")}</span>
             <span class="font-medium text-zinc-800">{hero.aspect ?? "—"}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Стоимость" : "Cost"}</span>
+            <span class="text-zinc-500">{t("heroDetail.costLabel")}</span>
             <span class="font-medium text-zinc-800">
               {hero.priceGem ? (
                 <span class="inline-flex items-center gap-0.5">
@@ -82,11 +83,11 @@ const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(her
             </span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Карт для открытия" : "Cards to unlock"}</span>
+            <span class="text-zinc-500">{t("heroDetail.cardsToUnlockLabel")}</span>
             <span class="font-medium text-zinc-800">{hero.cardCount ? String(hero.cardCount) : "—"}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Цена карты" : "Card price"}</span>
+            <span class="text-zinc-500">{t("heroDetail.cardPriceLabel")}</span>
             <span class="font-medium text-zinc-800">
               {hero.cardPriceGem ? (
                 <span class="inline-flex items-center gap-0.5">
@@ -99,9 +100,9 @@ const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(her
             </span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Макс. уровень" : "Max level"}</span>
+            <span class="text-zinc-500">{t("heroDetail.maxLevelLabel")}</span>
             <span class="font-medium text-zinc-800">
-              {lang === "ru" ? `10–${maxStarLeadLevel} (зависит от звёзд)` : `10–${maxStarLeadLevel} (depends on stars)`}
+              {t("heroDetail.maxLevelValue").replace("{value}", String(maxStarLeadLevel))}
             </span>
           </div>
         </div>
@@ -111,7 +112,7 @@ const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(her
 
   {hero.blockedTimerInBuilding ? (
     <section class="rounded-xl border border-zinc-200 bg-white p-5">
-      <h2 class="mb-2 text-lg font-bold text-slate-800">{lang === "ru" ? "Ускоряет здания" : "Blocked Timer in Buildings"}</h2>
+      <h2 class="mb-2 text-lg font-bold text-slate-800">{t("heroDetail.blockedTimerTitle")}</h2>
       <div class="flex flex-wrap gap-2">
         {hero.blockedTimerInBuilding.split(",").map((b: string) => (
           <span class="rounded-lg bg-amber-50 px-3 py-1 text-sm font-medium text-amber-800">
@@ -129,14 +130,12 @@ const bonusEntries: [string, number][] = hero.bonusPerLevel ? Object.entries(her
           <div class="flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-4 py-2">
             <span class="text-sm text-zinc-500">{humanizeBonus(k)}</span>
             <span class="text-sm font-bold text-emerald-700">+{v}</span>
-            <span class="text-[10px] text-zinc-400">{lang === "ru" ? "/ ур." : "/ lvl"}</span>
+            <span class="text-[10px] text-zinc-400">{t("heroDetail.perLevelSuffix")}</span>
           </div>
         ))}
       </div>
       <p class="text-xs text-zinc-500">
-        {lang === "ru"
-          ? "Итоговый бонус = (значение × уровень героя) × бонусный множитель звёзд. Звёзды не привязаны к уровню: герой 1-го уровня с ★★★★★ получает ×200% к бонусу."
-          : "Total bonus = (value × hero level) × star bonus multiplier. Stars are independent of level: a level-1 hero with ★★★★★ still gets ×200% on bonuses."}
+        {t("heroDetail.bonusFormulaNote")}
       </p>
     </div>
   ) : null}

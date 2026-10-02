@@ -2,11 +2,12 @@
 import { Icon } from "astro-icon/components";
 import { getReferralData } from "@/lib/data";
 import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props { lang: string }
 const { lang } = Astro.props;
 const ru = lang === "ru";
+const t = useT(lang);
 const data = getReferralData();
 const invite = data.invite;
 
@@ -15,19 +16,19 @@ function fmtNumber(n: number): string {
 }
 
 function rangeLabel(from: number, to: number | null): string {
-  if (to == null) return ru ? `от ${from}` : `${from}+`;
+  if (to == null) return t("referralInvite.rangeOpenTemplate").replaceAll("{from}", String(from));
   if (from === to) return String(from);
-  return ru ? `${from}–${to}` : `${from}-${to}`;
+  return t("referralInvite.rangeClosedTemplate").replaceAll("{from}", String(from)).replaceAll("{to}", String(to));
 }
 ---
 
 <div class="space-y-6">
   <nav class="flex items-center gap-1 text-sm text-zinc-500">
-    <a href={localizedPath("/", lang)} class="hover:text-amber-700 hover:underline">{ru ? "Главная" : "Home"}</a>
+    <a href={localizedPath("/", lang)} class="hover:text-amber-700 hover:underline">{t("common.home")}</a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
-    <a href={localizedPath("/referral", lang)} class="hover:text-amber-700 hover:underline">{ru ? "Рефералы" : "Referral"}</a>
+    <a href={localizedPath("/referral", lang)} class="hover:text-amber-700 hover:underline">{t("referralInvite.breadcrumbReferral")}</a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
-    <span class="font-medium text-zinc-700">{ru ? "Гемы за друзей" : "Gems for friends"}</span>
+    <span class="font-medium text-zinc-700">{t("referralInvite.breadcrumbGems")}</span>
   </nav>
 
   <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
@@ -36,32 +37,30 @@ function rangeLabel(from: number, to: number | null): string {
         <Icon name="lucide:users" class="h-5 w-5" />
       </div>
       <div class="min-w-0">
-        <h1 class="text-2xl font-bold text-slate-900">{ru ? "Пригласите друзей!" : "Invite friends!"}</h1>
+        <h1 class="text-2xl font-bold text-slate-900">{t("referralInvite.heroTitle")}</h1>
         <p class="mt-2 text-sm text-zinc-700">
-          {ru ? "Зарабатывай до" : "Earn up to"}{" "}
+          {t("referralInvite.earnPrefix")}{" "}
           <span class="inline-flex items-center gap-1 font-semibold text-zinc-900">
             <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
             {fmtNumber(invite.max_per_friend_gems)}
           </span>{" "}
-          {ru ? "за каждого друга." : "for each friend."}
+          {t("referralInvite.earnSuffix")}
         </p>
         <p class="mt-2 text-sm text-zinc-700">
-          {ru
-            ? "Если у вашего друга есть Telegram Premium, ваш бонус утраивается."
-            : "If your friend has Telegram Premium, your bonus is tripled."}
+          {t("referralInvite.premiumBonusNote")}
         </p>
         <p class="mt-2 text-sm text-zinc-700">
-          {ru ? "Ваш друг получит" : "Your friend receives"}{" "}
+          {t("referralInvite.friendReceivesPrefix")}{" "}
           <span class="inline-flex items-center gap-1 font-semibold text-zinc-900">
             <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
             {fmtNumber(invite.friend_reward_gems)}
           </span>{" "}
-          {ru ? "или" : "or"}{" "}
+          {t("referralInvite.or")}{" "}
           <span class="inline-flex items-center gap-1 font-semibold text-zinc-900">
             <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
             {fmtNumber(invite.friend_reward_gems_premium)}
           </span>
-          {ru ? ", если у него Telegram Premium." : " if they have Telegram Premium."}
+          {t("referralInvite.friendReceivesPremiumSuffix")}
         </p>
       </div>
     </div>
@@ -69,14 +68,12 @@ function rangeLabel(from: number, to: number | null): string {
 
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
-      <h2 class="text-lg font-bold text-slate-800">{ru ? "Правила получения наград" : "Reward rules"}</h2>
+      <h2 class="text-lg font-bold text-slate-800">{t("referralInvite.rewardRulesTitle")}</h2>
     </div>
     <div class="px-5 py-4 text-sm text-zinc-700">
       <ul class="list-disc space-y-2 pl-5">
         <li>
-          {ru
-            ? `Telegram Premium увеличивает награду в ${invite.premium_multiplier} раза.`
-            : `Telegram Premium multiplies the reward by ${invite.premium_multiplier}x.`}
+          {t("referralInvite.premiumMultiplierTemplate").replaceAll("{multiplier}", String(invite.premium_multiplier))}
         </li>
         <li>{ru ? invite.requirement_ru : invite.requirement_en}</li>
       </ul>
@@ -85,14 +82,14 @@ function rangeLabel(from: number, to: number | null): string {
 
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
-      <h2 class="text-lg font-bold text-slate-800">{ru ? "Сетка наград" : "Reward tiers"}</h2>
+      <h2 class="text-lg font-bold text-slate-800">{t("referralInvite.rewardTiersTitle")}</h2>
     </div>
     <div class="overflow-auto">
       <table class="w-full text-sm">
         <thead>
           <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-            <th class="px-4 py-2">{ru ? "Друзей" : "Friends"}</th>
-            <th class="px-4 py-2">{ru ? "Обычная" : "Standard"}</th>
+            <th class="px-4 py-2">{t("referralInvite.tableFriends")}</th>
+            <th class="px-4 py-2">{t("referralInvite.tableStandard")}</th>
             <th class="px-4 py-2">Premium</th>
           </tr>
         </thead>

@@ -6,7 +6,7 @@ import { tierColor, buildingName, formatTime, formatCost, raceName, troopTypeNam
 import { troopImage } from "@/lib/images";
 import TroopRacePanel from "@/components/wiki/TroopRacePanel.vue";
 import PatchBadge from "@/components/wiki/PatchBadge.astro";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props {
   lang: string;
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { lang, building, tier } = Astro.props;
+const t = useT(lang);
 
 function buildRaceLabels(troops: { race?: string }[]): Record<string, string> {
   const labels: Record<string, string> = {};
@@ -45,16 +46,16 @@ const unlockedBySkill = allSkills.find((s) => {
 
 const troopsForPanel = group.troops.slice().sort((a, b) => (a.race ?? "").localeCompare(b.race ?? ""));
 
-const statKeys: { key: string; label: string; labelRu: string }[] = [
-  { key: "atk", label: "ATK", labelRu: "АТК" },
-  { key: "def", label: "DEF", labelRu: "ЗАЩ" },
-  { key: "speed", label: "Speed", labelRu: "Скорость" },
-  { key: "load", label: "Load", labelRu: "Нагрузка" },
-  { key: "time", label: "Train Time", labelRu: "Время" },
-  { key: "power", label: "Power", labelRu: "Мощь" },
-  { key: "priceFood", label: "Food", labelRu: "Еда" },
-  { key: "priceWood", label: "Wood", labelRu: "Дерево" },
-  { key: "priceStone", label: "Stone", labelRu: "Камень" },
+const statKeys: { key: string; tKey: string }[] = [
+  { key: "atk", tKey: "troopTier.statAtk" },
+  { key: "def", tKey: "troopTier.statDef" },
+  { key: "speed", tKey: "troopTier.statSpeed" },
+  { key: "load", tKey: "troopTier.statLoad" },
+  { key: "time", tKey: "troopTier.statTime" },
+  { key: "power", tKey: "troopTier.statPower" },
+  { key: "priceFood", tKey: "troopTier.statFood" },
+  { key: "priceWood", tKey: "troopTier.statWood" },
+  { key: "priceStone", tKey: "troopTier.statStone" },
 ];
 
 const buildingNameMap = new Map<string, string>();
@@ -65,7 +66,7 @@ for (const s of allSkills) skillNameMap.set(s.key, s.title);
 
 <div class="space-y-6">
   <nav class="flex items-center gap-1 text-sm text-zinc-500">
-    <a href={localizedPath("/troops", lang)} class="hover:text-amber-700 hover:underline">{lang === "ru" ? "Войска" : "Troops"}</a>
+    <a href={localizedPath("/troops", lang)} class="hover:text-amber-700 hover:underline">{t("troopTier.breadcrumbTroops")}</a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
     <span class="font-medium text-zinc-700">{troopName}</span>
   </nav>
@@ -73,7 +74,7 @@ for (const s of allSkills) skillNameMap.set(s.key, s.title);
   <div class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
       <h1 class="text-xl font-bold text-slate-900">{bName}</h1>
-      <p class="text-xs text-zinc-400">{lang === "ru" ? "Тренировка" : "Training"}</p>
+      <p class="text-xs text-zinc-400">{t("troopTier.training")}</p>
     </div>
 
     <div class="scrollbar-none overflow-x-auto px-4 py-5">
@@ -120,18 +121,18 @@ for (const s of allSkills) skillNameMap.set(s.key, s.title);
 
   {unlockedBySkill ? (
     <div class="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-      {lang === "ru" ? "Открывается после изучения " : "It is unlocked upon research of the "}
+      {t("troopTier.unlockedByPrefix")}
       <a href={localizedPath(`/skills/${unlockedBySkill.key}`, lang)} class="font-semibold text-amber-900 underline decoration-amber-400 hover:text-amber-700">
         {unlockedBySkill.title}
       </a>
-      {lang === "ru" ? " технологии." : " technology."}
+      {t("troopTier.unlockedBySuffix")}
     </div>
   ) : null}
 
   <div class={`overflow-hidden rounded-xl border-2 ${tc.border} bg-white`}>
     <div class={`${tc.bg} px-5 py-3`}>
       <h2 class={`text-lg font-bold ${tc.text}`}>{troopName}</h2>
-      <span class={`rounded-full px-2.5 py-0.5 text-xs font-bold ${tc.badge}`}>{lang === "ru" ? "Тир" : "Tier"} {tier}</span>
+      <span class={`rounded-full px-2.5 py-0.5 text-xs font-bold ${tc.badge}`}>{t("troopTier.tierLabel")} {tier}</span>
     </div>
 
     <TroopRacePanel
@@ -145,16 +146,16 @@ for (const s of allSkills) skillNameMap.set(s.key, s.title);
 
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
-      <h2 class="text-lg font-bold text-slate-800">{lang === "ru" ? "Сравнение по расам" : "Race Comparison"}</h2>
-      <p class="text-xs text-zinc-400">{lang === "ru" ? "Характеристики одного юнита данного тира" : "Per-unit stats for this tier"}</p>
+      <h2 class="text-lg font-bold text-slate-800">{t("troopTier.raceComparisonTitle")}</h2>
+      <p class="text-xs text-zinc-400">{t("troopTier.raceComparisonDesc")}</p>
     </div>
     <div class="overflow-auto">
       <table class="min-w-full text-sm">
         <thead>
           <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-            <th class="px-4 py-2.5">{lang === "ru" ? "Раса" : "Race"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Название" : "Title"}</th>
-            {statKeys.map((s) => <th class="px-4 py-2.5">{lang === "ru" ? s.labelRu : s.label}</th>)}
+            <th class="px-4 py-2.5">{t("troopTier.tableRace")}</th>
+            <th class="px-4 py-2.5">{t("troopTier.tableTitle")}</th>
+            {statKeys.map((s) => <th class="px-4 py-2.5">{t(s.tKey)}</th>)}
           </tr>
         </thead>
         <tbody>
@@ -186,7 +187,7 @@ for (const s of allSkills) skillNameMap.set(s.key, s.title);
 
   {group.troops[0]?.requiredBuildings && Object.keys(group.troops[0].requiredBuildings).length > 0 ? (
     <section class="rounded-xl border border-zinc-200 bg-white p-5">
-      <h2 class="mb-2 text-lg font-bold text-slate-800">{lang === "ru" ? "Требования" : "Requirements"}</h2>
+      <h2 class="mb-2 text-lg font-bold text-slate-800">{t("troopTier.requirementsTitle")}</h2>
       <div class="flex flex-wrap gap-2 text-sm text-zinc-600">
         {Object.entries(group.troops[0].requiredBuildings as Record<string, number>).map(([bld, lvl]) => (
           <a

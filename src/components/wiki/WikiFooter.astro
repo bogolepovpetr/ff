@@ -1,24 +1,22 @@
 ---
 import { WIKI_DISPLAY_NAME, GAME_DISPLAY_NAME } from "@/lib/site-brand";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props {
   lang: string;
 }
 
 const { lang } = Astro.props;
-const ru = lang === "ru";
+const t = useT(lang);
 
 const PLAY_URL = "https://play.fomofighters.xyz";
 const TELEGRAM_URL = "https://t.me/fomo_fighters";
 
-const tagline = ru
-  ? `Полное руководство по игре ${GAME_DISPLAY_NAME}`
-  : `The comprehensive guide to ${GAME_DISPLAY_NAME}`;
+const tagline = t("wikiFooter.taglineTemplate").replaceAll("{game}", GAME_DISPLAY_NAME);
 
-const copyright = ru
-  ? `${WIKI_DISPLAY_NAME} © ${new Date().getFullYear()} — данные игры обновляются автоматически с сервера баланса.`
-  : `${WIKI_DISPLAY_NAME} © ${new Date().getFullYear()} — Game data updates automatically from the balance server.`;
+const copyright = t("wikiFooter.copyrightTemplate")
+  .replaceAll("{wiki}", WIKI_DISPLAY_NAME)
+  .replaceAll("{year}", String(new Date().getFullYear()));
 ---
 
 <footer class="relative overflow-hidden border-t-4 border-[var(--game-frame)] bg-[#2b1f17] py-10 text-[#f4ecd9]">
@@ -43,7 +41,7 @@ const copyright = ru
           rel="noopener noreferrer"
           class="text-sm font-bold uppercase tracking-wide text-[#f4ecd9] transition-colors hover:text-[var(--game-atk)]"
         >
-          {ru ? "Играть" : "Play"}
+          {t("wikiFooter.play")}
         </a>
         <a
           href={TELEGRAM_URL}

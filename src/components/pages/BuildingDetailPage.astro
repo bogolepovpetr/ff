@@ -7,7 +7,7 @@ import { getGameVersion } from "@/lib/version";
 import { buildingImage } from "@/lib/images";
 import PatchBadge from "@/components/wiki/PatchBadge.astro";
 import ResourceIcon, { type ResourceKey } from "@/components/wiki/ResourceIcon.astro";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props {
   lang: string;
@@ -15,6 +15,7 @@ interface Props {
 }
 
 const { lang, buildingKey } = Astro.props;
+const t = useT(lang);
 const building = indexByKey(getBuildings()).get(buildingKey)!;
 const manual = getManualDoc({ lang, entity: "buildings", key: buildingKey });
 
@@ -52,7 +53,7 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
 <div class="space-y-6">
   <nav class="flex items-center gap-1 text-sm text-zinc-500">
     <a href={localizedPath("/buildings", lang)} class="hover:text-amber-700 hover:underline">
-      {lang === "ru" ? "Здания" : "Buildings"}
+      {t("buildingDetail.breadcrumbBuildings")}
     </a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
     <span class="font-medium text-zinc-700">{building.title}</span>
@@ -79,15 +80,15 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
         </div>
         <div class="space-y-2 p-4 text-sm">
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Тип" : "Type"}</span>
+            <span class="text-zinc-500">{t("buildingDetail.statType")}</span>
             <span class="font-medium text-zinc-800">{building.type ?? "—"}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Уровней" : "Levels"}</span>
+            <span class="text-zinc-500">{t("buildingDetail.statLevels")}</span>
             <span class="font-medium text-zinc-800">{building.levels.length}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Макс. мощь" : "Max power"}</span>
+            <span class="text-zinc-500">{t("buildingDetail.statMaxPower")}</span>
             <span class="font-medium text-zinc-800">
               {building.levels.length ? String(building.levels[building.levels.length - 1].power ?? "—") : "—"}
             </span>
@@ -101,21 +102,21 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
 
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
-      <h2 class="text-lg font-bold text-slate-800">{lang === "ru" ? "Прогрессия" : "Progression"}</h2>
+      <h2 class="text-lg font-bold text-slate-800">{t("buildingDetail.progressionTitle")}</h2>
       <p class="text-xs text-zinc-400">
-        {lang === "ru" ? "Время строительства указано без учёта бонусов" : "Build times shown without bonus modifiers"}
+        {t("buildingDetail.progressionNote")}
       </p>
     </div>
     <div class="overflow-auto">
       <table class="min-w-full text-sm">
         <thead>
           <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-            <th class="px-4 py-2.5">{lang === "ru" ? "Ур." : "Lvl"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Стоимость" : "Cost"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Время" : "Time"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Мощь" : "Power"}</th>
+            <th class="px-4 py-2.5">{t("buildingDetail.tableLevel")}</th>
+            <th class="px-4 py-2.5">{t("buildingDetail.tableCost")}</th>
+            <th class="px-4 py-2.5">{t("buildingDetail.tableTime")}</th>
+            <th class="px-4 py-2.5">{t("buildingDetail.tablePower")}</th>
             {effectCols.map((k) => <th class="px-4 py-2.5">{humanizeBonus(k)}</th>)}
-            <th class="px-4 py-2.5">{lang === "ru" ? "Требования" : "Requirements"}</th>
+            <th class="px-4 py-2.5">{t("buildingDetail.tableRequirements")}</th>
           </tr>
         </thead>
         <tbody>

@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { useT } from "@/lib/i18n";
 
 interface Props {
   gameVersion: string;
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const { gameVersion, dataUpdated, lang } = Astro.props;
+const t = useT(lang);
 
 const dateStr = new Date(`${dataUpdated}T12:00:00Z`).toLocaleDateString(
   lang === "ru" ? "ru-RU" : "en-US",
@@ -18,9 +20,9 @@ const dateStr = new Date(`${dataUpdated}T12:00:00Z`).toLocaleDateString(
 <div class="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs text-emerald-700">
   <Icon name="lucide:refresh-cw" class="h-3 w-3" />
   <span>
-    {lang === "ru" ? "Актуально для" : "Up to date for"}{" "}
+    {t("patchBadge.upToDateFor")}{" "}
     <span class="font-semibold">v{gameVersion}</span>
     {" — "}
-    {lang === "ru" ? "обновлено" : "updated"} {dateStr}
+    {t("patchBadge.updatedLabel")} {dateStr}
   </span>
 </div>

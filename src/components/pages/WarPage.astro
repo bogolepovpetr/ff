@@ -1,18 +1,19 @@
 ---
 import { Icon } from "astro-icon/components";
 import { getWarData } from "@/lib/data";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props { lang: string }
 const { lang } = Astro.props;
 const ru = lang === "ru";
+const t = useT(lang);
 const data = getWarData().war;
 const token = `$${data.token}`;
 ---
 
 <div class="space-y-6">
   <nav class="flex items-center gap-1 text-sm text-zinc-500">
-    <a href={localizedPath("/", lang)} class="hover:text-amber-700 hover:underline">{ru ? "Главная" : "Home"}</a>
+    <a href={localizedPath("/", lang)} class="hover:text-amber-700 hover:underline">{t("common.home")}</a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
     <span class="font-medium text-zinc-700">WAR</span>
   </nav>
@@ -20,9 +21,7 @@ const token = `$${data.token}`;
   <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-rose-50 p-6">
     <h1 class="text-2xl font-bold text-slate-900">{token}</h1>
     <p class="mt-2 text-sm leading-relaxed text-zinc-700">
-      {ru
-        ? `${token} — постоянный накопительный баланс, который виден в рейтинге игроков. Потратить его в игре сейчас негде: нет ни магазина, ни обмена на USDT.`
-        : `${token} is a persistent balance shown in the player ranking. There is currently nowhere to spend it in-game: no shop and no USDT exchange.`}
+      {t("war.heroDesc").replace("{token}", token)}
     </p>
     <div class="mt-4">
       <a
@@ -30,7 +29,7 @@ const token = `$${data.token}`;
         class="inline-flex items-center gap-2 rounded-lg border border-amber-200 bg-white px-3 py-2 text-sm font-semibold text-amber-800 hover:bg-amber-50"
       >
         <Icon name="lucide:swords" class="h-4 w-4" />
-        {ru ? "Правила клановой войны" : "Clan war rules"}
+        {t("war.clanWarRulesLink")}
         <Icon name="lucide:arrow-right" class="h-4 w-4" />
       </a>
     </div>

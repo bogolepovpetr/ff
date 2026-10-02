@@ -8,7 +8,7 @@ import { troopImage } from "@/lib/images";
 import PatchBadge from "@/components/wiki/PatchBadge.astro";
 import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
 import SkillArt from "@/components/wiki/SkillArt.astro";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props {
   lang: string;
@@ -16,6 +16,7 @@ interface Props {
 }
 
 const { lang, skillKey } = Astro.props;
+const t = useT(lang);
 const skill = indexByKey(getSkills()).get(skillKey)!;
 const manual = getManualDoc({ lang, entity: "skills", key: skillKey });
 
@@ -56,7 +57,7 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
 
 <div class="space-y-6">
   <nav class="flex items-center gap-1 text-sm text-zinc-500">
-    <a href={localizedPath("/skills", lang)} class="hover:text-amber-700 hover:underline">{lang === "ru" ? "Навыки" : "Skills"}</a>
+    <a href={localizedPath("/skills", lang)} class="hover:text-amber-700 hover:underline">{t("skillDetail.breadcrumbSkills")}</a>
     <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
     <span class="font-medium text-zinc-700">{skill.title}</span>
   </nav>
@@ -83,15 +84,15 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
         </div>
         <div class="space-y-2 p-4 text-sm">
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Тип" : "Type"}</span>
+            <span class="text-zinc-500">{t("skillDetail.type")}</span>
             <span class="font-medium text-zinc-800">{skill.type ?? "—"}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Тир" : "Tier"}</span>
+            <span class="text-zinc-500">{t("skillDetail.tier")}</span>
             <span class="font-medium text-zinc-800">{skill.tier != null ? String(skill.tier) : "—"}</span>
           </div>
           <div class="flex justify-between">
-            <span class="text-zinc-500">{lang === "ru" ? "Макс. уровень" : "Max level"}</span>
+            <span class="text-zinc-500">{t("skillDetail.maxLevel")}</span>
             <span class="font-medium text-zinc-800">{skill.levels.length}</span>
           </div>
         </div>
@@ -103,21 +104,21 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
 
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
-      <h2 class="text-lg font-bold text-slate-800">{lang === "ru" ? "Прогрессия" : "Progression"}</h2>
+      <h2 class="text-lg font-bold text-slate-800">{t("skillDetail.progressionTitle")}</h2>
       <p class="text-xs text-zinc-400">
-        {lang === "ru" ? "Время исследования указано без учёта бонусов" : "Research times shown without bonus modifiers"}
+        {t("skillDetail.progressionNote")}
       </p>
     </div>
     <div class="overflow-auto">
       <table class="min-w-full text-sm">
         <thead>
           <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-            <th class="px-4 py-2.5">{lang === "ru" ? "Ур." : "Lvl"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Стоимость" : "Cost"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Время" : "Time"}</th>
-            <th class="px-4 py-2.5">{lang === "ru" ? "Мощь" : "Power"}</th>
+            <th class="px-4 py-2.5">{t("skillDetail.tableLevel")}</th>
+            <th class="px-4 py-2.5">{t("skillDetail.tableCost")}</th>
+            <th class="px-4 py-2.5">{t("skillDetail.tableTime")}</th>
+            <th class="px-4 py-2.5">{t("skillDetail.tablePower")}</th>
             {effectCols.map((k) => <th class="px-4 py-2.5">{humanizeBonus(k)}</th>)}
-            <th class="px-4 py-2.5">{lang === "ru" ? "Требования" : "Requirements"}</th>
+            <th class="px-4 py-2.5">{t("skillDetail.tableRequirements")}</th>
           </tr>
         </thead>
         <tbody>
@@ -169,7 +170,7 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
                           {" Lv."}{sv}
                         </span>
                       ))}
-                      {lvl.requiredFriends ? <span>{lvl.requiredFriends} {lang === "ru" ? "друзей" : "friends"}</span> : null}
+                      {lvl.requiredFriends ? <span>{lvl.requiredFriends} {t("skillDetail.friends")}</span> : null}
                     </span>
                   ) : (
                     "—"
@@ -185,7 +186,7 @@ function costParts(food?: number, wood?: number, stone?: number, gem?: number): 
 
   {unlockedTroops.length > 0 ? (
     <section class="rounded-xl border border-zinc-200 bg-white p-5">
-      <h2 class="mb-3 text-lg font-bold text-slate-800">{lang === "ru" ? "Открывает войска" : "Unlocks Troops"}</h2>
+      <h2 class="mb-3 text-lg font-bold text-slate-800">{t("skillDetail.unlocksTroopsTitle")}</h2>
       <div class="grid gap-2 sm:grid-cols-2">
         {unlockedTroops
           .slice()

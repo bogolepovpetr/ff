@@ -1,3 +1,5 @@
+import { useT } from "@/lib/i18n";
+
 export function formatCost(v?: number): string {
   if (!v) return "—";
   if (v >= 1_000_000) return `${(v / 1_000_000).toFixed(1)}M`;
@@ -151,6 +153,7 @@ export function parseRewardDict(dict?: Record<string, number | string>): RewardE
 }
 
 export function rewardKeyLabel(key: string, lang: string): string {
+  const t = useT(lang);
   if (RESOURCE_KEYS.has(key)) return key;
   const labels: Record<string, { en: string; ru: string }> = {
     war: { en: "War points", ru: "War-очки" },
@@ -160,7 +163,7 @@ export function rewardKeyLabel(key: string, lang: string): string {
   if (labels[key]) return lang === "ru" ? labels[key].ru : labels[key].en;
   if (key.startsWith("box_")) {
     const name = key.replace(/^box_/, "").replace(/_/g, " ");
-    return lang === "ru" ? `Сундук: ${name}` : `Box: ${name}`;
+    return t("format.rewardKey.box").replace("{name}", name);
   }
   return key.replace(/_/g, " ");
 }

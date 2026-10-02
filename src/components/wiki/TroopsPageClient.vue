@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
 import RaceSelector from "./RaceSelector.vue";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 type TroopData = {
   key: string;
@@ -32,6 +32,10 @@ const props = defineProps<{
   troopTypeLabels: Record<string, string>;
   races: RaceData[];
 }>();
+
+function t(key: string, fallback?: string) {
+  return useT(props.lang)(key, fallback);
+}
 
 const race = ref("elf");
 
@@ -92,7 +96,7 @@ const RES_ICON: Record<string, string> = {
               class="absolute -top-2.5 right-3 rounded-full px-2.5 py-0.5 text-xs font-bold"
               :class="(tierLabels[group.tier] ?? tierLabels[1]).badge"
             >
-              {{ lang === "ru" ? "Тир" : "Tier" }} {{ group.tier }}
+              {{ t("troopsPageClient.tierLabel") }} {{ group.tier }}
             </span>
 
             <div class="flex items-start gap-3">
@@ -119,11 +123,11 @@ const RES_ICON: Record<string, string> = {
                 <span class="font-semibold text-zinc-700">{{ troopForRace(group.troops)?.def ?? "—" }}</span>
               </div>
               <div class="flex justify-between rounded bg-white/60 px-1.5 py-0.5">
-                <span class="text-zinc-400">{{ lang === "ru" ? "Время" : "Time" }}</span>
+                <span class="text-zinc-400">{{ t("troopsPageClient.time") }}</span>
                 <span class="font-semibold text-zinc-700">{{ formatTime(troopForRace(group.troops)?.time) }}</span>
               </div>
               <div class="flex justify-between rounded bg-white/60 px-1.5 py-0.5">
-                <span class="text-zinc-400">{{ lang === "ru" ? "Мощь" : "Power" }}</span>
+                <span class="text-zinc-400">{{ t("troopsPageClient.power") }}</span>
                 <span class="font-semibold text-zinc-700">{{ troopForRace(group.troops)?.power ?? "—" }}</span>
               </div>
             </div>

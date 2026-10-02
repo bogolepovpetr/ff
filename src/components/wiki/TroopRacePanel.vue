@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from "vue";
 import VueIcon from "@/components/icons/VueIcon.vue";
+import { useT } from "@/lib/i18n";
 
 type TroopData = {
   key: string;
@@ -24,6 +25,10 @@ const props = defineProps<{
   raceLabels: Record<string, string>;
   initialRace?: string;
 }>();
+
+function t(key: string, fallback?: string) {
+  return useT(props.lang)(key, fallback);
+}
 
 function fmtTime(seconds?: number): string {
   if (!seconds) return "—";
@@ -58,10 +63,10 @@ onMounted(() => {
 });
 
 const STAT_ICONS = [
-  { key: "atk" as const, icon: "swords", label: props.lang === "ru" ? "Атака" : "Attack" },
-  { key: "def" as const, icon: "shield", label: props.lang === "ru" ? "Защита" : "Defense" },
-  { key: "speed" as const, icon: "zap", label: props.lang === "ru" ? "Скорость" : "Speed" },
-  { key: "load" as const, icon: "package", label: props.lang === "ru" ? "Груз" : "Load" },
+  { key: "atk" as const, icon: "swords", label: t("troopRacePanel.statAttack") },
+  { key: "def" as const, icon: "shield", label: t("troopRacePanel.statDefense") },
+  { key: "speed" as const, icon: "zap", label: t("troopRacePanel.statSpeed") },
+  { key: "load" as const, icon: "package", label: t("troopRacePanel.statLoad") },
 ];
 
 function raceLabel(race?: string): string {
@@ -110,11 +115,11 @@ const RES_ICON: Record<string, string> = {
 
         <div class="mt-2 grid grid-cols-2 gap-2 text-sm">
           <div class="rounded-lg bg-zinc-50 px-3 py-2">
-            <p class="text-[10px] uppercase tracking-wide text-zinc-400">{{ lang === "ru" ? "Мощь" : "Power" }}</p>
+            <p class="text-[10px] uppercase tracking-wide text-zinc-400">{{ t("troopRacePanel.power") }}</p>
             <p class="font-bold text-slate-800">{{ selected.power ?? "—" }}</p>
           </div>
           <div class="rounded-lg bg-zinc-50 px-3 py-2">
-            <p class="text-[10px] uppercase tracking-wide text-zinc-400">{{ lang === "ru" ? "Время" : "Time" }}</p>
+            <p class="text-[10px] uppercase tracking-wide text-zinc-400">{{ t("troopRacePanel.time") }}</p>
             <p class="font-bold text-slate-800">{{ fmtTime(selected.time) }}</p>
           </div>
         </div>

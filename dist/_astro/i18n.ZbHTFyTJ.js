@@ -1,1 +1,0 @@
-function e(e,t){let n=e.startsWith(`/`)?e:`/${e}`;return t===`en`?n:n===`/`?`/${t}`:`/${t}${n}`}export{e as t};

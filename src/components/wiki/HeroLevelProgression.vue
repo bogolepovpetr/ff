@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
+import { useT } from "@/lib/i18n";
 
 export type HeroLevelRow = { level: number; exp: number };
 export type HeroBonusCol = { key: string; label: string; perLevel: number };
@@ -13,6 +14,10 @@ const props = defineProps<{
   bonusCols: HeroBonusCol[];
   starRanks: HeroStarRank[];
 }>();
+
+function t(key: string, fallback?: string) {
+  return useT(props.lang)(key, fallback);
+}
 
 const sortedStars = computed(() => [...props.starRanks].sort((a, b) => a.stars - b.stars));
 const stars = ref(5);
@@ -44,22 +49,18 @@ function formatBonus(n: number): string {
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="border-b border-zinc-100 px-5 py-3">
       <h2 class="text-lg font-bold text-slate-800">
-        {{ lang === "ru" ? "Прогресс по уровням (геройский EXP)" : "Level progression (hero EXP)" }}
+        {{ t("heroLevelProgression.title") }}
       </h2>
       <p v-if="expTierMult > 1" class="text-xs text-zinc-400">
-        {{ lang === "ru"
-          ? `Множитель геройского EXP для этого тира: ×${expTierMult}`
-          : `Hero EXP multiplier for this tier: ×${expTierMult}` }}
+        {{ t("heroLevelProgression.tierMultiplier").replace("{mult}", String(expTierMult)) }}
       </p>
       <p class="mt-1 text-xs text-zinc-500">
-        {{ lang === "ru"
-          ? "Выберите звёздность: видны только уровни, доступные при таком количестве звёзд. Бонусы считаются с множителем звёзд. EXP в строке — сколько нужно набрать, чтобы перейти на этот уровень."
-          : "Choose stars: only levels available at that star count are shown. Bonuses include the star multiplier. EXP per row is the amount needed to reach that level from the previous one." }}
+        {{ t("heroLevelProgression.instructions") }}
       </p>
 
       <div class="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <span class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
-          {{ lang === "ru" ? "Звёзды" : "Stars" }}
+          {{ t("heroLevelProgression.starsLabel") }}
         </span>
         <div class="flex flex-wrap gap-1.5">
           <button
@@ -71,21 +72,14 @@ function formatBonus(n: number): string {
             :class="stars === r.stars
               ? 'border-amber-400 bg-amber-100 text-amber-900 shadow-sm'
               : 'border-zinc-200 bg-zinc-50 text-zinc-600 hover:border-zinc-300 hover:bg-white'"
-            :title="lang === 'ru' ? `Макс. ур. ${r.maxLevel}, бонус ×${r.bonusMult}` : `Max lvl ${r.maxLevel}, bonus ×${r.bonusMult}`"
+            :title="t('heroLevelProgression.starButtonTitle').replace('{maxLevel}', String(r.maxLevel)).replace('{bonusMult}', String(r.bonusMult))"
           >
             {{ r.stars === 0 ? "0 ★" : "★".repeat(r.stars) }}
           </button>
         </div>
       </div>
-      <p class="mt-2 text-xs text-zinc-500">
-        <template v-if="lang === 'ru'">
-          При выбранной звёздности: макс. уровень <strong>{{ maxLevel }}</strong>, множитель бонуса
-          <strong>{{ Math.round(bonusMult * 100) }}%</strong>
-        </template>
-        <template v-else>
-          At this star rank: max level <strong>{{ maxLevel }}</strong>, bonus multiplier
-          <strong>{{ Math.round(bonusMult * 100) }}%</strong>
-        </template>
+      <p class="mt-2 text-xs text-zinc-500">{{ " " + t("heroLevelProgression.starRankPrefix") }} <strong>{{ maxLevel }}</strong>, {{ t("heroLevelProgression.starRankMiddle") }}
+        <strong>{{ Math.round(bonusMult * 100) }}%</strong>
       </p>
     </div>
 
@@ -93,8 +87,8 @@ function formatBonus(n: number): string {
       <table class="min-w-full text-sm">
         <thead>
           <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-            <th class="px-4 py-2.5">{{ lang === "ru" ? "Ур." : "Lvl" }}</th>
-            <th class="px-4 py-2.5 text-right">{{ lang === "ru" ? "EXP (за уровень)" : "EXP (per level)" }}</th>
+            <th class="px-4 py-2.5">{{ t("heroLevelProgression.colLevel") }}</th>
+            <th class="px-4 py-2.5 text-right">{{ t("heroLevelProgression.colExpPerLevel") }}</th>
             <th v-for="c in bonusCols" :key="c.key" class="px-4 py-2.5 text-right">{{ c.label }}</th>
           </tr>
         </thead>

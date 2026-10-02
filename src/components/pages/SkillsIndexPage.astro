@@ -2,15 +2,17 @@
 import { getSkillTreeData } from "@/lib/data";
 import { getLore } from "@/lib/lore";
 import SkillTree from "@/components/wiki/SkillTree.vue";
+import { useT } from "@/lib/i18n";
 
 interface Props { lang: string }
 const { lang } = Astro.props;
+const t = useT(lang);
 const lore = getLore("skills", lang);
 const trees = getSkillTreeData();
 
 const categoryLabels = [
-  { key: "Economic", label: lang === "ru" ? "Экономический" : "Economic" },
-  { key: "Military", label: lang === "ru" ? "Боевые действия" : "Military" },
+  { key: "Economic", label: t("skillsIndex.categoryEconomic") },
+  { key: "Military", label: t("skillsIndex.categoryMilitary") },
 ].filter((c) => trees[c.key]);
 ---
 

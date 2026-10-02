@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 type SkillTreeNode = {
   key: string;
@@ -20,6 +20,10 @@ const props = defineProps<{
   lang: string;
   categoryLabels: { key: string; label: string }[];
 }>();
+
+function t(key: string, fallback?: string) {
+  return useT(props.lang)(key, fallback);
+}
 
 const NODE_W = 110;
 const NODE_H = 100;
@@ -122,7 +126,7 @@ const edges = computed<Edge[]>(() => {
     </div>
 
     <p v-if="!tree?.nodes?.length" class="rounded-lg border border-border bg-muted/40 px-4 py-3 text-sm text-muted-foreground">
-      {{ lang === "ru" ? "Дерево навыков пока недоступно." : "Skill tree data is not available." }}
+      {{ t("skillTree.noData") }}
     </p>
 
     <div v-else class="overflow-auto rounded-xl border border-zinc-200 bg-gradient-to-b from-zinc-50 to-white">

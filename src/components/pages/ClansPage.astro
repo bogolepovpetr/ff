@@ -2,33 +2,24 @@
 import { Icon } from "astro-icon/components";
 import { getClanLevels, getClanRanks, getClanRewards } from "@/lib/data";
 import RewardBits from "@/components/wiki/RewardBits.astro";
-import { localizedPath } from "@/lib/i18n";
+import { localizedPath, useT } from "@/lib/i18n";
 
 interface Props { lang: string }
 const { lang } = Astro.props;
-const ru = lang === "ru";
+const t = useT(lang);
 
 function fmtNumber(n: number): string {
   return new Intl.NumberFormat("en-US").format(n);
 }
 
 function fmtRewardTitle(title: string, hours: number): string {
-  const base = ru ? "Награда каждые {count} часов" : "Reward every {count} hours";
+  const base = t("clans.rewardTitleTemplate");
   const tpl = title?.includes("{count}") ? title : base;
   return tpl.replaceAll("{count}", String(hours));
 }
 
 function rankTitle(title: string): string {
-  if (!ru) return title;
-  const map: Record<string, string> = {
-    Founder: "Основатель",
-    Deputy: "Заместитель",
-    Officer: "Офицер",
-    Soldier: "Солдат",
-    Recruit: "Рекрут",
-    Newbie: "Новичок",
-  };
-  return map[title] ?? title;
+  return t(`clans.rank.${title}`, title);
 }
 
 const levels = getClanLevels();
@@ -41,21 +32,19 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
 
 <div class="space-y-6">
   <div class="wiki-hero p-6">
-    <h1 class="text-2xl font-bold text-slate-900">{ru ? "Кланы" : "Clans"}</h1>
+    <h1 class="text-2xl font-bold text-slate-900">{t("clans.title")}</h1>
     <p class="mt-2 text-sm leading-relaxed text-zinc-600">
-      {ru
-        ? "Уровень клана открывает награды, а ранги определяют роли участников. Здесь собраны таблицы уровней, рангов и клановых наград."
-        : "Clan level unlocks rewards, and ranks define member roles. Here are the tables for clan levels, ranks, and clan rewards."}
+      {t("clans.heroDesc")}
     </p>
 
     <div class="mt-4 flex flex-wrap gap-3 text-xs">
       <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-emerald-700">
         <Icon name="lucide:crown" class="h-3.5 w-3.5" />
-        {ru ? "Макс. уровень" : "Max level"}: <span class="font-semibold">{maxLevel}</span>
+        {t("clans.maxLevel")}: <span class="font-semibold">{maxLevel}</span>
       </span>
       <span class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-emerald-700">
         <Icon name="lucide:users" class="h-3.5 w-3.5" />
-        {ru ? "Макс. участников" : "Max members"}: <span class="font-semibold">{maxMembers}</span>
+        {t("clans.maxMembers")}: <span class="font-semibold">{maxMembers}</span>
       </span>
     </div>
   </div>
@@ -67,8 +56,8 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
           <Icon name="lucide:trophy" class="h-5 w-5" />
         </div>
         <div class="min-w-0">
-          <p class="font-bold text-zinc-800">{ru ? "Уровни клана" : "Clan Levels"}</p>
-          <p class="mt-0.5 text-xs text-zinc-500">{ru ? "Опыт и лимит участников" : "Exp and member cap"}</p>
+          <p class="font-bold text-zinc-800">{t("clans.cardLevelsTitle")}</p>
+          <p class="mt-0.5 text-xs text-zinc-500">{t("clans.cardLevelsDesc")}</p>
         </div>
         <Icon name="lucide:arrow-right" class="ml-auto h-4 w-4 text-zinc-300 group-hover:text-amber-500" />
       </div>
@@ -80,8 +69,8 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
           <Icon name="lucide:gift" class="h-5 w-5" />
         </div>
         <div class="min-w-0">
-          <p class="font-bold text-zinc-800">{ru ? "Награды клана" : "Clan Rewards"}</p>
-          <p class="mt-0.5 text-xs text-zinc-500">{ru ? "Интервалы и состав награды" : "Intervals and rewards"}</p>
+          <p class="font-bold text-zinc-800">{t("clans.cardRewardsTitle")}</p>
+          <p class="mt-0.5 text-xs text-zinc-500">{t("clans.cardRewardsDesc")}</p>
         </div>
         <Icon name="lucide:arrow-right" class="ml-auto h-4 w-4 text-zinc-300 group-hover:text-emerald-600" />
       </div>
@@ -93,8 +82,8 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
           <Icon name="lucide:users" class="h-5 w-5" />
         </div>
         <div class="min-w-0">
-          <p class="font-bold text-zinc-800">{ru ? "Ранги" : "Ranks"}</p>
-          <p class="mt-0.5 text-xs text-zinc-500">{ru ? "Пороги очков клана" : "Clan points thresholds"}</p>
+          <p class="font-bold text-zinc-800">{t("clans.cardRanksTitle")}</p>
+          <p class="mt-0.5 text-xs text-zinc-500">{t("clans.cardRanksDesc")}</p>
         </div>
         <Icon name="lucide:arrow-right" class="ml-auto h-4 w-4 text-zinc-300 group-hover:text-sky-600" />
       </div>
@@ -106,8 +95,8 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
           <Icon name="lucide:trophy" class="h-5 w-5" />
         </div>
         <div class="min-w-0">
-          <p class="font-bold text-zinc-800">{ru ? "Клановая война" : "Clan War"}</p>
-          <p class="mt-0.5 text-xs text-zinc-500">{ru ? "Правила, награды, потери" : "Rules, rewards, losses"}</p>
+          <p class="font-bold text-zinc-800">{t("clanWar.title")}</p>
+          <p class="mt-0.5 text-xs text-zinc-500">{t("clans.cardWarDesc")}</p>
         </div>
         <Icon name="lucide:arrow-right" class="ml-auto h-4 w-4 text-zinc-300 group-hover:text-rose-600" />
       </div>
@@ -116,9 +105,9 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
 
   <section class="rounded-xl border border-zinc-200 bg-white">
     <div class="flex items-center justify-between border-b border-zinc-100 px-5 py-3">
-      <h2 class="text-lg font-bold text-slate-800">{ru ? "Клановые награды (быстро)" : "Clan rewards (quick view)"}</h2>
+      <h2 class="text-lg font-bold text-slate-800">{t("clans.quickRewardsTitle")}</h2>
       <a href={localizedPath("/clans/rewards", lang)} class="text-sm font-semibold text-amber-700 hover:text-amber-600">
-        {ru ? "Открыть таблицу" : "Open table"}
+        {t("clans.openTable")}
       </a>
     </div>
     <div class="divide-y divide-zinc-50">
@@ -130,7 +119,7 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
           <div class="min-w-0 flex-1">
             <p class="truncate text-sm font-semibold text-zinc-800">{fmtRewardTitle(r.title, r.hours)}</p>
             <p class="mt-0.5 text-xs text-zinc-500">
-              {ru ? "Доступно с уровня" : "Available from level"} <span class="font-semibold">Lv {r.level}</span>
+              {t("clans.availableFromLevel")} <span class="font-semibold">Lv {r.level}</span>
             </p>
           </div>
           <RewardBits food={r.food} wood={r.wood} stone={r.stone} gem={r.gem} />
@@ -142,18 +131,18 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
   <section class="grid gap-4 lg:grid-cols-2">
     <div class="rounded-xl border border-zinc-200 bg-white">
       <div class="border-b border-zinc-100 px-5 py-3">
-        <h2 class="text-lg font-bold text-slate-800">{ru ? "Уровни клана" : "Clan levels"}</h2>
+        <h2 class="text-lg font-bold text-slate-800">{t("clans.levelsSectionTitle")}</h2>
         <p class="mt-1 text-xs text-zinc-500">
-          {ru ? "Опыт — порог суммарных очков/вклада для достижения уровня." : "Exp is the total threshold to reach the level."}
+          {t("clans.levelsSectionDesc")}
         </p>
       </div>
       <div class="overflow-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-              <th class="px-4 py-2">{ru ? "Уровень" : "Level"}</th>
-              <th class="px-4 py-2">{ru ? "Опыт" : "Exp"}</th>
-              <th class="px-4 py-2">{ru ? "Участников" : "Members"}</th>
+              <th class="px-4 py-2">{t("clans.tableLevel")}</th>
+              <th class="px-4 py-2">{t("clans.tableExp")}</th>
+              <th class="px-4 py-2">{t("clans.tableMembers")}</th>
             </tr>
           </thead>
           <tbody>
@@ -171,17 +160,17 @@ const maxMembers = Math.max(0, ...levels.map((x) => x.members));
 
     <div class="rounded-xl border border-zinc-200 bg-white">
       <div class="border-b border-zinc-100 px-5 py-3">
-        <h2 class="text-lg font-bold text-slate-800">{ru ? "Ранги (по очкам клана)" : "Ranks (by clan points)"}</h2>
+        <h2 class="text-lg font-bold text-slate-800">{t("clans.ranksSectionTitle")}</h2>
         <p class="mt-1 text-xs text-zinc-500">
-          {ru ? "Порог — минимальные очки клана для ранга." : "Threshold is the minimum clan points for the rank."}
+          {t("clans.ranksSectionDesc")}
         </p>
       </div>
       <div class="overflow-auto">
         <table class="w-full text-sm">
           <thead>
             <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
-              <th class="px-4 py-2">{ru ? "Ранг" : "Rank"}</th>
-              <th class="px-4 py-2">{ru ? "Порог" : "Threshold"}</th>
+              <th class="px-4 py-2">{t("clans.tableRank")}</th>
+              <th class="px-4 py-2">{t("clans.tableThreshold")}</th>
             </tr>
           </thead>
           <tbody>
