@@ -1,0 +1,75 @@
+---
+import WikiHeader from "@/components/wiki/WikiHeader.astro";
+import WikiFooter from "@/components/wiki/WikiFooter.astro";
+import WikiSidebar from "@/components/wiki/WikiSidebar.astro";
+import { rootMetadataTitle, SITE_METADATA_DESCRIPTION } from "@/lib/site-brand";
+import { LOCALES, DEFAULT_LOCALE, localizedPath } from "@/lib/i18n";
+import "@/styles/global.css";
+
+interface Props {
+  lang: string;
+  title?: string;
+  description?: string;
+}
+
+const { lang, title, description } = Astro.props;
+
+const metaTitle = title ?? rootMetadataTitle();
+const metaDescription = description ?? SITE_METADATA_DESCRIPTION;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, "") ?? "";
+
+const pathWithoutLocale = (() => {
+  const p = Astro.url.pathname;
+  if (p === "/ru" || p.startsWith("/ru/")) return p.slice(3) || "/";
+  return p || "/";
+})();
+
+const canonicalPath = localizedPath(pathWithoutLocale, lang);
+const canonicalUrl = `${siteUrl}${canonicalPath === "/" ? "" : canonicalPath}`;
+const alternates = LOCALES.map((loc) => ({
+  hreflang: loc === "en" ? "en-US" : "ru-RU",
+  href: `${siteUrl}${localizedPath(pathWithoutLocale, loc)}`,
+}));
+---
+
+<!doctype html>
+<html lang={lang} class="h-full antialiased">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{metaTitle}</title>
+    <meta name="description" content={metaDescription} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+
+    <link rel="icon" href="/favicon.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="min-h-dvh flex flex-col bg-background text-foreground">
+    <div class="flex min-h-full min-h-dvh flex-1 flex-col">
+      <WikiHeader lang={lang} />
+
+      <div class="mx-auto flex w-full max-w-7xl flex-1 gap-4 px-3 py-4 sm:px-4 sm:py-6 lg:gap-6">
+        <main class="min-w-0 flex-1">
+          <slot />
+        </main>
+
+        <div class="hidden w-72 shrink-0 lg:block">
+          <div class="sticky top-4">
+            <WikiSidebar lang={lang} />
+          </div>
+        </div>
+      </div>
+
+      <WikiFooter lang={lang} />
+    </div>
+  </body>
+</html>

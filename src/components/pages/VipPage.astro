@@ -1,0 +1,157 @@
+---
+import { Icon } from "astro-icon/components";
+import { getVipPassLevels, getVipTimePacks, getVipWiki } from "@/lib/data";
+import { extractVipNewPerms, extractVipNewUnlocks, formatCost } from "@/lib/format";
+import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
+import WikiBreadcrumbs from "@/components/wiki/WikiBreadcrumbs.astro";
+import { localizedPath, useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const ru = lang === "ru";
+const t = useT(lang);
+const wiki = getVipWiki();
+const allLevels = getVipPassLevels();
+const levels = allLevels.filter((l) => l.lvl > 0);
+const maxLevel = Math.max(...levels.map((l) => l.lvl));
+const packs = getVipTimePacks();
+
+function fmtNumber(n: number): string {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+
+function durationLabel(days: number): string {
+  if (days === 1) return t("vip.duration24h");
+  if (days === 7) return t("vip.duration7d");
+  if (days === 30) return t("vip.duration30d");
+  return `${days}${t("vip.durationSuffix")}`;
+}
+---
+
+<div class="space-y-6">
+  <WikiBreadcrumbs
+    crumbs={[
+      { href: localizedPath("/", lang), label: t("common.home") },
+      { label: "VIP" },
+    ]}
+  />
+
+  <div class="wiki-hero">
+    <h1 class="flex items-center gap-2 text-2xl font-bold">
+      <Icon name="lucide:crown" class="h-6 w-6 text-[var(--game-orange)]" />
+      VIP
+    </h1>
+    <p class="mt-2 text-sm leading-relaxed opacity-90">{ru ? wiki.intro_ru : wiki.intro_en}</p>
+    <ul class="mt-4 space-y-1.5 text-sm opacity-90">
+      {(ru ? wiki.bullets_ru : wiki.bullets_en).map((b) => (
+        <li class="flex gap-2">
+          <span class="text-[var(--game-orange)]">•</span>
+          <span>{b}</span>
+        </li>
+      ))}
+    </ul>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="wiki-chip wiki-chip-accent">
+        <Icon name="lucide:crown" class="h-3.5 w-3.5" />
+        {t("vip.maxLevelLabel")}: {maxLevel}
+      </span>
+      <a href={localizedPath("/vip/streak", lang)} class="wiki-chip">
+        <Icon name="lucide:flame" class="h-3.5 w-3.5 text-[var(--game-atk)]" />
+        {t("vip.chestStreakLabel")}
+      </a>
+    </div>
+  </div>
+
+  <section class="wiki-panel">
+    <div class="border-b border-[var(--game-frame)] px-5 py-4">
+      <h2 class="flex items-center gap-2 text-lg font-bold">
+        <Icon name="lucide:clock" class="h-5 w-5 text-[var(--game-green)]" />
+        {t("vip.vipTimeTitle")}
+      </h2>
+      <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
+        {t("vip.vipTimeDesc")}
+      </p>
+    </div>
+
+    <div class="grid gap-4 p-5 sm:grid-cols-3">
+      {packs.map((p) => (
+        <div class="rounded-xl border border-[var(--game-frame)] bg-[var(--game-bg)] p-4 text-center">
+          <p class="text-lg font-bold">{durationLabel(p.days)}</p>
+          <p class="mt-2 inline-flex items-center justify-center gap-1.5 text-sm font-semibold text-[var(--game-orange)]">
+            <ResourceIcon res="gem" class="h-4 w-4" />
+            {fmtNumber(p.gem_cost)}
+          </p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="wiki-panel">
+    <div class="border-b border-[var(--game-frame)] px-5 py-4">
+      <h2 class="flex items-center gap-2 text-lg font-bold">
+        <Icon name="lucide:trophy" class="h-5 w-5 text-[var(--game-orange)]" />
+        {t("vip.vipLevelsTitle")}
+      </h2>
+      <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
+        {t("vip.vipLevelsDesc")}
+      </p>
+    </div>
+
+    <div class="overflow-auto">
+      <table class="w-full min-w-[800px] text-sm">
+        <thead>
+          <tr class="border-b border-[var(--game-frame)] bg-[var(--game-bg)] text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <th class="px-4 py-2">{t("vip.tableLevel")}</th>
+            <th class="px-4 py-2">{t("vip.tableVipPoints")}</th>
+            <th class="px-4 py-2">{t("vip.tableNewPerks")}</th>
+            <th class="px-4 py-2">{t("vip.tableUnlocks")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {levels.map((l, i) => {
+            const prev = allLevels.find((x) => x.lvl === l.lvl - 1) ?? null;
+            const unlocks = extractVipNewUnlocks(l, prev, lang);
+            const perms = extractVipNewPerms(l, prev, lang);
+            const skinNew =
+              l.skinKey && l.skinKey !== (prev as { skinKey?: string } | null)?.skinKey
+                ? [t("vip.vipCitySkinLabel")]
+                : [];
+            const allPerms = [...perms, ...skinNew];
+
+            return (
+              <tr class={`border-b border-[var(--game-frame)]/50 align-top ${i % 2 === 1 ? "bg-[var(--game-bg)]/40" : ""}`}>
+                <td class="px-4 py-3 font-semibold">{l.title}</td>
+                <td class="px-4 py-3">{formatCost(l.gem_cost)}</td>
+                <td class="px-4 py-3">
+                  <div class="flex flex-wrap gap-1.5">
+                    {unlocks.length === 0 ? (
+                      <span class="text-muted-foreground">—</span>
+                    ) : (
+                      unlocks.map((u) => (
+                        <span class={u.kind === "new" ? "wiki-unlock-new" : "wiki-unlock-up"}>
+                          {u.kind === "new" ? "+" : "↑"} {u.label}
+                          {u.kind === "upgrade" && u.prevValue !== undefined ? `: ${u.prevValue} → ${u.value}` : `: ${u.value}`}
+                        </span>
+                      ))
+                    )}
+                  </div>
+                </td>
+                <td class="px-4 py-3 text-xs">
+                  {allPerms.length === 0 ? (
+                    <span class="text-muted-foreground">—</span>
+                  ) : (
+                    <div class="flex flex-wrap gap-1">
+                      {allPerms.map((p) => (
+                        <span class="wiki-unlock-new">+ {p}</span>
+                      ))}
+                    </div>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

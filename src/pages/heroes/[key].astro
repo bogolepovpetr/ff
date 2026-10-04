@@ -1,0 +1,16 @@
+---
+import { getLeads } from "@/lib/data";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HeroDetailPage from "@/components/pages/HeroDetailPage.astro";
+
+export function getStaticPaths() {
+  return getLeads().map((h) => ({ params: { key: h.key }, props: { title: h.title } }));
+}
+
+const { key } = Astro.params as { key: string };
+const { title } = Astro.props as { title: string };
+---
+
+<BaseLayout lang="en" title={title}>
+  <HeroDetailPage lang="en" heroKey={key} />
+</BaseLayout>

@@ -1,0 +1,65 @@
+---
+import { Icon } from "astro-icon/components";
+import { getClanRanks } from "@/lib/data";
+import { localizedPath, useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const t = useT(lang);
+const ranks = getClanRanks();
+
+function fmtNumber(n: number): string {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+
+function rankTitle(title: string): string {
+  return t(`clanRanks.rank.${title}`, title);
+}
+---
+
+<div class="space-y-6">
+  <nav class="flex items-center gap-1 text-sm text-zinc-500">
+    <a href={localizedPath("/clans", lang)} class="hover:text-amber-700 hover:underline">{t("clanRanks.breadcrumbClans")}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <span class="font-medium text-zinc-700">{t("clanRanks.breadcrumbRanks")}</span>
+  </nav>
+
+  <section class="rounded-xl border border-zinc-200 bg-white">
+    <div class="border-b border-zinc-100 px-5 py-4">
+      <h1 class="flex items-center gap-2 text-2xl font-bold text-slate-900">
+        <Icon name="lucide:users" class="h-6 w-6 text-sky-600" />
+        {t("clanRanks.title")}
+      </h1>
+      <p class="mt-2 max-w-3xl text-sm text-zinc-600">
+        {t("clanRanks.heroDesc")}
+      </p>
+    </div>
+
+    <div class="overflow-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            <th class="px-4 py-2">{t("clanRanks.tableRank")}</th>
+            <th class="px-4 py-2">{t("clanRanks.tableThreshold")}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ranks.map((r, i) => {
+            const isSpecial = r.isOwner || r.isDeputy;
+            return (
+              <tr class={`border-b border-zinc-100 ${i % 2 === 1 ? "bg-zinc-50/50" : ""}`}>
+                <td class="px-4 py-2 font-semibold text-zinc-800">
+                  <span class="inline-flex items-center gap-2">
+                    {isSpecial ? <Icon name="lucide:crown" class="h-4 w-4 text-amber-600" /> : null}
+                    {rankTitle(r.title)}
+                  </span>
+                </td>
+                <td class="px-4 py-2 text-zinc-700">{isSpecial ? "—" : fmtNumber(r.points)}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

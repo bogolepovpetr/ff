@@ -1,0 +1,19 @@
+[
+    {"key": "s1_l1_free",       "season": "1", "level":  1, "track": "free",    "slot": 1, "rewardType": "res",      "rewardKey": "wood",          "amount":   500, "rarity": "common",    "title": ""},
+    {"key": "s1_l1_prem_1",     "season": "1", "level":  1, "track": "premium", "slot": 1, "rewardType": "res",      "rewardKey": "stone",         "amount":   500, "rarity": "common",    "title": ""},
+
+    {"key": "s1_l5_free",       "season": "1", "level":  5, "track": "free",    "slot": 1, "rewardType": "res",      "rewardKey": "food",          "amount":  5000, "rarity": "rare",      "title": ""},
+    {"key": "s1_l5_prem_1",     "season": "1", "level":  5, "track": "premium", "slot": 1, "rewardType": "box",      "rewardKey": "box_premium",   "amount":     1, "rarity": "epic",      "title": ""},
+    {"key": "s1_l5_prem_2",     "season": "1", "level":  5, "track": "premium", "slot": 2, "rewardType": "res",      "rewardKey": "gem",           "amount":    80, "rarity": "rare",      "title": ""},
+
+    {"key": "s1_l10_free",      "season": "1", "level": 10, "track": "free",    "slot": 1, "rewardType": "res",      "rewardKey": "wood",          "amount": 10000, "rarity": "common",    "title": ""},
+    {"key": "s1_l10_prem_1",    "season": "1", "level": 10, "track": "premium", "slot": 1, "rewardType": "res",      "rewardKey": "gem",           "amount":   200, "rarity": "epic",      "title": ""},
+    {"key": "s1_l10_prem_2",    "season": "1", "level": 10, "track": "premium", "slot": 2, "rewardType": "box",      "rewardKey": "box_premium",   "amount":     1, "rarity": "epic",      "title": ""},
+
+    {"key": "s1_l30_prem_1",    "season": "1", "level": 30, "track": "premium", "slot": 1, "rewardType": "frame",    "rewardKey": "frame_dawn",    "amount":     1, "rarity": "legendary", "title": "Profile frame: Dawn"},
+    {"key": "s1_l30_prem_2",    "season": "1", "level": 30, "track": "premium", "slot": 2, "rewardType": "res",      "rewardKey": "gem",           "amount":   200, "rarity": "epic",      "title": ""},
+
+    {"key": "s1_l50_free",      "season": "1", "level": 50, "track": "free",    "slot": 1, "rewardType": "box",      "rewardKey": "box_endless",   "amount":     1, "rarity": "epic",      "title": "Endless Chest"},
+    {"key": "s1_l50_prem_1",    "season": "1", "level": 50, "track": "premium", "slot": 1, "rewardType": "building", "rewardKey": "archer_totem",  "amount":     1, "rarity": "legendary", "title": "Archer Totem (+50K archery training)"},
+    {"key": "s1_l50_prem_2",    "season": "1", "level": 50, "track": "premium", "slot": 2, "rewardType": "title",    "rewardKey": "title_bladesworn", "amount":  1, "rarity": "legendary", "title": "Title: Bladesworn"}
+]

@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+import { useT } from "@/lib/i18n";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+const PLAY_URL = "https://play.fomofighters.xyz";
+
+const SOCIALS = [
+  {
+    name: "Telegram",
+    desc: "Official channel",
+    href: "https://t.me/fomo_fighters",
+    bg: "bg-[#0088cc]",
+    hover: "hover:bg-[#006699]",
+  },
+];
+---
+
+<aside class="space-y-3">
+  <a
+    href={PLAY_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="group flex items-center justify-center gap-2 rounded-2xl bg-[var(--game-atk)] py-3.5 text-base font-extrabold uppercase tracking-wide text-white shadow-[0_4px_0_#b04a30] transition-all hover:-translate-y-0.5 hover:bg-[#ff6034] hover:shadow-[0_6px_0_#b04a30] active:translate-y-0.5 active:shadow-none"
+  >
+    <Icon name="lucide:play" class="h-4 w-4 fill-white" />
+    {t("wikiSidebar.play")}
+  </a>
+
+  {SOCIALS.map((s) => (
+    <a
+      href={s.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      class={`group block rounded-lg ${s.bg} ${s.hover} p-4 text-white transition-colors`}
+    >
+      <div class="flex items-center justify-between">
+        <span class="text-base font-bold">{s.name}</span>
+        <Icon name="lucide:external-link" class="h-4 w-4 opacity-60 group-hover:opacity-100 transition-opacity" />
+      </div>
+      <p class="mt-1 text-sm text-white/80">{s.desc}</p>
+    </a>
+  ))}
+</aside>

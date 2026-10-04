@@ -1,0 +1,28 @@
+---
+import { Icon } from "astro-icon/components";
+import { useT } from "@/lib/i18n";
+
+interface Props {
+  gameVersion: string;
+  dataUpdated: string;
+  lang: string;
+}
+
+const { gameVersion, dataUpdated, lang } = Astro.props;
+const t = useT(lang);
+
+const dateStr = new Date(`${dataUpdated}T12:00:00Z`).toLocaleDateString(
+  lang === "ru" ? "ru-RU" : "en-US",
+  { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" },
+);
+---
+
+<div class="flex items-center gap-2 rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs text-emerald-700">
+  <Icon name="lucide:refresh-cw" class="h-3 w-3" />
+  <span>
+    {t("patchBadge.upToDateFor")}{" "}
+    <span class="font-semibold">v{gameVersion}</span>
+    {" — "}
+    {t("patchBadge.updatedLabel")} {dateStr}
+  </span>
+</div>

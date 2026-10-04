@@ -1,0 +1,206 @@
+---
+import { Icon } from "astro-icon/components";
+import { localizedPath, useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const t = useT(lang);
+---
+
+<div class="space-y-6">
+  <nav class="flex items-center gap-1 text-sm text-zinc-500">
+    <a href={localizedPath("/", lang)} class="hover:text-amber-700 hover:underline">{t("common.home")}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <a href={localizedPath("/clans", lang)} class="hover:text-amber-700 hover:underline">{t("clanWar.breadcrumbClans")}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <span class="font-medium text-zinc-700">{t("clanWar.title")}</span>
+  </nav>
+
+  <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-rose-50 p-6">
+    <h1 class="text-2xl font-bold text-slate-900">{t("clanWar.title")}</h1>
+    <p class="mt-2 text-sm leading-relaxed text-zinc-700">
+      {t("clanWar.heroDesc")}
+    </p>
+    <div class="mt-4 flex flex-wrap gap-2 text-xs">
+      <a
+        href={localizedPath("/war", lang)}
+        class="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 font-semibold text-emerald-800 hover:bg-emerald-100"
+      >
+        <Icon name="lucide:coins" class="h-3.5 w-3.5" />
+        {t("clanWar.warBadge")}
+        <Icon name="lucide:arrow-right" class="h-3.5 w-3.5" />
+      </a>
+    </div>
+  </div>
+
+  <section class="rounded-xl border border-rose-200 bg-rose-50">
+    <div class="flex items-center gap-2 border-b border-rose-100 px-5 py-3">
+      <Icon name="lucide:ban" class="h-4 w-4 text-rose-700" />
+      <h2 class="text-lg font-bold text-rose-900">{t("clanWar.accessTitle")}</h2>
+    </div>
+    <div class="px-5 py-4 text-sm text-rose-900/90">
+      <ul class="list-disc space-y-2 pl-5">
+        <li>{t("clanWar.accessBullet1")}</li>
+        <li>{t("clanWar.accessBullet2")}</li>
+        <li>{t("clanWar.accessBullet3")}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid gap-3 lg:grid-cols-3">
+    <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-5">
+      <h2 class="text-base font-bold text-emerald-900">{t("clanWar.winTitle")}</h2>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-emerald-900/90">
+        <li>{t("clanWar.winBullet1")}</li>
+        <li>{t("clanWar.winBullet2")}</li>
+        <li>{t("clanWar.winBullet3")}</li>
+      </ul>
+    </div>
+    <div class="rounded-xl border border-amber-200 bg-amber-50 p-5">
+      <h2 class="text-base font-bold text-amber-900">{t("clanWar.lossTitle")}</h2>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-amber-900/90">
+        <li>{t("clanWar.lossBullet1")}</li>
+        <li>{t("clanWar.lossBullet2")}</li>
+        <li>{t("clanWar.lossBullet3")}</li>
+      </ul>
+    </div>
+    <div class="rounded-xl border border-rose-200 bg-rose-50 p-5">
+      <h2 class="text-base font-bold text-rose-900">{t("clanWar.surrenderTitle")}</h2>
+      <ul class="mt-2 list-disc space-y-1.5 pl-5 text-sm text-rose-900/90">
+        <li>{t("clanWar.surrenderBullet1")}</li>
+        <li>{t("clanWar.surrenderBullet2")}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rounded-xl border border-zinc-200 bg-white">
+    <div class="flex items-center gap-2 border-b border-zinc-100 px-5 py-3">
+      <Icon name="lucide:swords" class="h-4 w-4 text-rose-700" />
+      <h2 class="text-lg font-bold text-slate-800">{t("clanWar.rulesTitle")}</h2>
+    </div>
+    <div class="px-5 py-4 text-sm text-zinc-700">
+      <ul class="list-disc space-y-2 pl-5">
+        <li>{t("clanWar.rule1")}</li>
+        <li class="flex items-center gap-2">
+          <Icon name="lucide:timer" class="h-4 w-4 text-zinc-500" />
+          {t("clanWar.rule2")}
+        </li>
+        <li>{t("clanWar.rule3")}</li>
+        <li class="flex items-center gap-2">
+          <Icon name="lucide:users" class="h-4 w-4 text-zinc-500" />
+          {t("clanWar.rule4")}
+        </li>
+        <li>{t("clanWar.rule5")}</li>
+        <li>{t("clanWar.rule6")}</li>
+        <li>{t("clanWar.rule7")}</li>
+        <li>{t("clanWar.rule8")}</li>
+        <li>{t("clanWar.rule9")}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="grid gap-4 lg:grid-cols-2">
+    <div class="rounded-xl border border-zinc-200 bg-white">
+      <div class="flex items-center gap-2 border-b border-zinc-100 px-5 py-3">
+        <Icon name="lucide:trophy" class="h-4 w-4 text-amber-700" />
+        <h2 class="text-lg font-bold text-slate-800">{t("clanWar.rewardsTitle")}</h2>
+      </div>
+      <div class="px-5 py-4 text-sm text-zinc-700">
+        <p class="font-semibold text-zinc-800">{t("clanWar.winningSide")}</p>
+        <ul class="mt-2 list-disc space-y-2 pl-5">
+          <li>{t("clanWar.winningBullet1")}</li>
+          <li>{t("clanWar.winningBullet2")}</li>
+        </ul>
+
+        <p class="mt-4 font-semibold text-zinc-800">{t("clanWar.losingSide")}</p>
+        <ul class="mt-2 list-disc space-y-2 pl-5">
+          <li>{t("clanWar.losingBullet1")}</li>
+          <li>{t("clanWar.losingBullet2")}</li>
+          <li class="flex items-start gap-2">
+            <Icon name="lucide:shield-alert" class="mt-0.5 h-4 w-4 text-rose-700" />
+            <span>
+              {t("clanWar.losingBullet3")}
+            </span>
+          </li>
+          <li>{t("clanWar.losingBullet4")}</li>
+        </ul>
+
+        <p class="mt-4 font-semibold text-zinc-800">{t("clanWar.moreRewards")}</p>
+        <ul class="mt-2 list-disc space-y-2 pl-5">
+          <li>{t("clanWar.moreRewardsBullet1")}</li>
+          <li>{t("clanWar.moreRewardsBullet2")}</li>
+          <li>{t("clanWar.moreRewardsBullet3")}</li>
+          <li>{t("clanWar.moreRewardsBullet4")}</li>
+          <li>{t("clanWar.moreRewardsBullet5")}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-zinc-200 bg-white">
+      <div class="flex items-center gap-2 border-b border-zinc-100 px-5 py-3">
+        <Icon name="lucide:percent" class="h-4 w-4 text-sky-700" />
+        <h2 class="text-lg font-bold text-slate-800">{t("clanWar.lossCalcTitle")}</h2>
+      </div>
+      <div class="px-5 py-4 text-sm text-zinc-700">
+        <ul class="list-disc space-y-2 pl-5">
+          <li>{t("clanWar.lossCalcBullet1")}</li>
+          <li>
+            {t("clanWar.formulaLabel")}{" "}
+            <span class="font-semibold text-zinc-900">
+              {t("clanWar.formulaText")}
+            </span>
+          </li>
+        </ul>
+
+        <div class="mt-4 overflow-auto rounded-lg border border-zinc-200">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                <th class="px-4 py-2">{t("clanWar.tableRatio")}</th>
+                <th class="px-4 py-2">{t("clanWar.tableStrongerLosses")}</th>
+                <th class="px-4 py-2">{t("clanWar.tableWeakerLosses")}</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-100">
+              <tr>
+                <td class="px-4 py-2 font-semibold text-zinc-800">50 / 50</td>
+                <td class="px-4 py-2 text-zinc-700">10%</td>
+                <td class="px-4 py-2 text-zinc-700">10%</td>
+              </tr>
+              <tr class="bg-zinc-50/40">
+                <td class="px-4 py-2 font-semibold text-zinc-800">60 / 40</td>
+                <td class="px-4 py-2 text-zinc-700">8%</td>
+                <td class="px-4 py-2 text-zinc-700">12%</td>
+              </tr>
+              <tr>
+                <td class="px-4 py-2 font-semibold text-zinc-800">80 / 20</td>
+                <td class="px-4 py-2 text-zinc-700">4%</td>
+                <td class="px-4 py-2 text-zinc-700">16%</td>
+              </tr>
+              <tr class="bg-zinc-50/40">
+                <td class="px-4 py-2 font-semibold text-zinc-800">5x+</td>
+                <td class="px-4 py-2 text-zinc-700">{t("clanWar.winnerPercent")}</td>
+                <td class="px-4 py-2 text-zinc-700">{t("clanWar.loserPercent")}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rounded-xl border border-zinc-200 bg-white">
+    <div class="border-b border-zinc-100 px-5 py-3">
+      <h2 class="text-lg font-bold text-slate-800">{t("clanWar.uiTitle")}</h2>
+    </div>
+    <div class="px-5 py-4 text-sm text-zinc-700">
+      <ul class="list-disc space-y-2 pl-5">
+        <li>{t("clanWar.uiBullet1")}</li>
+        <li>{t("clanWar.uiBullet2")}</li>
+        <li>{t("clanWar.uiBullet3")}</li>
+        <li>{t("clanWar.uiBullet4")}</li>
+        <li>{t("clanWar.uiBullet5")}</li>
+      </ul>
+    </div>
+  </section>
+</div>

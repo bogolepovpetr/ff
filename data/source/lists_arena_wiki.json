@@ -1,0 +1,22 @@
+{
+  "title_ru": "Арена PvP",
+  "title_en": "Arena PvP",
+  "intro_ru": "Сезонные PvP-турниры: зарабатывайте очки убийств (Kill Points) в боях и соревнуйтесь в рейтинге своего этажа (floor).",
+  "intro_en": "Seasonal PvP tournaments: earn Kill Points in battles and compete on the leaderboard for your floor.",
+  "bullets_ru": [
+    "Kill Points начисляются за убийства войск противника в PvP-боях (разведка очков не даёт).",
+    "Этаж (floor) определяется диапазоном уровня героя на момент первого начисления очков в турнире — игроки соревнуются с соперниками своего диапазона, смена уровня героя не переводит в другой дивизион до конца турнира.",
+    "Лиги: Newbie, Bronze, Silver, Gold, Platinum, Diamond, Emerald.",
+    "Для получения наград нужно набрать минимум Kill Points (requiredKillPoints) своего этажа и попасть в топ-100 дивизиона.",
+    "Награды мест суммируются: 1-е место получает Top 1 + Top 5 + Top 10 + Top 100; 2–5 места — Top 5 + Top 10 + Top 100; 6–10 — Top 10 + Top 100; 11–100 — только Top 100.",
+    "Повторные бои с одним и тем же противником урезаются: 1-й бой — 100% очков, 2-й — 75%, 3-й — 50%, 4-й — 25%, 5-й и далее — 0%."
+  ],
+  "bullets_en": [
+    "Kill Points are earned for killing enemy troops in PvP battles (scouting grants no points).",
+    "Your floor is the hero level range locked in at your first point gain in the tournament — you compete with players in the same range, and a later hero level change does not move you to another division until the tournament ends.",
+    "Leagues: Newbie, Bronze, Silver, Gold, Platinum, Diamond, Emerald.",
+    "To receive rewards you must reach the minimum Kill Points (requiredKillPoints) for your floor and rank in the division's top 100.",
+    "Rank rewards stack: 1st place gets Top 1 + Top 5 + Top 10 + Top 100; places 2-5 get Top 5 + Top 10 + Top 100; 6-10 get Top 10 + Top 100; 11-100 get Top 100 only.",
+    "Repeat fights against the same opponent are curved: 1st fight 100% of points, 2nd 75%, 3rd 50%, 4th 25%, 5th+ 0%."
+  ]
+}

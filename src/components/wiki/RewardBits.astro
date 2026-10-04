@@ -1,0 +1,23 @@
+---
+import ResourceIcon from "./ResourceIcon.astro";
+
+interface Props {
+  food?: number;
+  wood?: number;
+  stone?: number;
+  gem?: number;
+}
+
+const { food, wood, stone, gem } = Astro.props;
+
+function fmtNumber(n: number): string {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+---
+
+<div class="flex flex-wrap items-center gap-2 text-xs text-zinc-600">
+  {food ? <span class="inline-flex items-center gap-1"><ResourceIcon res="food" class="h-3.5 w-3.5" />{fmtNumber(food)}</span> : null}
+  {wood ? <span class="inline-flex items-center gap-1"><ResourceIcon res="wood" class="h-3.5 w-3.5" />{fmtNumber(wood)}</span> : null}
+  {stone ? <span class="inline-flex items-center gap-1"><ResourceIcon res="stone" class="h-3.5 w-3.5" />{fmtNumber(stone)}</span> : null}
+  {gem ? <span class="inline-flex items-center gap-1"><ResourceIcon res="gem" class="h-3.5 w-3.5" />{fmtNumber(gem)}</span> : null}
+</div>

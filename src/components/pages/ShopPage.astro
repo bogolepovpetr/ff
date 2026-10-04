@@ -1,0 +1,83 @@
+---
+import { Icon } from "astro-icon/components";
+import { getActiveShopItems } from "@/lib/data";
+import { useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const t = useT(lang);
+
+const CATEGORY_META: Record<string, { labelKey: string; icon: string; accent: string; bg: string; border: string }> = {
+  prem: { labelKey: "shop.categoryPremium", icon: "lucide:crown", accent: "text-amber-700", bg: "bg-amber-50", border: "border-amber-200" },
+  defence: { labelKey: "shop.categoryProtection", icon: "lucide:shield", accent: "text-blue-700", bg: "bg-blue-50", border: "border-blue-200" },
+  resource: { labelKey: "shop.categoryResourceBoosts", icon: "lucide:wheat", accent: "text-emerald-700", bg: "bg-emerald-50", border: "border-emerald-200" },
+  storage: { labelKey: "shop.categoryStorageBoosts", icon: "lucide:warehouse", accent: "text-violet-700", bg: "bg-violet-50", border: "border-violet-200" },
+  friends: { labelKey: "shop.categoryVirtualFriends", icon: "lucide:users", accent: "text-sky-700", bg: "bg-sky-50", border: "border-sky-200" },
+  energy: { labelKey: "shop.categoryEnergy", icon: "lucide:zap", accent: "text-orange-700", bg: "bg-orange-50", border: "border-orange-200" },
+};
+
+const CATEGORY_ORDER = ["prem", "defence", "resource", "storage", "energy", "friends"];
+
+function formatDuration(hours?: number): string {
+  if (!hours) return "";
+  if (hours < 24) return `${hours}${t("shop.hourSuffix")}`;
+  const days = Math.round(hours / 24);
+  return `${days}${t("shop.daySuffix")}`;
+}
+
+const items = getActiveShopItems();
+const grouped = new Map<string, typeof items>();
+for (const item of items) {
+  const cat = item.category;
+  if (!grouped.has(cat)) grouped.set(cat, []);
+  grouped.get(cat)!.push(item);
+}
+const orderedCats = CATEGORY_ORDER.filter((c) => grouped.has(c));
+---
+
+<div class="space-y-8">
+  <div class="rounded-xl border border-amber-200 bg-gradient-to-r from-amber-50 to-yellow-50 p-6">
+    <h1 class="text-2xl font-bold text-slate-900">{t("shop.title")}</h1>
+    <p class="mt-1 text-sm font-medium text-amber-700">{t("shop.subtitle")}</p>
+    <p class="mt-3 max-w-2xl text-sm leading-relaxed text-zinc-600">
+      {t("shop.description")}
+    </p>
+  </div>
+
+  {orderedCats.map((catKey) => {
+    const meta = CATEGORY_META[catKey];
+    const catItems = grouped.get(catKey)!;
+    return (
+      <section>
+        <h2 class={`mb-4 flex items-center gap-2 text-xl font-bold ${meta.accent}`}>
+          <Icon name={meta.icon} class="h-5 w-5" />
+          {t(meta.labelKey)}
+        </h2>
+
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {catItems.map((item) => (
+            <div class={`rounded-xl border ${meta.border} ${meta.bg} p-4 transition-shadow hover:shadow-md`}>
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="text-sm font-bold text-slate-800">{item.title}</h3>
+                {item.hours && item.category !== "energy" ? (
+                  <span class="shrink-0 rounded-full bg-white/70 px-2 py-0.5 text-[10px] font-semibold text-zinc-500">
+                    {formatDuration(item.hours)}
+                  </span>
+                ) : null}
+              </div>
+
+              {item.desc ? (
+                <p class="mt-2 whitespace-pre-line text-xs leading-relaxed text-zinc-600">{item.desc.replace(/\\n/g, "\n").trim()}</p>
+              ) : null}
+
+              <div class="mt-3 flex items-center gap-1.5">
+                <img src="/img/icon/gem.png" alt="gem" class="h-4 w-4" />
+                <span class="text-sm font-bold text-slate-800">{(item.priceGem ?? 0).toLocaleString("en-US")}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  })}
+</div>

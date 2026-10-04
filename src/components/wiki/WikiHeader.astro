@@ -1,0 +1,119 @@
+---
+import { WIKI_DISPLAY_NAME } from "@/lib/site-brand";
+import { localizedPath, useT } from "@/lib/i18n";
+import LangDropdown from "./LangDropdown.vue";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const t = useT(lang);
+const PLAY_URL = "https://play.fomofighters.xyz";
+
+const NAV_ITEMS = [
+  { key: "races", labelKey: "wikiHeader.navRaces" },
+  { key: "buildings", labelKey: "wikiHeader.navBuildings" },
+  { key: "troops", labelKey: "wikiHeader.navTroops" },
+  { key: "skills", labelKey: "wikiHeader.navSkills" },
+  { key: "heroes", labelKey: "wikiHeader.navHeroes" },
+  { key: "war", labelKey: "wikiHeader.navWar" },
+  { key: "clans", labelKey: "wikiHeader.navClans" },
+  { key: "referral", labelKey: "wikiHeader.navReferral" },
+  { key: "vip", labelKey: "wikiHeader.navVip" },
+  { key: "deals", labelKey: "wikiHeader.navDeals" },
+  { key: "arena", labelKey: "wikiHeader.navArena" },
+  { key: "quests", labelKey: "wikiHeader.navQuests" },
+];
+
+const pathname = Astro.url.pathname;
+
+function isActive(key: string): boolean {
+  return pathname.startsWith(localizedPath(`/${key}`, lang));
+}
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-[var(--game-frame)] bg-[#f9f4ed]/95 backdrop-blur-sm supports-[backdrop-filter]:bg-[#f9f4ed]/90"
+>
+  <div class="mx-auto max-w-7xl px-4">
+    <div class="flex items-center justify-between gap-4 py-3">
+      <a
+        href={localizedPath("/", lang)}
+        class="flex shrink-0 items-center gap-2 transition-opacity hover:opacity-85"
+        aria-label={WIKI_DISPLAY_NAME}
+      >
+        <img src="/img/logo.svg" alt="FOMO fighters" class="h-7 w-auto sm:h-8" width="754" height="409" />
+        <span class="hidden font-heading text-sm font-bold uppercase tracking-wide text-[var(--game-main)] sm:inline">
+          Wiki
+        </span>
+      </a>
+
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <LangDropdown lang={lang} client:idle />
+        <a
+          href={PLAY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-block rounded-[14px] bg-[var(--game-atk)] px-4 py-2 text-xs font-bold uppercase tracking-wide text-white shadow-[0_3px_0_#b04a30] transition-all hover:-translate-y-0.5 hover:bg-[#ff6034] hover:shadow-[0_5px_0_#b04a30] active:translate-y-0.5 active:shadow-none sm:px-5 lg:hidden"
+        >
+          {t("wikiHeader.play")}
+        </a>
+      </div>
+    </div>
+
+    <div class="relative">
+      <div data-fade="left" class="pointer-events-none absolute bottom-0 left-0 top-0 z-10 hidden w-6 bg-gradient-to-r from-[#f9f4ed] to-transparent"></div>
+      <div data-fade="right" class="pointer-events-none absolute bottom-0 right-0 top-0 z-10 hidden w-6 bg-gradient-to-l from-[#f9f4ed] to-transparent"></div>
+
+      <div id="wiki-header-scroll" class="-mx-4 flex gap-1 overflow-x-auto px-4 scrollbar-none" role="tablist">
+        {NAV_ITEMS.map((item) => {
+          const active = isActive(item.key);
+          return (
+            <a
+              href={localizedPath(`/${item.key}`, lang)}
+              role="tab"
+              aria-selected={active}
+              data-active={active ? "true" : "false"}
+              class={`group relative shrink-0 whitespace-nowrap px-3.5 py-2.5 text-sm font-bold uppercase tracking-wide transition-colors sm:px-4 ${
+                active ? "text-[var(--game-main)]" : "text-[var(--game-main)]/70 hover:text-[var(--game-main)]"
+              }`}
+            >
+              {t(item.labelKey)}
+              <span
+                class={`absolute inset-x-3.5 bottom-1.5 h-[2px] origin-left bg-[var(--game-atk)] transition-transform duration-200 ease-out sm:inset-x-4 ${
+                  active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              />
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const scrollEl = document.getElementById("wiki-header-scroll");
+  const leftFade = document.querySelector('[data-fade="left"]');
+  const rightFade = document.querySelector('[data-fade="right"]');
+
+  function checkScroll() {
+    if (!scrollEl) return;
+    const canLeft = scrollEl.scrollLeft > 2;
+    const canRight = scrollEl.scrollLeft + scrollEl.clientWidth < scrollEl.scrollWidth - 2;
+    leftFade?.classList.toggle("hidden", !canLeft);
+    rightFade?.classList.toggle("hidden", !canRight);
+  }
+
+  if (scrollEl) {
+    checkScroll();
+    scrollEl.addEventListener("scroll", checkScroll, { passive: true });
+    new ResizeObserver(checkScroll).observe(scrollEl);
+
+    const active = scrollEl.querySelector('[data-active="true"]');
+    if (active) {
+      active.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" });
+    }
+  }
+</script>

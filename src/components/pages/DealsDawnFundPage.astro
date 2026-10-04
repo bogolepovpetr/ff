@@ -1,0 +1,79 @@
+---
+import { Icon } from "astro-icon/components";
+import { getDawnFundPass, getDawnFundTopup } from "@/lib/data";
+import RewardDict from "@/components/wiki/RewardDict.astro";
+import WikiBreadcrumbs from "@/components/wiki/WikiBreadcrumbs.astro";
+import { localizedPath, useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const t = useT(lang);
+const pass = getDawnFundPass();
+const topup = getDawnFundTopup();
+---
+
+<div class="space-y-6">
+  <WikiBreadcrumbs
+    crumbs={[
+      { href: localizedPath("/", lang), label: t("common.home") },
+      { href: localizedPath("/deals", lang), label: "Deals" },
+      { label: t("dealsDawnFund.title") },
+    ]}
+  />
+
+  <div class="wiki-hero">
+    <h1 class="text-2xl font-bold">{pass.title}</h1>
+    <p class="mt-2 text-sm leading-relaxed opacity-90">{pass.description}</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      <span class="wiki-chip wiki-chip-accent">⭐ {topup.priceStar} Stars</span>
+      <span class="wiki-chip">
+        TON {topup.priceTon}
+        {topup.priceTonOld ? <span class="ml-1 line-through opacity-60">{topup.priceTonOld}</span> : null}
+      </span>
+      <span class="wiki-chip">${topup.priceUsdt} USDT</span>
+      <a href={localizedPath("/buildings/castle", lang)} class="wiki-chip hover:border-[var(--game-orange)]">
+        <Icon name="lucide:castle" class="h-3.5 w-3.5" />
+        {t("dealsDawnFund.tiedToCastle")}
+      </a>
+    </div>
+    <p class="mt-3 text-xs opacity-75">
+      {t("dealsDawnFund.activateOnceDesc")}
+    </p>
+  </div>
+
+  <section class="wiki-panel">
+    <div class="border-b border-[var(--game-frame)] px-5 py-4">
+      <h2 class="flex items-center gap-2 text-lg font-bold">
+        <Icon name="lucide:gift" class="h-5 w-5 text-[var(--game-orange)]" />
+        {t("dealsDawnFund.rewardTracksTitle")}
+      </h2>
+      <p class="mt-1 text-xs text-muted-foreground">
+        {t("dealsDawnFund.rewardTracksDesc")}
+      </p>
+    </div>
+
+    <div class="overflow-auto">
+      <table class="w-full min-w-[720px] text-sm">
+        <thead>
+          <tr class="border-b border-[var(--game-frame)] bg-[var(--game-bg)] text-left text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            <th class="px-4 py-2">{t("dealsDawnFund.tableCastle")}</th>
+            <th class="px-4 py-2">Free</th>
+            <th class="px-4 py-2">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pass.levels.map((lv, i) => {
+            const castleLv = lv.requiredBuildings?.castle ?? lv.lvl;
+            return (
+              <tr class={`border-b border-[var(--game-frame)]/50 align-top ${i % 2 === 1 ? "bg-[var(--game-bg)]/40" : ""}`}>
+                <td class="px-4 py-2 font-semibold">Lv {castleLv}</td>
+                <td class="px-4 py-2"><RewardDict dict={lv.free} lang={lang} /></td>
+                <td class="px-4 py-2"><RewardDict dict={lv.premium} lang={lang} /></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>

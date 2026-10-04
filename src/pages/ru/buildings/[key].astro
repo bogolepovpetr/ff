@@ -1,0 +1,16 @@
+---
+import { getBuildings } from "@/lib/data";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BuildingDetailPage from "@/components/pages/BuildingDetailPage.astro";
+
+export function getStaticPaths() {
+  return getBuildings().map((b) => ({ params: { key: b.key }, props: { title: b.title } }));
+}
+
+const { key } = Astro.params as { key: string };
+const { title } = Astro.props as { title: string };
+---
+
+<BaseLayout lang="ru" title={title}>
+  <BuildingDetailPage lang="ru" buildingKey={key} />
+</BaseLayout>

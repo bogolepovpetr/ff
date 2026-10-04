@@ -1,0 +1,59 @@
+name: Sync game data
+
+on:
+  schedule:
+    - cron: "0 8,20 * * *"
+  workflow_dispatch:
+  repository_dispatch:
+    types: [monorepo-schema-updated]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout wiki
+        uses: actions/checkout@v4
+        with:
+          path: wiki
+
+      - name: Checkout monorepo
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ vars.MONOREPO_REPO }}
+          path: monorepo
+          token: ${{ secrets.MONOREPO_PAT || secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Sync from monorepo and write patch notes
+        working-directory: wiki
+        env:
+          MONOREPO_SCHEMA: ${{ github.workspace }}/monorepo/backend/src/DB/Schema
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          npm ci
+          node scripts/sync-and-patch.mjs
+
+      - name: Build Astro site
+        working-directory: wiki
+        run: npm run build
+
+      - name: Commit and push
+        working-directory: wiki
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/source data/version.json dist
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          VERSION=$(node -pe "JSON.parse(require('fs').readFileSync('data/version.json')).gameVersion")
+          git commit -m "chore(wiki): auto-sync game data v${VERSION}"
+          git push

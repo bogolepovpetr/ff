@@ -1,0 +1,18 @@
+{
+  "intro_ru": "VIP — две отдельные механики: постоянный VIP-уровень (1–15) от VIP-очков и временное VIP-время, которое активирует привилегии текущего уровня.",
+  "intro_en": "VIP has two separate mechanics: permanent VIP level (1–15) from VIP points, and temporary VIP time that activates perks for your current level.",
+  "bullets_ru": [
+    "VIP-уровень растёт от VIP-очков и никогда не падает.",
+    "VIP-время покупается за гемы и временно включает все привилегии текущего уровня.",
+    "VIP-очки: конвертация гемов (1 💎 = 1 очко) или ежедневный сундук со стриком входа.",
+    "Трата гемов в игре автоматически не даёт VIP-очки.",
+    "Не путать с Telegram Premium (user.is_premium) — это отдельная подписка."
+  ],
+  "bullets_en": [
+    "VIP level grows from VIP points and never decreases.",
+    "VIP time is purchased with gems and temporarily enables all perks of your current level.",
+    "VIP points: convert gems (1 💎 = 1 point) or claim the daily chest with a login streak.",
+    "Spending gems in the game does not grant VIP points automatically.",
+    "Do not confuse with Telegram Premium (user.is_premium) — that is a separate subscription."
+  ]
+}

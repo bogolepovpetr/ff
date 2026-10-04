@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-icon/components";
+import { getDawnFundTopup } from "@/lib/data";
+import WikiBreadcrumbs from "@/components/wiki/WikiBreadcrumbs.astro";
+import { localizedPath, useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const t = useT(lang);
+const topup = getDawnFundTopup();
+---
+
+<div class="space-y-6">
+  <WikiBreadcrumbs
+    crumbs={[
+      { href: localizedPath("/", lang), label: t("common.home") },
+      { label: "Deals" },
+    ]}
+  />
+
+  <div class="wiki-hero">
+    <h1 class="flex items-center gap-2 text-2xl font-bold">
+      <Icon name="lucide:sparkles" class="h-6 w-6 text-[var(--game-orange)]" />
+      Deals
+    </h1>
+    <p class="mt-2 text-sm leading-relaxed opacity-90">
+      <>{t("deals.heroPrefix")}<a href={localizedPath("/vip", lang)} class="font-semibold underline">{t("deals.vipLinkText")}</a>{t("deals.heroSuffix")}</>
+    </p>
+  </div>
+
+  <section class="grid gap-3 sm:max-w-sm">
+    <a href={localizedPath("/deals/dawn-fund", lang)} class="group wiki-panel p-4 transition-all hover:-translate-y-0.5 hover:shadow-md">
+      <div class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[color-mix(in_srgb,var(--game-green)_18%,white)] text-[var(--game-green)]">
+          <Icon name="lucide:castle" class="h-5 w-5" />
+        </div>
+        <div class="min-w-0">
+          <p class="font-bold">{t("deals.dawnFundTitle")}</p>
+          <p class="mt-0.5 text-xs text-muted-foreground">
+            {t("deals.dawnFundPricePrefix")}{topup.priceStar}{t("deals.dawnFundPriceSuffix")}
+          </p>
+        </div>
+        <Icon name="lucide:arrow-right" class="ml-auto h-4 w-4 text-muted-foreground group-hover:text-[var(--game-green)]" />
+      </div>
+    </a>
+  </section>
+</div>

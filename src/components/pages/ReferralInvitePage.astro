@@ -1,0 +1,118 @@
+---
+import { Icon } from "astro-icon/components";
+import { getReferralData } from "@/lib/data";
+import ResourceIcon from "@/components/wiki/ResourceIcon.astro";
+import { localizedPath, useT } from "@/lib/i18n";
+
+interface Props { lang: string }
+const { lang } = Astro.props;
+const ru = lang === "ru";
+const t = useT(lang);
+const data = getReferralData();
+const invite = data.invite;
+
+function fmtNumber(n: number): string {
+  return new Intl.NumberFormat("en-US").format(n);
+}
+
+function rangeLabel(from: number, to: number | null): string {
+  if (to == null) return t("referralInvite.rangeOpenTemplate").replaceAll("{from}", String(from));
+  if (from === to) return String(from);
+  return t("referralInvite.rangeClosedTemplate").replaceAll("{from}", String(from)).replaceAll("{to}", String(to));
+}
+---
+
+<div class="space-y-6">
+  <nav class="flex items-center gap-1 text-sm text-zinc-500">
+    <a href={localizedPath("/", lang)} class="hover:text-amber-700 hover:underline">{t("common.home")}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <a href={localizedPath("/referral", lang)} class="hover:text-amber-700 hover:underline">{t("referralInvite.breadcrumbReferral")}</a>
+    <Icon name="lucide:chevron-right" class="h-3.5 w-3.5" />
+    <span class="font-medium text-zinc-700">{t("referralInvite.breadcrumbGems")}</span>
+  </nav>
+
+  <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-6">
+    <div class="flex items-start gap-3">
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-emerald-700 shadow-sm">
+        <Icon name="lucide:users" class="h-5 w-5" />
+      </div>
+      <div class="min-w-0">
+        <h1 class="text-2xl font-bold text-slate-900">{t("referralInvite.heroTitle")}</h1>
+        <p class="mt-2 text-sm text-zinc-700">
+          {t("referralInvite.earnPrefix")}{" "}
+          <span class="inline-flex items-center gap-1 font-semibold text-zinc-900">
+            <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+            {fmtNumber(invite.max_per_friend_gems)}
+          </span>{" "}
+          {t("referralInvite.earnSuffix")}
+        </p>
+        <p class="mt-2 text-sm text-zinc-700">
+          {t("referralInvite.premiumBonusNote")}
+        </p>
+        <p class="mt-2 text-sm text-zinc-700">
+          {t("referralInvite.friendReceivesPrefix")}{" "}
+          <span class="inline-flex items-center gap-1 font-semibold text-zinc-900">
+            <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+            {fmtNumber(invite.friend_reward_gems)}
+          </span>{" "}
+          {t("referralInvite.or")}{" "}
+          <span class="inline-flex items-center gap-1 font-semibold text-zinc-900">
+            <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+            {fmtNumber(invite.friend_reward_gems_premium)}
+          </span>
+          {t("referralInvite.friendReceivesPremiumSuffix")}
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="rounded-xl border border-zinc-200 bg-white">
+    <div class="border-b border-zinc-100 px-5 py-3">
+      <h2 class="text-lg font-bold text-slate-800">{t("referralInvite.rewardRulesTitle")}</h2>
+    </div>
+    <div class="px-5 py-4 text-sm text-zinc-700">
+      <ul class="list-disc space-y-2 pl-5">
+        <li>
+          {t("referralInvite.premiumMultiplierTemplate").replaceAll("{multiplier}", String(invite.premium_multiplier))}
+        </li>
+        <li>{ru ? invite.requirement_ru : invite.requirement_en}</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="rounded-xl border border-zinc-200 bg-white">
+    <div class="border-b border-zinc-100 px-5 py-3">
+      <h2 class="text-lg font-bold text-slate-800">{t("referralInvite.rewardTiersTitle")}</h2>
+    </div>
+    <div class="overflow-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="border-b border-zinc-200 bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wider text-zinc-500">
+            <th class="px-4 py-2">{t("referralInvite.tableFriends")}</th>
+            <th class="px-4 py-2">{t("referralInvite.tableStandard")}</th>
+            <th class="px-4 py-2">Premium</th>
+          </tr>
+        </thead>
+        <tbody>
+          {invite.tiers.map((t, i) => (
+            <tr class={`border-b border-zinc-100 ${i % 2 === 1 ? "bg-zinc-50/50" : ""}`}>
+              <td class="px-4 py-2 font-semibold text-zinc-800">{rangeLabel(t.from, t.to)}</td>
+              <td class="px-4 py-2 text-zinc-700">
+                <span class="inline-flex items-center gap-1.5">
+                  <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+                  {fmtNumber(t.per_friend_gems)}
+                </span>
+              </td>
+              <td class="px-4 py-2 text-zinc-700">
+                <span class="inline-flex items-center gap-1.5">
+                  <ResourceIcon res="gem" class="h-4 w-4 text-sky-600" />
+                  {fmtNumber(t.per_friend_gems_premium)}
+                </span>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
